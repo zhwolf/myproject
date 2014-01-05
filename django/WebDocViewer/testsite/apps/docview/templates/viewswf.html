@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Liquid Capital Market Risk Control Portal</title>
+<!--首先要引入jquery库及相关的js-->
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/flexpaper_flash.js"></script>
+<script type="text/javascript" src="/static/js/flexpaper_flash_debug.js"></script>
+</head>
+<body> 
+<div>
+    <a href="/docview/">上传文件</a>
+</div>
+
+<div>
+<ul>
+    <li>
+    <span style="margin-left:30px">文件:{{ file.name }}</span>
+    <span style="margin-left:30px">大小:{{ file.size }}</span>
+    <span style="margin-left:30px">日期:{{ file.time }}</span>
+    </li>
+    <li>
+    <a href="javascript:void(0);" onclick="javascript:viewDoc('{{ file.abpath }}');">查看</a></span>
+    </li>
+</ul>    
+</div>
+<!--
+        <div style="position:absolute;left:10px;top:10px;">
+            <a id="viewerPlaceHolder" style="width:660px;height:480px;display:block"></a>         
+        </div>
+    -->
+        <div>
+            <a id="viewerPlaceHolder" style="width:660px;height:480px;display:block"></a>         
+        </div>
+
+</body>
+
+<script type="text/javascript"> 
+    function test()
+    {
+        alert("hah");
+    }
+    function viewDoc(filename)
+    {
+                var fp = new FlexPaperViewer(    
+                         '/static/FlexPaperViewer', 
+                         'viewerPlaceHolder',     
+                         { config : {
+                         //SwfFile : escape('ajax.swf'),  
+                         //SwfFile : '/static/books/paper.swf',
+                         SwfFile :  '/docview/showswf' + filename ,
+                         Scale : 0.6, 
+                         ZoomTransition : 'easeOut',
+                         ZoomTime : 0.5,
+                         ZoomInterval : 0.2,
+                         FitPageOnLoad : true,
+                         FitWidthOnLoad : false,
+                         PrintEnabled : true,
+                         FullScreenAsMaxWindow : false,
+                         ProgressiveLoading : false,
+                         MinZoomSize : 0.2,
+                         MaxZoomSize : 5,
+                         SearchMatchAll : false,
+                         InitViewMode : 'Portrait',
+                         
+                         ViewModeToolsVisible : true,
+                         ZoomToolsVisible : true,
+                         NavToolsVisible : true,
+                         CursorToolsVisible : true,
+                         SearchToolsVisible : true,
+                           localeChain: 'zh_CN'
+                         }});
+    }
+</script>
+<html>
