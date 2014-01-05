@@ -66,6 +66,7 @@ def view(request, path):
     any.fullpath= path
     any.size = os.path.getsize(fullapth)
     any.time = os.path.getctime(fullapth)
+    print request.META['HTTP_USER_AGENT']
     
     if  request.META['HTTP_USER_AGENT'].find('MSIE') >=0 or sufix == 'swf':
         return render(request, 'viewswf.html', { 'file' : any, } )
