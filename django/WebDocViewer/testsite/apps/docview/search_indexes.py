@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 from haystack import indexes, site
-from apps.products.models import Product
+from .models import Book
  
  
-class ProductIndex(indexes.SearchIndex):
+class BookIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    title = indexes.CharField(model_attr='name')
- 
  
     def get_model(self):
-        return Product
+        return Book
  
     def index_queryset(self):
         return self.get_model().objects.all()
  
-site.register(Product, ProductIndex)
+site.register(Book, BookIndex)

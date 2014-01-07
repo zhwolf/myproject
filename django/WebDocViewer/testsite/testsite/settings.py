@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for testsite project.
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'haystack',
     'apps.docview',
+    'testsite',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,7 +69,7 @@ WSGI_APPLICATION = 'testsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'testdb.sqlite3'),
     }
 }
 
@@ -121,7 +124,6 @@ UNOCONVTOOL= os.path.join(BASE_DIR, "tools/unoconv/unoconv")
 #####
 # haystack search
 #####
-HAYSTACK_SITECONF = 'search_sites' #之前创建的文件名
 HAYSTACK_CONNECTIONS = {  
     'default': {  
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',  

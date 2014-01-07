@@ -218,4 +218,8 @@ def handle_uploaded_file(f):
             for chunk in f.chunks():
                 destination.write(chunk)    
     except Exception, e:
-        printError()                
+        printError()     
+        
+#### use uploadify for professional   
+def search(request):
+    return render(request, 'search.html', { })                   
