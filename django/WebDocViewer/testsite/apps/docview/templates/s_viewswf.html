@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block header %}
+<script type="text/javascript" src="/static/js/flexpaper/flexpaper_flash.js"></script>
+<script type="text/javascript" src="/static/js/flexpaper/flexpaper_flash_debug.js"></script>
+
+<script type="text/javascript"> 
+
+    function viewDoc(filename)
+    {
+                var fp = new FlexPaperViewer(    
+                         '/static/js/flexpaper/FlexPaperViewer', 
+                         'viewerPlaceHolder',     
+                         { config : {
+                         //SwfFile : escape('ajax.swf'),  
+                         //SwfFile : '/docview/showswf/paper.swf',
+                         SwfFile :  '/docview/showswf' + filename ,
+                         Scale : 0.6, 
+                         ZoomTransition : 'easeOut',
+                         ZoomTime : 0.5,
+                         ZoomInterval : 0.2,
+                         FitPageOnLoad : true,
+                         FitWidthOnLoad : false,
+                         PrintEnabled : true,
+                         FullScreenAsMaxWindow : false,
+                         ProgressiveLoading : false,
+                         MinZoomSize : 0.2,
+                         MaxZoomSize : 5,
+                         SearchMatchAll : false,
+                         InitViewMode : 'Portrait',
+                         
+                         ViewModeToolsVisible : true,
+                         ZoomToolsVisible : true,
+                         NavToolsVisible : true,
+                         CursorToolsVisible : true,
+                         SearchToolsVisible : true,
+                           localeChain: 'zh_CN'
+                         }});
+    }
+</script>    
+
+{% endblock %}
+
+{% block container %}
+
+    <div class="container">
+        
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <span style="margin-right:30px">{{ file.name }}</span>
+            <a href="#bookinfo" data-toggle="collapse" class="text-right">详细»</a>    
+            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:viewDoc('{{ file.abpath }}');">查看</a>
+          </h4>
+        </div>
+        <div id="bookinfo" class="panel-collapse collapse in">
+          <div class="panel-body">
+                <span style="margin-left:30px">大小:{{ file.size }}</span>
+                <span style="margin-left:30px">日期:{{ file.time }}</span>
+          </div>
+        </div>
+      </div>        
+      
+        
+        <div class="row">
+          <div class="col-md-12 col-xs-12"></div>
+            <a id="viewerPlaceHolder" style="width:100%;height:480px;display:block"></a>         
+        </div>            
+    </div> <!-- /container -->
+    
+{% endblock %}
+

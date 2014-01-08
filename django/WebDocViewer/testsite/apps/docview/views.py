@@ -115,7 +115,7 @@ def view(request, path):
     print request.META['HTTP_USER_AGENT']
     
     if  request.META['HTTP_USER_AGENT'].find('MSIE') >=0 or sufix == 'swf':
-        return render(request, 'viewswf.html', { 'file' : any, } )
+        return render(request, 's_viewswf.html', { 'file' : any, } )
     else:        
         return render(request, 'viewpdf.html', { 'file' : any, } )
     
