@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-
+from django.conf import settings
+import sys
 # Create your models here.
-
-from django import forms
-
 
 class Book(models.Model):
     name    =models.CharField(u'名称',max_length=250,blank=False)
@@ -19,12 +17,11 @@ class Book(models.Model):
     uploader    =models.CharField(u'上传人',max_length=50,blank=True)
     flag        =models.CharField(u'上传人',max_length=50,blank=True)
     def __unicode__(self):
-        return self.name
+        return self.name.encode(sys.stdin.encoding)
+        
     class Meta:
         db_table = 'book'
 
-class UploadFileForm(forms.Form):
-  keywords = forms.CharField(label=u'关键字', max_length=200)
-  file = forms.FileField(label=u'上传')
+
   
   

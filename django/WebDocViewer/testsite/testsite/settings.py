@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 import logging
 import traceback
 import StringIO
 
+DEFAULT_ENCODE = sys.stdin.encoding
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'haystack',
+    #'apps.backends.haystack.whoosh_cn_jieba_backend',
     'apps.docview',
     'testsite',
 )
@@ -124,10 +127,13 @@ UNOCONVTOOL= os.path.join(BASE_DIR, "tools/unoconv/unoconv")
 #####
 # haystack search
 #####
+HAYSTACK_DEFAULT_OPERATOR = 'OR'
 HAYSTACK_CONNECTIONS = {  
     'default': {  
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',  
-        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),  
+        #'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',  
+        'ENGINE': 'apps.backends.haystack.whoosh_cn_jieba_backend.WhooshEngine',  
+        #'ENGINE': 'apps.backends.haystack.whoosh_cn_yaha_backend.WhooshEngine',  
+        'PATH': os.path.join(BASE_DIR, 'books/whoosh_index'),  
     },  
 }
 
@@ -136,8 +142,15 @@ logging.basicConfig(
         format = '%(asctime)s %(levelname)s %(module)s.%(funcName)s Line:%(lineno)d %(message)s',
 )
 
+
 def printError():
     fp = StringIO.StringIO()
     traceback.print_exc(file=fp)
     ret = fp.getvalue()
     logging.error("exception:%s",ret)
+    
+def local2Unicode(str):
+    return unicode(str, DEFAULT_ENCODE)
+    
+def unicode2local(str):
+    return str.encode(DEFAULT_ENCODE)    

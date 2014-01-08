@@ -1,5 +1,5 @@
 {{ object.name }}
 {{ object.author }}
 {{ object.tags }}
-{{ object.desc }}
+{{ object.descr }}
 {{ object.summary }}

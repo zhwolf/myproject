@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from .models import UploadFileForm
+from django import forms
 
 import subprocess 
 import os
@@ -13,11 +13,57 @@ import logging
 import sys
 import traceback
 import StringIO
+import jieba
+    
+
+
+from haystack.forms import SearchForm, ModelSearchForm
+from haystack.query import SearchQuerySet
+from haystack.inputs import AutoQuery, Exact, Clean
+from haystack.views import SearchView, search_view_factory
+
+class BookSearchView(SearchView):
+    def extra_context(self):
+        extra = super(BookSearchView, self).extra_context()
+        #extra['top_tags'] = Tag.objects.all().annotate(num_items=Count('doubanmovie')).order_by('-num_items')[0:33]
+        return extra
+
+class BookSearchForm(SearchForm):
+    def get_result_id(self, id):
+        return id
+        
+    def __init__(self, *args, **kwargs):
+        super(BookSearchForm, self).__init__(*args, **kwargs)
+        
+    def search(self):
+        print 'test............'
+        if not self.is_valid():
+            print 'is not valid............'
+            return self.no_query_found()
+        if not  self.cleaned_data.get('q'):
+            print 'no cleaned data............'
+            #return self.no_query_found()
+        '''
+        print 'search in form:', self.cleaned_data['q']
+        #return super(BookSearchForm, self).search()
+        return self.searchqueryset.filter_or(content=self.cleaned_data['q'])
+        '''
+        
+        query = self.cleaned_data['q']
+
+        words=jieba.cut_for_search(query)  
+        
+        sqs = self.searchqueryset.filter(content=query) # actually I have one more field here...
+        for word in words:
+            sqs = sqs.filter_or(content=word)
+        return sqs
 
 class Any:
     pass
-    
-DEFAULT_ENCODE = sys.stdin.encoding
+
+class UploadFileForm(forms.Form):
+  keywords = forms.CharField(label=u'å…³é”®å­—', max_length=200)
+  file = forms.FileField(label=u'ä¸Šä¼ ')
 
 # list of mobile User Agents
 mobile_uas = [
@@ -149,10 +195,11 @@ def convert2pdf(fullpath,todir):
  
 
 def execmd(cmd):
-    cmd = cmd.encode(DEFAULT_ENCODE)
+    #cmd = cmd.encode(DEFAULT_ENCODE)
+    cmd = settings.unicode2local(cmd)
     process =subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     ret = process.wait()
-    output= process.communicate()        #ÕâÀï¾ÍÊÇÎÒÃÇËùĞèÒªµÄstdoutµÄ±àÂë¸ñÊ½
+    output= process.communicate()        #è¿™é‡Œå°±æ˜¯æˆ‘ä»¬æ‰€éœ€è¦çš„stdoutçš„ç¼–ç æ ¼å¼
     logging.info("cmd: %s result:%s output:%s", cmd, ret, output )
     if ret==0:
         print 'DONE!'
@@ -186,7 +233,7 @@ def upload(request):
     files = []
     fs = os.listdir(path)
     for of in fs:
-        f = unicode(of, DEFAULT_ENCODE)
+        f = settings.local2Unicode(of)
         fullpath = os.path.join(path, f) 
         if os.path.isfile(fullpath) :
             print f
@@ -203,7 +250,7 @@ def upload(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             handle_uploaded_file(request.FILES['file'])
-            info = 'ÉÏ´«³É¹¦!'
+            info = 'ä¸Šä¼ æˆåŠŸ!'
             return HttpResponseRedirect('/docview/upload/')
     else:
         form = UploadFileForm()

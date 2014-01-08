@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fixed Top Navbar Example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/js/navbar-fixed-top.css" rel="stylesheet">
+
+  </head>
+<!--
+var browser={
+    versions:function(){
+    var u = navigator.userAgent, app = navigator.appVersion;
+    return {//移动终端浏览器版本信息
+    trident: u.indexOf('Trident') > -1, //IE内核
+    presto: u.indexOf('Presto') > -1, //opera内核
+    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+    mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端
+    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+    iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+    iPad: u.indexOf('iPad') > -1, //是否iPad
+    webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+    };
+}(),
+language:(navigator.browserLanguage || navigator.language).toLowerCase()
+};
+-->
+  <body>
+
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand active" href="/">文档分享系统</a>
+            </div>
+            
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">全部文档 <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-header">休闲</li>
+                        <li><a href="#">武侠</a></li>
+                        <li><a href="#">玄幻</a></li>
+                    <li class="divider"></li>
+                        <li class="dropdown-header">学科</li>
+                        <li><a href="#">英语</a></li>
+                        <li><a href="#">考研</a></li>
+                  </ul>
+                </li>
+              </ul>
+
+              <form class="navbar-form navbar-left form-inline" role="search" action="/docview/search/" method="get" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="输入书名或者作者" name="q" id="id_q">
+                  </div>
+                  <button type="submit" class="btn btn-default">搜书</button>
+              </form>          
+              
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">登陆</a></li>
+              </ul> 
+
+          </div>
+        </div>
+       </div>
+
+      </div>
+    </div>  
+    
+{% block container %}
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+        <div class="row">
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+            <!-- book -->
+          <div class="col-md-2 col-xs-4">
+            <div class="thumbnail">
+              <img src="/static/book.jpg" alt="...">
+              <div class="caption">
+                <h4>倚天屠龙记</h4>
+                <p>...</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+    </div> <!-- /container -->    
+{% endblock %}
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery/jquery.js"></script>
+    <script src="/static/js/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
