@@ -16,6 +16,7 @@ app = Celery('testsite')
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
 app.config_from_object('django.conf:settings')
+print 'install apps:', settings.INSTALLED_APPS
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 

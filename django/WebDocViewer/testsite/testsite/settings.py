@@ -46,6 +46,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     ### 第三方库
     'haystack',
+    'djcelery',
+    'south',
     ### 本地apps
     'apps.docview',
     'testsite',
@@ -163,3 +165,4 @@ def unicode2local(str):
 BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
 CELERY_TASK_SERIALIZER = 'json'
+#CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend',
