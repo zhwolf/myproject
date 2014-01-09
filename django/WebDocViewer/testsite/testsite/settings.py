@@ -44,8 +44,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    ### 第三方库
     'haystack',
-    #'apps.backends.haystack.whoosh_cn_jieba_backend',
+    ### 本地apps
     'apps.docview',
     'testsite',
 )
@@ -154,3 +155,11 @@ def local2Unicode(str):
     
 def unicode2local(str):
     return str.encode(DEFAULT_ENCODE)    
+    
+    
+#######
+# Celery settings
+######    
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
+CELERY_TASK_SERIALIZER = 'json'
