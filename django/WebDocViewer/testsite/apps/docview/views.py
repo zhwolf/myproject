@@ -27,6 +27,27 @@ class BookSearchView(SearchView):
         extra = super(BookSearchView, self).extra_context()
         #extra['top_tags'] = Tag.objects.all().annotate(num_items=Count('doubanmovie')).order_by('-num_items')[0:33]
         return extra
+        
+    def create_response(self):
+        """
+        Generates the actual HttpResponse to send back to the user.
+        """
+        (paginator, page) = self.build_page()
+
+        context = {
+            'query': self.query,
+            'form': self.form,
+            'page': page,
+            'paginator': paginator,
+            'suggestion': None,
+            'keywords' : " ".join(jieba.cut_for_search(self.query))
+        }
+
+        if self.results and hasattr(self.results, 'query') and self.results.query.backend.include_spelling:
+            context['suggestion'] = self.form.get_suggestion()
+
+        context.update(self.extra_context())
+        return render_to_response(self.template, context, context_instance=self.context_class(self.request))        
 
 class BookSearchForm(SearchForm):
     def get_result_id(self, id):

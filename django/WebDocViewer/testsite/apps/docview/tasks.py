@@ -4,6 +4,7 @@ from __future__ import absolute_import
 
 from celery import shared_task
 
+from .models import Book
 
 @shared_task
 def add(x, y):
