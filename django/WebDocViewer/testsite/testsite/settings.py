@@ -16,8 +16,9 @@ import sys
 import logging
 import traceback
 import StringIO
+import locale
 
-DEFAULT_ENCODE = sys.stdin.encoding
+DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -112,19 +113,7 @@ BOOK_OUTPUT_BASE= os.path.join(BASE_DIR, BOOK_OUTPUT_ABSPATH)
 BOOK_TEMP_ABSPATH = "books/temp"
 BOOK_TEMP_BASE= os.path.join(BASE_DIR, BOOK_TEMP_ABSPATH)
 
-SWFTOOL_BASE= os.path.join(BASE_DIR, "tools/SWFTools")
-SWFTOOLS = {
-    'font': os.path.join(SWFTOOL_BASE, "font2swf.exe"),
-    'gif' : os.path.join(SWFTOOL_BASE, "gif2swf.exe"),
-    'gpdf': os.path.join(SWFTOOL_BASE, "gpdf2swf.exe"),
-    'jpeg': os.path.join(SWFTOOL_BASE, "jpeg2swf.exe"),
-    'jpg': os.path.join(SWFTOOL_BASE, "jpeg2swf.exe"),
-    'pdf': os.path.join(SWFTOOL_BASE, "pdf2swf.exe"),
-    'png': os.path.join(SWFTOOL_BASE, "png2swf.exe"),
-    'wav': os.path.join(SWFTOOL_BASE, "wav2swf.exe"),
-}
 
-UNOCONVTOOL= os.path.join(BASE_DIR, "tools/unoconv/unoconv")
 
 
 #####
