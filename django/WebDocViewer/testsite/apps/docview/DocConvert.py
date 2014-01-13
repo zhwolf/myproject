@@ -9,12 +9,16 @@ import traceback
 import StringIO
 import locale
 import threading
-
+import Queue
 DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
 
-pdf_lock = threading.Lock() 
+#pdf_lock = threading.Lock() 
 
+OfficePortQueue = Queue.Queue()
+#for i in range(10):
+#    OfficePortQueue.put(2002 + i)
+OfficePortQueue.put(2002)
 
 class DocConverter:
     def __init__(self,basedir,outputdir,toolbasedir, errfunc):
@@ -96,11 +100,15 @@ class DocConverter:
         logging.info('path:%s sufix:%s cmdpath:%s', path, sufix, cmdpath)
         if cmdpath == None:
             return ""
-        ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
+        ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G' % (cmdpath, fullpath, swffile) )
         if ret:
             return swffile
         elif ret==1:
-            return ""
+            ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
+            if ret:
+                return swffile
+            elif ret==1:
+                return ""
     
     def convert2pdf(self,fullpath,todir):
         logging.info("convert %s to pdf", fullpath)
@@ -116,14 +124,18 @@ class DocConverter:
             return swffile
         
         cmdpath = self.UNOCONVTOOL
+        port = OfficePortQueue.get()
         try:
-            pdf_lock.acquire()
-            ret, logs = self.execmd( r'python "%s" -f pdf "%s"' % (cmdpath, fullpath) )
+            #pdf_lock.acquire()
+            ret, logs = self.execmd( r'python "%s" -f pdf -p %s "%s"' % (cmdpath,port, fullpath) )
+            OfficePortQueue.put(port)
         except Exception,e:
+            OfficePortQueue.put(port+1)
             self.printError()
             return ""
         finally:
-            pdf_lock.release()            
+            #pdf_lock.release()            
+            pass
                         
         if ret:
             logging.info( "thisfile:%s    swffile:%s",thisfile,  swffile)
@@ -140,13 +152,20 @@ class DocConverter:
     def execmd(self,cmd):
         #cmd = cmd.encode(DEFAULT_ENCODE)
         cmd = cmd.encode(DEFAULT_ENCODE) 
-        process =subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-        ret = process.wait()
-        output= process.communicate()        #这里就是我们所需要的stdout的编码格式
-        logging.info("cmd: %s result:%s output:%s", cmd, ret, output )
-        if ret==0:
-            print 'DONE!'
-            return True, output
-        elif ret==1:
-            print 'FAILED!'
-            return False, output    
+        try:
+            process =subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+            output= process.communicate()        #这里就是我们所需要的stdout的编码格式
+            ret = process.wait()
+            #output= process.communicate()        #这里就是我们所需要的stdout的编码格式
+            logging.info("cmd: %s result:%s output:%s", cmd, ret, output )
+            if ret==0:
+                print 'DONE!'
+                return True, output
+            elif ret==1:
+                print 'FAILED!'
+                return False, output    
+        except Exception,e:
+            self.printError()                
+            pass
+        finally:
+            process.kill()                

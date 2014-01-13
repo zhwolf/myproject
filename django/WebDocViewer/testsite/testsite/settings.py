@@ -47,7 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     ### 第三方库
     'haystack',
-    #'djcelery',
+    'djcelery',
     'south',
     ### 本地apps
     'apps.docview',
