@@ -100,15 +100,12 @@ class DocConverter:
         logging.info('path:%s sufix:%s cmdpath:%s', path, sufix, cmdpath)
         if cmdpath == None:
             return ""
-        ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G' % (cmdpath, fullpath, swffile) )
+        #ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G' % (cmdpath, fullpath, swffile) )
+        ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
         if ret:
             return swffile
         elif ret==1:
-            ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
-            if ret:
-                return swffile
-            elif ret==1:
-                return ""
+            return ""
     
     def convert2pdf(self,fullpath,todir):
         logging.info("convert %s to pdf", fullpath)
