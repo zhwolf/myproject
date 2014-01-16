@@ -94,9 +94,32 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
                         <li><a href="#">英语</a></li>
                         <li><a href="#">考研</a></li>
                   </ul>
-                </div>  
+              </div>  
 
-                <a class="btn btn-primary"  href="#">用户登陆</a>
+{% jinja %}    
+                {% if session and session.user %} 
+                    {% if session.admin == 1 %}
+                        <div class="btn-group  dropup">  
+                          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">文档管理<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                  <li><a href="#">上传文档</a></li>
+                                  <li><a href="#">文档管理</a></li>
+                                  <li><a href="#">用户管理</a></li>
+                            </ul>
+                        </div>  
+                    {% else %}           
+                        <div class="btn-group  dropup">  
+                          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">我的空间<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                  <li><a href="#">用户信息</a></li>
+                                  <li><a href="#">我的收藏</a></li>
+                            </ul>
+                        </div>  
+                    {% endif %}
+                {% else %}           
+                    <a class="btn btn-primary"  href="#">用户登陆</a>
+                {% endif %}
+{% endjinja %}                
             </div><!-- /btn-group -->
 
       </div>
