@@ -52,7 +52,6 @@ INSTALLED_APPS = (
     ### ±¾µØapps
     'apps.backends.jinja2',
     'apps.docview',
-    'apps.docview',
     'testsite',
 )
 
