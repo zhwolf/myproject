@@ -6,6 +6,7 @@ import sys
 # Create your models here.
 
 class Book(models.Model):
+    #bookid  =models.CharField(u'bookid',max_length=250,blank=False)
     name    =models.CharField(u'名称',max_length=250,blank=False)
     author  =models.CharField(u'作者',max_length=200,blank=True)
     descr    =models.CharField(u'简介',max_length=500,blank=True)

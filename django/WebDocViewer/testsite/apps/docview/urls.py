@@ -9,9 +9,10 @@ urlpatterns = patterns('',
     url(r'^showpdf/+(?P<path>.*)', views.getpdf, name='getdoc' ),
     url(r'^upload/$', views.upload, name='upload' ),
     url(r'^view/+(?P<path>.*)', views.view, name='view' ),
+    url(r'^pdfviewer/', TemplateView.as_view(template_name="pdfviewer.html") ),
     
-    url(r'test/$', TemplateView.as_view(template_name="test.html") ),
-    url(r'viewer/$', TemplateView.as_view(template_name="viewer.html") ),
+    url(r'^test/$', TemplateView.as_view(template_name="test.html") ),
+    #url(r'^viewer/$', TemplateView.as_view(template_name="viewer.html") ),
     
     #url(r'^search/$', views.search, name='search' ),
     

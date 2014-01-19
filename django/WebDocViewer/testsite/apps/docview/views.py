@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -6,6 +7,8 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django import forms
+
+from .DocConvert import DocConverter
 
 import subprocess 
 import os
@@ -21,6 +24,9 @@ from haystack.forms import SearchForm, ModelSearchForm
 from haystack.query import SearchQuerySet
 from haystack.inputs import AutoQuery, Exact, Clean
 from haystack.views import SearchView, search_view_factory
+
+DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
+
 
 class BookSearchView(SearchView):
     def extra_context(self):
@@ -141,95 +147,16 @@ def view(request, path):
         return render(request, 's_viewpdf.html', { 'file' : any, } )
     
 def getswf(request,path):
-    try:
-        relate_path = os.path.dirname(path)
-        fullpath = os.path.join(settings.BOOK_BASE, path).strip()
-        sufix = os.path.splitext(fullpath)[1][1:].lower()
-        if sufix != 'swf' :
-            cmdpath = settings.SWFTOOLS.get(sufix, None)
-            apath = ""
-            if cmdpath == None:
-                fullpath = convert2pdf(fullpath, os.path.join(settings.BOOK_OUTPUT_BASE , relate_path ))   
-            fullpath = convert2swf(fullpath, os.path.join(settings.BOOK_OUTPUT_BASE , relate_path ))
-        return bigFileView(request, fullpath )
-    except Exception, e:
-        printError()       
+    converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
+    fullpath = os.path.join(settings.BOOK_BASE, path).strip()
+    fullpath = converter.getswf(fullpath)    
+    return bigFileView(request, fullpath )
 
 def getpdf(request,path):
-    try:
-        relate_path = os.path.dirname(path)
-        fullpath = os.path.join(settings.BOOK_BASE, path).strip()
-        sufix = os.path.splitext(fullpath)[1][1:].lower()
-        if sufix != 'pdf' :
-            fullpath = convert2pdf(fullpath, os.path.join(settings.BOOK_OUTPUT_BASE , relate_path ))   
-        return bigFileView(request, fullpath )
-    except Exception, e:
-        printError()               
-
-def convert2swf(fullpath, todir):
-    logging.info("convert %s to swf", fullpath)
-    path = os.path.basename( fullpath)
-    fs = os.path.splitext(path)
-    filename = fs[0]
-    sufix = fs[1][1:].lower().strip()
-    swffile = os.path.join(todir, '%s.swf' %(filename))
-    
-    if os.path.isfile(swffile):
-        logging.info("Good. File already exists:%s", fullpath)
-        return swffile
-    
-    
-    cmdpath = settings.SWFTOOLS.get(sufix, None)
-    print path, sufix, cmdpath
-    if cmdpath == None:
-        return ""
-    ret, logs = execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
-    if ret:
-        return swffile
-    elif ret==1:
-        return ""
-
-def convert2pdf(fullpath,todir):
-    logging.info("convert %s to pdf", fullpath)
-    path = os.path.basename( fullpath)
-    fs = os.path.splitext(path)
-    filename = fs[0]
-    sufix = fs[1][1:].lower().strip()
-    thisfile = '%s.pdf' %(os.path.splitext(fullpath)[0])
-    swffile = os.path.join(todir, '%s.pdf' %(filename))
-    
-    if os.path.isfile(swffile):
-        logging.info("Good. File already exists:%s", fullpath)
-        return swffile
-    
-    cmdpath = settings.UNOCONVTOOL
-    ret, logs = execmd( r'python "%s" -f pdf "%s"' % (cmdpath, fullpath) )
-    if ret:
-        try:
-            os.remove(swffile)
-        except Exception,e:
-            pass
-        os.rename(thisfile, swffile)
-        return swffile
-    elif ret==1:
-        return ""
- 
-
-def execmd(cmd):
-    #cmd = cmd.encode(DEFAULT_ENCODE)
-    cmd = settings.unicode2local(cmd)
-    process =subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-    ret = process.wait()
-    output= process.communicate()        #这里就是我们所需要的stdout的编码格式
-    logging.info("cmd: %s result:%s output:%s", cmd, ret, output )
-    if ret==0:
-        print 'DONE!'
-        return True, output
-    elif ret==1:
-        print 'FAILED!'
-        return False, output
-    
-
+    converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
+    fullpath = os.path.join(settings.BOOK_BASE, path).strip()
+    fullpath = converter.getpdf(fullpath)    
+    return bigFileView(request, fullpath )
 
 def bigFileView(request, file_name):
     # do something...
@@ -254,7 +181,7 @@ def upload(request):
     files = []
     fs = os.listdir(path)
     for of in fs:
-        f = settings.local2Unicode(of)
+        f = unicode(of, DEFAULT_ENCODE)
         fullpath = os.path.join(path, f) 
         if os.path.isfile(fullpath) :
             print f
