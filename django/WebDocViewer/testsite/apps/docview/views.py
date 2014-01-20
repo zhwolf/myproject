@@ -7,8 +7,13 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django import forms
+from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
+from sqlalchemy.sql import and_,or_, desc
+from .models import Book, BookSL
 
 from .DocConvert import DocConverter
+import datetime
+import uuid
 
 import subprocess 
 import os
@@ -27,6 +32,7 @@ from haystack.views import SearchView, search_view_factory
 
 DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
+session = Session()
 
 class BookSearchView(SearchView):
     def extra_context(self):
@@ -89,8 +95,14 @@ class Any:
     pass
 
 class UploadFileForm(forms.Form):
-  keywords = forms.CharField(label=u'关键字', max_length=200)
-  file = forms.FileField(label=u'上传')
+    author = forms.CharField(label=u'作者',required = False, max_length=200)
+    tags = forms.CharField(label=u'关键字',required = False,  max_length=200)
+    descr = forms.CharField(label=u'简介',required = False,  max_length=200)
+    #name = forms.CharField(label=u'名称',required = True,  max_length=200)
+    cost = forms.IntegerField(label=u'价值',required = True,)
+    file = forms.FileField(label=u'上传',required = True, error_messages = {
+           'required': u'请选择文件.',
+        }, )
 
 # list of mobile User Agents
 mobile_uas = [
@@ -175,35 +187,74 @@ def bigFileView(request, file_name):
 #### use uploadify for professional   
 def upload(request):
     info = ''
+    error = ''
 
-    abpath = settings.BOOK_ABSPATH
-    path = settings.BOOK_BASE
-    files = []
-    fs = os.listdir(path)
-    for of in fs:
-        f = unicode(of, DEFAULT_ENCODE)
-        fullpath = os.path.join(path, f) 
-        if os.path.isfile(fullpath) :
-            print f
-            any = Any()
-            any.name = f
-            any.abdir = r"/" + abpath
-            any.abpath = r"/" + f
-            any.fullpath= fullpath
-            sufix = os.path.splitext(f)[1][1:]
-            files.append( any)
-
+    historydatas = session.query(BookSL).order_by(desc(BookSL.id)).all()[:10]
 
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
+        print request.POST
         if form.is_valid():
-            handle_uploaded_file(request.FILES['file'])
-            info = '上传成功!'
-            return HttpResponseRedirect('/docview/upload/')
+            print "not valid"                
+            f = request.FILES['file']
+            filename = handle_uploaded_file(f)
+            if filename == "":
+                error = u"文件保存失败.请联系管理员"
+            else:
+                data = BookSL()
+                try:
+                    
+                    session.add(data)
+                    update_model(data, form.cleaned_data)
+                    data.name, data.format = os.path.splitext(os.path.basename(f.name))
+                    data.format = data.format[1:].lower()
+                    data.uploadtime = datetime.datetime.now()
+                    data.path = os.path.relpath( filename, settings.BOOK_BASE)
+                    data.uploader = ''
+                    data.bookid =  '%s' % (uuid.uuid1())
+                    data.cost = 0
+                    data.counter = 0
+                    
+                    session.commit()
+                    info = '上传成功!'
+                    return HttpResponseRedirect('/docview/upload/')
+                except Exception,e:
+                    error = u"文件保存失败.请联系管理员"
+                    session.rollback()
+                    printError()
+        else:
+            print "not valid"                
     else:
+        print "form get"
         form = UploadFileForm()
-            
-    return render(request, 'upload.html', {'form': form, 'files' : files, 'info':info })
+    return render(request, 'bookUpload.html', {'form': form, 'historydata' : historydatas, 'info':info, 'error':error })
+    
+def bookedit(request, bookid):
+    info = ''
+    error = ''
+    
+    data = session.query(BookSL).filter(
+                        and_(BookSL.bookid == bookid,
+                        )).first()        
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST)
+        if form.is_valid():
+            try:
+                update_model(data, form.cleaned_data)
+                
+                session.commit()
+                info = '保存成功!'
+                return HttpResponseRedirect('/docview/upload/')
+            except Exception,e:
+                error = u"文件保存失败.请联系管理员"
+                session.rollback()
+                printError()
+        else:
+            print "not valid"                
+    else:
+        print "form get"
+        form = UploadFileForm(initial=data.__dict__)
+    return render(request, 'bookEdit.html', {'form': form, 'info':info, 'error':error })    
     
 def handle_uploaded_file(f):
     filename = os.path.join(settings.BOOK_BASE, f.name)
@@ -212,7 +263,9 @@ def handle_uploaded_file(f):
         with open(filename, 'wb+') as destination:
             for chunk in f.chunks():
                 destination.write(chunk)    
+        return filename                
     except Exception, e:
+        return ""
         printError()     
         
 #### use uploadify for professional   

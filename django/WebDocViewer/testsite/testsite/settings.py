@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'djcelery',
     'south',
     ### ±¾µØapps
+    'apps.backends.DBEnginee',
     'apps.backends.jinja2',
     'apps.docview',
     'testsite',
@@ -86,15 +87,17 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-CN'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+TEMPLATE_STRING_IF_INVALID=''
 
 
 # Static files (CSS, JavaScript, Images)

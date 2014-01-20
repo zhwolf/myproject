@@ -7,9 +7,12 @@ urlpatterns = patterns('',
     url(r'^$', views.upload, name='index' ),
     url(r'^showswf/+(?P<path>.*)', views.getswf, name='getdoc' ),
     url(r'^showpdf/+(?P<path>.*)', views.getpdf, name='getdoc' ),
-    url(r'^upload/$', views.upload, name='upload' ),
     url(r'^view/+(?P<path>.*)', views.view, name='view' ),
     url(r'^pdfviewer/', TemplateView.as_view(template_name="pdfviewer.html") ),
+
+
+    url(r'^upload/$', views.upload, name='upload' ),
+    url(r'^bookedit/+(?P<bookid>.*)$', views.bookedit, name='bookedit' ),
     
     url(r'^test/$', TemplateView.as_view(template_name="test.html") ),
     #url(r'^viewer/$', TemplateView.as_view(template_name="viewer.html") ),

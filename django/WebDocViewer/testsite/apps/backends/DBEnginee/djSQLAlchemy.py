@@ -1,45 +1,81 @@
 # -*- coding: UTF-8 -*-
-import settings
+from __future__ import absolute_import
+from django.conf import settings
 from sqlalchemy.orm import *
 from sqlalchemy.orm import scoped_session
-from sqlalchemy import *
+import sqlalchemy
 import Queue
 
-#for sqlalchemy
-DATABASE_URL=settings.DBURL
 
-#print "DATABASE_URL", DATABASE_URL
+#dialect+driver://username:password@host:port/database
+#sqlalDB = {}
+#sqlalDB['ENGINE'] = settings.DATABASES['default']['ENGINE'].split(".")[-1]
+#sqlalDB['NAME'] = settings.DATABASES['default'].get('NAME', '').strip()
+#if sqlalDB['ENGINE'] == 'sqlite3':
+#    sqlalDB['ENGINE'] = 'sqlite'    
+#    sqlalDB['NAME'] =  sqlalDB['NAME'].replace('\\', '/') 
+#sqlalDB['USER'] = settings.DATABASES['default'].get('USER', '').strip()
+#if sqlalDB['USER'] > '':
+#    sqlalDB['PASSWORD'] = ':' + settings.DATABASES['default'].get('PASSWORD', '').strip() + '@'
+#else:
+#    sqlalDB['PASSWORD'] = ''    
+#sqlalDB['HOST'] = settings.DATABASES['default'].get('HOST', '').strip()
+#if sqlalDB['HOST'] > '':
+#    sqlalDB['PORT'] = ':' + settings.DATABASES['default'].get('PORT', '').strip() + '/'
+#else:
+#    sqlalDB['PORT'] = '/'    
+#
+#DATABASE_URL= "%(ENGINE)s://%(USER)s%(PASSWORD)s%(HOST)s%(PORT)s%(NAME)s" % (sqlalDB)
+#
+#
+#print "DATABASE_URL:",DATABASE_URL
 
-IfMSSQL= DATABASE_URL.lower().find('mssql') >=0
+#if sqlalDB['ENGINE'] == 'sqlite':
+#    engine = create_engine(DATABASE_URL, echo=False)
+#else:
+#    engine = create_engine(DATABASE_URL, echo=False,pool_size=15,pool_recycle=15)    
+    
+from sqlalchemy.engine.url import URL
+__all__ = ['metadata']
+def a_create_engine():
+    issqlite = False
+    _engine = settings.DATABASES['default']['ENGINE'].split(".")[-1]
+    _name = settings.DATABASES['default'].get('NAME', '').strip()
+    issqlite = _engine in ['sqlite3', 'sqlite']
+    if issqlite:
+        _engine = 'sqlite'    
+        _name = _name.replace('\\', '/') 
+    url = URL(drivername= _engine,
+              database= _name,
+              username= settings.DATABASES['default'].get('USER', '') or None,
+              password= settings.DATABASES['default'].get('PASSWORD', '') or None,
+              host= settings.DATABASES['default'].get('HOST', '') or None,
+              port= settings.DATABASES['default'].get('PORT', '') or None,
+              query = settings.DATABASES['default'].get('OPTIONS', {}),
+              )
+    options = getattr(settings, 'SQLALCHEMY_OPTIONS', {})
+    if issqlite:
+        return  sqlalchemy.create_engine(url, echo=True,) 
+    else:        
+        return  sqlalchemy.create_engine(url, echo=False,pool_size= 15,pool_recycle=15) 
 
-#engine = create_engine(DATABASE_URL, echo=False, has_window_funcs=IfMSSQL)
-#engine = create_engine(DATABASE_URL, echo=False,convert_unicode=True,encoding='utf-8',assert_unicode=False)
-engine = create_engine(DATABASE_URL, echo=False,pool_size=15,pool_recycle=15)
-
-metadata = MetaData()
+engine = a_create_engine()
+metadata = sqlalchemy.MetaData()
 metadata.bind=engine
 session_factory  = sessionmaker(autoflush=True,bind=engine)
 Session = scoped_session(session_factory)
-#SessionQueue = Queue.Queue()
 
-def getSession():
-#    if SessionQueue.empty():
-#        session = Session()
-#        SessionQueue.put(session)
-#        print "create new sesson, now we have %s sesssions" %(SessionQueue.qsize())
-#    a =SessionQueue.get()
-    return Session()
+#def getSession():
+#    return Session()
 
+#def removeSession(session):
+#    session.expunge_all()
 
-def removeSession(session):
-    session.expunge_all()
-#    SessionQueue.put(session)
-#    print "recycle sesson, now we have %s sesssions" %(SessionQueue.qsize())
-
-class Any():
-    pass
 
 def update_model(model, fields, **kwds):
+    class Any():
+        pass
+
     """Update an object (like an SQLAlchemy model) from a dictionary (like
     that provided by form.cleaned_data). Since Django's ModelForm doesn't work
     with SQLAlchemy, this is a reasonably quick alternative approach::
@@ -59,5 +95,4 @@ def update_model(model, fields, **kwds):
             continue
         if hasattr(model, k) and not callable(getattr(model, k)) and k not in exclude:
             setattr(model, k, v)
-            
-#SessionQueue.put(Session())
+
