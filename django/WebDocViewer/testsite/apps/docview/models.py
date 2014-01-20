@@ -27,10 +27,10 @@ class Book(models.Model):
         return self.name.encode(sys.stdin.encoding)
         
     class Meta:
-        db_table = 'book'
+        db_table = 'b_book'
 
 #taskpic
-Book_table=Table("Book", metadata, autoload=True)
+Book_table=Table("b_book", metadata, autoload=True)
 class BookSL(object):
     pass
 mapper(BookSL, Book_table)  

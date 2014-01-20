@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
 
     url(r'^upload/$', views.upload, name='upload' ),
-    url(r'^bookedit/+(?P<bookid>.*)$', views.bookedit, name='bookedit' ),
+    url(r'^bookedit/+(?P<bookid>.*)/$', views.bookedit, name='bookedit' ),
     
     url(r'^test/$', TemplateView.as_view(template_name="test.html") ),
     #url(r'^viewer/$', TemplateView.as_view(template_name="viewer.html") ),

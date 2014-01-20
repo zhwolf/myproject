@@ -79,6 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'testdb.sqlite3'),
+        'OPTIONS': {
+            'timeout': 5,
+        }            
     }
 }
 
@@ -159,3 +162,4 @@ BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
 CELERY_TASK_SERIALIZER = 'json'
 #CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend',
+

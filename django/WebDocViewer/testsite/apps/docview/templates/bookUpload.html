@@ -31,7 +31,7 @@
               <div class="form-group">
                 <label for="id_author" class="col-sm-2 control-label">作者:</label>
                 <div class="col-sm-10">
-                    <input id="id_author"  name="keywords" type="text" class="form-control" placeholder="输入作者及出版社信息,以便搜索" 
+                    <input id="author"  name="author" type="text" class="form-control" placeholder="输入作者及出版社信息,以便搜索" 
                     value ="{{ form.author.value|default:""|safe }}" />
                 </div>
               </div>
@@ -43,7 +43,7 @@
               <div class="form-group">
                 <label for="id_cost" class="col-sm-2 control-label">价值:</label>
                 <div class="col-sm-10">
-                    <input id="id_cost"  name="cost" type="text" class="form-control" placeholder="输入文档价值,免费文档请输入0" 
+                    <input id="cost"  name="cost" type="text" class="form-control" placeholder="输入文档价值,免费文档请输入0" 
                     value ="{{ form.cost.value|default:""|safe }}" />
                 </div>
               </div>
@@ -54,7 +54,7 @@
               <div class="form-group">
                 <label for="id_tags" class="col-sm-2 control-label">关键字:</label>
                 <div class="col-sm-10">
-                    <input id="id_tags" maxlength="200" name="keywords" type="text" class="form-control" placeholder="输入文档关键字,以便搜索"
+                    <input id="tags" maxlength="200" name="tags" type="text" class="form-control" placeholder="输入文档关键字,以便搜索"
                     value ="{{ form.tags.value|default:""|safe }}" />
                 </div>
               </div>
@@ -65,7 +65,7 @@
               <div class="form-group">
                 <label for="id_descr" class="col-sm-2 control-label">文档简介:</label>
                 <div class="col-sm-10">
-                    <textarea id="id_descr" name="descr" class="form-control" >{{ form.descr.value|default:""|safe }}</textarea>    
+                    <textarea id="descr" name="descr" class="form-control" rows = "10" >{{ form.descr.value|default:""|safe }}</textarea>    
                 </div>
               </div>
     
@@ -75,7 +75,7 @@
               <div class="form-group">
                 <label for="id_file" class="col-sm-2 control-label">选择文件</label>
                 <div class="col-sm-10">
-                    <input id="id_file" type="file" name="file" class="form-control" onchange="return FileUpload_onselect()" />
+                    <input id="file" type="file" name="file" class="form-control" onchange="return FileUpload_onselect()" />
                 </div>
               </div>
               
@@ -91,13 +91,14 @@
     <div class="row">
         
       <div class="col-sm-8 col-sm-offset-2">
-      <span class="label label-primary">历史记录</span>
+      <span class="label label-primary">最新上传</span>
           <table class="table table-condensed">
                 <thead>
                   <tr>
                     <th>文档名</th>
                     <th>分值</th>
                     <th>时间</th>
+                    <th>修改</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -106,6 +107,7 @@
                     <td>{{ data.name }}</td>
                     <td>{{ data.cost }}</td>
                     <td>{{ data.uploadtime }}</td>
+                    <td><a  class="btn btn-primary btn-md active" role="button" href="/docview/bookedit/{{ data.id }}/" >修改</a></td>
                   </tr>
                     {% endfor %}
                 </tbody>            

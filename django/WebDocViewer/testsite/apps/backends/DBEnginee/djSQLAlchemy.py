@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from django.conf import settings
 from sqlalchemy.orm import *
 from sqlalchemy.orm import scoped_session
+from sqlalchemy.pool import StaticPool
 import sqlalchemy
 import Queue
 
@@ -55,7 +56,8 @@ def a_create_engine():
               )
     options = getattr(settings, 'SQLALCHEMY_OPTIONS', {})
     if issqlite:
-        return  sqlalchemy.create_engine(url, echo=True,) 
+        return  sqlalchemy.create_engine(url, echo=True,connect_args={'check_same_thread':False},
+                    poolclass=StaticPool)
     else:        
         return  sqlalchemy.create_engine(url, echo=False,pool_size= 15,pool_recycle=15) 
 

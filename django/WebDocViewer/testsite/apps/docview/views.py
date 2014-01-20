@@ -97,8 +97,8 @@ class Any:
 class UploadFileForm(forms.Form):
     author = forms.CharField(label=u'作者',required = False, max_length=200)
     tags = forms.CharField(label=u'关键字',required = False,  max_length=200)
-    descr = forms.CharField(label=u'简介',required = False,  max_length=200)
-    #name = forms.CharField(label=u'名称',required = True,  max_length=200)
+    descr = forms.CharField(label=u'简介',required = False,  max_length=1024)
+    name = forms.CharField(label=u'名称',required = False,  max_length=200)
     cost = forms.IntegerField(label=u'价值',required = True,)
     file = forms.FileField(label=u'上传',required = True, error_messages = {
            'required': u'请选择文件.',
@@ -232,28 +232,32 @@ def upload(request):
 def bookedit(request, bookid):
     info = ''
     error = ''
-    
+    print bookid
     data = session.query(BookSL).filter(
-                        and_(BookSL.bookid == bookid,
-                        )).first()        
+                        and_(BookSL.id == bookid,
+                        )).first()
     if request.method == 'POST':
         form = UploadFileForm(request.POST)
+        form.fields.pop('file', None)
         if form.is_valid():
             try:
+                print form.cleaned_data
+                print 'data before:', data
                 update_model(data, form.cleaned_data)
-                
+                print 'data after:', data
                 session.commit()
                 info = '保存成功!'
                 return HttpResponseRedirect('/docview/upload/')
             except Exception,e:
-                error = u"文件保存失败.请联系管理员"
+                error = u"信息修改失败.请联系管理员"
                 session.rollback()
                 printError()
         else:
             print "not valid"                
     else:
-        print "form get"
         form = UploadFileForm(initial=data.__dict__)
+        form.fields.pop('file', None)
+        
     return render(request, 'bookEdit.html', {'form': form, 'info':info, 'error':error })    
     
 def handle_uploaded_file(f):

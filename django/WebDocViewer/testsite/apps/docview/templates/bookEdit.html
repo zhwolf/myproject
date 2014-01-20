@@ -12,13 +12,14 @@
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
             {% if info %}
-            <span class="label label-success  col-sm-offset-2">
-               {{ info }}
-            </span>
+            <div class="col-sm-offset-2">
+                <span class="label label-success  ">{{ info }}</span>
+            </div>
             {% endif %}
       
             {% if error %}
-            <span class="label label-danger  col-sm-offset-2">{{ error }}</span>    
+            <div class="col-sm-offset-2">
+                <span class="label label-danger">{{ error }}</span>    
             </div>
             {% endif %}
             
@@ -29,7 +30,7 @@
               <div class="form-group">
                 <label for="id_author" class="col-sm-2 control-label">作者:</label>
                 <div class="col-sm-10">
-                    <input id="id_author"  name="keywords" type="text" class="form-control" placeholder="输入作者及出版社信息,以便搜索" 
+                    <input id="author"  name="author" type="text" class="form-control" placeholder="输入作者及出版社信息,以便搜索" 
                     value ="{{ form.author.value|default:""|safe }}" />
                 </div>
               </div>
@@ -41,8 +42,8 @@
               <div class="form-group">
                 <label for="id_cost" class="col-sm-2 control-label">价值:</label>
                 <div class="col-sm-10">
-                    <input id="id_cost"  name="cost" type="text" class="form-control" placeholder="输入文档价值,免费文档请输入0" 
-                    value ="{{ form.cost.value|default:""|safe }}" />
+                    <input id="cost"  name="cost" type="text" class="form-control" placeholder="输入文档价值,免费文档请输入0" 
+                    value ="{{ form.cost.value }}" />
                 </div>
               </div>
                 
@@ -52,7 +53,7 @@
               <div class="form-group">
                 <label for="id_tags" class="col-sm-2 control-label">关键字:</label>
                 <div class="col-sm-10">
-                    <input id="id_tags" maxlength="200" name="keywords" type="text" class="form-control" placeholder="输入文档关键字,以便搜索"
+                    <input id="tags" name="tags" type="text" class="form-control" placeholder="输入文档关键字,以便搜索"
                     value ="{{ form.tags.value|default:""|safe }}" />
                 </div>
               </div>
@@ -63,20 +64,22 @@
               <div class="form-group">
                 <label for="id_descr" class="col-sm-2 control-label">文档简介:</label>
                 <div class="col-sm-10">
-                    <textarea id="id_descr" name="descr" class="form-control" >{{ form.descr.value|default:""|safe }}</textarea>    
+                    <textarea id="descr" name="descr" class="form-control" rows = "10" >{{ form.descr.value|default:""|safe }}</textarea>    
                 </div>
               </div>
     
               <div class="form-group">
                 <label for="id_name" class="col-sm-2 control-label">文档名称</label>
                 <div class="col-sm-10">
-                    <label for="id_name" class="col-sm-2 control-label">{{ form.name.value|default:""|safe }}</label>
+                    <input id="name"  name="name" type="text" class="form-control" readonly="readonly"
+                        value ="{{ form.name.value|default:""|safe }}" />
                 </div>
               </div>
               
                <div class="form-group">
                  <div class=" col-sm-offset-4 col-sm-10">
                     <input type="submit" class="btn btn-default" value="保 存" />
+                    <input type=button class="btn btn-default" value="取 消" onclick="window.history.go(-1)">
                  </div>   
             </form>
         
