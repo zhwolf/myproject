@@ -13,6 +13,8 @@ from .models import Book
 
 @shared_task
 def test_add(x, y):
+    a = x+y
+    logging.info("test_add::%s",a)      
     return x + y
 
 
@@ -26,18 +28,17 @@ def test_xsum(numbers):
     return sum(numbers)
     
 @shared_task
-def test_syncBooks():
+def syncBatchBooks(paths):
     from .DocConvert import DocConverter
+    print "syncBatchBooks", paths
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
     
-    books = os.walk(settings.BOOK_BASE)
-    for path, directory, files in books:
-        print sys.stdin.encoding
-        for filename in files:    
-            filepath =  unicode(os.path.join(path, filename), settings.DEFAULT_ENCODE)
-            converter.getswf(filepath)
-            
-    print " syncBooks:DONE"
+    if isinstance(paths, str) or isinstance(paths, unicode):
+        converter.getswf(paths)
+    else:
+        for path in paths:
+            converter.getswf(path)
+    print " syncBatchBooks:DONE"
     
 @shared_task
 def syncBooks():

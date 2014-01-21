@@ -10,6 +10,7 @@ from django import forms
 from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
 from sqlalchemy.sql import and_,or_, desc
 from .models import Book, BookSL
+from .tasks import syncBatchBooks
 
 from .DocConvert import DocConverter
 import datetime
@@ -217,6 +218,9 @@ def upload(request):
                     
                     session.commit()
                     info = '上传成功!'
+                    
+                    r = syncBatchBooks.delay(filename)
+                    print "sync book job:", r
                     return HttpResponseRedirect('/docview/upload/')
                 except Exception,e:
                     error = u"文件保存失败.请联系管理员"

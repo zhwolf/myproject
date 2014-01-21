@@ -7,35 +7,6 @@ from sqlalchemy.pool import StaticPool
 import sqlalchemy
 import Queue
 
-
-#dialect+driver://username:password@host:port/database
-#sqlalDB = {}
-#sqlalDB['ENGINE'] = settings.DATABASES['default']['ENGINE'].split(".")[-1]
-#sqlalDB['NAME'] = settings.DATABASES['default'].get('NAME', '').strip()
-#if sqlalDB['ENGINE'] == 'sqlite3':
-#    sqlalDB['ENGINE'] = 'sqlite'    
-#    sqlalDB['NAME'] =  sqlalDB['NAME'].replace('\\', '/') 
-#sqlalDB['USER'] = settings.DATABASES['default'].get('USER', '').strip()
-#if sqlalDB['USER'] > '':
-#    sqlalDB['PASSWORD'] = ':' + settings.DATABASES['default'].get('PASSWORD', '').strip() + '@'
-#else:
-#    sqlalDB['PASSWORD'] = ''    
-#sqlalDB['HOST'] = settings.DATABASES['default'].get('HOST', '').strip()
-#if sqlalDB['HOST'] > '':
-#    sqlalDB['PORT'] = ':' + settings.DATABASES['default'].get('PORT', '').strip() + '/'
-#else:
-#    sqlalDB['PORT'] = '/'    
-#
-#DATABASE_URL= "%(ENGINE)s://%(USER)s%(PASSWORD)s%(HOST)s%(PORT)s%(NAME)s" % (sqlalDB)
-#
-#
-#print "DATABASE_URL:",DATABASE_URL
-
-#if sqlalDB['ENGINE'] == 'sqlite':
-#    engine = create_engine(DATABASE_URL, echo=False)
-#else:
-#    engine = create_engine(DATABASE_URL, echo=False,pool_size=15,pool_recycle=15)    
-    
 from sqlalchemy.engine.url import URL
 __all__ = ['metadata']
 def a_create_engine():
@@ -56,7 +27,7 @@ def a_create_engine():
               )
     options = getattr(settings, 'SQLALCHEMY_OPTIONS', {})
     if issqlite:
-        return  sqlalchemy.create_engine(url, echo=True,connect_args={'check_same_thread':False},
+        return  sqlalchemy.create_engine(url, echo=False,connect_args={'check_same_thread':False},
                     poolclass=StaticPool)
     else:        
         return  sqlalchemy.create_engine(url, echo=False,pool_size= 15,pool_recycle=15) 

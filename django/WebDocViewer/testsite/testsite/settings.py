@@ -17,8 +17,11 @@ import logging
 import traceback
 import StringIO
 import locale
+import datetime
 
 DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
+
+print "DEFAULT_ENCODE:",DEFAULT_ENCODE
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -47,7 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     ### 第三方库
     'haystack',
-    'djcelery',
+    'djcelery1',
     'south',
     ### 本地apps
     'apps.backends.DBEnginee',
@@ -163,3 +166,10 @@ CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
 CELERY_TASK_SERIALIZER = 'json'
 #CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend',
 
+CELERYBEAT_SCHEDULE = {
+    "runs-every-30-seconds": {
+        "task": "apps.docview.tasks.test_add",
+        "schedule": datetime.timedelta(seconds=30),
+        "args": (16, 16)
+     },
+}
