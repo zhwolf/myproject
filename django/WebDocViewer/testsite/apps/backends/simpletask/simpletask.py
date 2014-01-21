@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
 import os, sys
 import traceback
 import StringIO
@@ -18,13 +19,7 @@ _scheduleQueue = []
 _dispatchpool = threadpool.ThreadPool(5) 
 _schedulepool = threadpool.ThreadPool(2) 
 
-SIMPLETASK_SCHEDULE = {
-    "runs-every-30-seconds": {
-        "task": "test.add",
-        "interval": datetime.timedelta(seconds=30),
-        "args": (16, 16)
-     },
-}
+SIMPLETASK_SCHEDULE = {}
 
 def test_add(x,y):
     print x
@@ -92,6 +87,7 @@ def run():
                 logging.debug("dispatcher DONE")
                   
     def scheduler():       
+        SIMPLETASK_SCHEDULE = getattr(settings, 'SIMPLETASK_SCHEDULE', {})
         logging.debug("scheduler...%s", SIMPLETASK_SCHEDULE.items())
         for name, item in SIMPLETASK_SCHEDULE.items():
             modfunc = item.get('task', '').strip()
@@ -123,7 +119,7 @@ def run():
                 logging.info("imported:%s %s-%s", modfunc, modname, func)                    
                 scheduletask(  func,  interval, *args)                 
             except Exception,e:
-                print "error:",e
+                logging.error("Load %s, exception:%s", modfunc,e)                    
                 continue                
             
         while True:
@@ -148,4 +144,6 @@ def run():
     
     b = threading.Thread(target = scheduler)
     b.daemon = True    
-    b.start()     
+    b.start()  
+    
+    print "gogogo"   

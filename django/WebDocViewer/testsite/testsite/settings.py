@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     ### 第三方库
     'haystack',
-    'djcelery1',
+    'djcelery',
     'south',
     ### 本地apps
     'apps.backends.DBEnginee',
