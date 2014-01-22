@@ -7,9 +7,10 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django import forms
+from django.utils.encoding import force_text
 from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
 from sqlalchemy.sql import and_,or_, desc
-from .models import Book, BookSL
+from .models import Book, BookSL, UserSL
 from .tasks import syncBatchBooks
 
 from .DocConvert import DocConverter
@@ -91,6 +92,14 @@ class BookSearchForm(SearchForm):
         for word in words:
             sqs = sqs.filter_or(content=word)
         return sqs
+        
+class LoginForm(forms.Form):
+    account = forms.CharField(label=u'账号',required = True, max_length=200,error_messages = {
+           'required': u'账号不能为空',}
+            )
+    password = forms.CharField(label=u'密码',required = True, max_length=200,error_messages = {
+           'required': u'密码不能为空',}
+            )
 
 class Any:
     pass
@@ -100,6 +109,50 @@ def printError():
     traceback.print_exc(file=fp)
     ret = fp.getvalue()
     logging.error("exception:%s",ret)
+    
+def login(request, path):
+    error = ''
+    refer = path.strip()
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+                try:
+                    data = session.query(UserSL).filter(
+                        and_(
+                            UserSL.account == form.cleaned_data['account'],
+                            UserSL.password == form.cleaned_data['password'],
+                          )
+                    ).all()[:2]
+                    if len(data) > 1:
+                        error = u'内部错误,请联系管理员'
+                    elif len(data) != 1:
+                        error = u'错误的账号或密码'
+                    else:    
+                        data = data[0]
+                        request.session['user'] = data.account
+                        request.session['userid'] = data.id
+                        request.session['userkey'] = data.userid
+                        request.session['admin'] = 1 if data.flag ==1 else 0
+                        
+                        if refer == '':
+                            return HttpResponseRedirect('/')
+                        else:    
+                            return HttpResponseRedirect('refer')
+                except Exception,e:
+                    error = u"登陆时发生内部错误.请联系管理员"
+                    session.rollback()
+                    printError()
+        else:
+            field, info = form.errors.items()[0]
+            error = info.as_text()
+            
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'error' : error, 'refer':refer })    
+        
+def logout(request):
+    request.session.clear()        
+    return HttpResponseRedirect('/')
 
 def view(request, path):
     fullapth = os.path.join(settings.BOOK_BASE, path)

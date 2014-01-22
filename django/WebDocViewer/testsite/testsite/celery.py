@@ -29,14 +29,14 @@ from djcelery.management.commands import celery
 import time
 
 def worker():
-    #return
+    return
     args = ['manage.py', 'celery', 'worker', '-lINFO']
     command = celery.Command()
     command.run_from_argv(args)
     pass
     
 def shcedule():
-    #return
+    return
     args = ['manage.py', 'celery', 'beat', '-lINFO']
     command = celery.Command()
     command.run_from_argv(args)

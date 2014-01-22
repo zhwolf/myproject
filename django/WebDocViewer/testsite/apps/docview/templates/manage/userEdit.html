@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block header %}
+ <script type="text/javascript" language="javascript">    
+
+</script>
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+  
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+                {% if error %}
+                <div class="alert alert-danger col-sm-offset-2">
+                <strong>{{ error }}</strong>
+                </div>
+                {% endif %}
+            
+            <form class="form-horizontal" role="form" action="." method="POST" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+              <div class="form-group">
+                <label for="id_name" class="col-sm-2 control-label">姓名:</label>
+                <div class="col-sm-10">
+                    <input id="name"  name="name" type="text" class="form-control" placeholder="输入姓名信息" 
+                    value ="{{ form.name.value|default:""|safe }}" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="id_account" class="col-sm-2 control-label">登陆账号:</label>
+                <div class="col-sm-10">
+                    <input id="account"  name="account" type="text" class="form-control" placeholder="输入登陆账号" 
+                    value ="{{ form.account.value|default:""|safe }}" />
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="id_password" class="col-sm-2 control-label">密码:</label>
+                <div class="col-sm-10">
+                    <input id="password"  name="password" type="text" class="form-control" placeholder="输入密码" 
+                    value ="{{ form.password.value|default:""|safe }}" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="id_mobile" class="col-sm-2 control-label">电话:</label>
+                <div class="col-sm-10">
+                    <input id="mobile"  name="mobile" type="text" class="form-control" placeholder="输入电话" 
+                    value ="{{ form.mobile.value|default:""|safe }}" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="id_email" class="col-sm-2 control-label">邮箱:</label>
+                <div class="col-sm-10">
+                    <input id="email"  name="email" type="text" class="form-control" placeholder="输入邮箱" 
+                    value ="{{ form.email.value|default:""|safe }}" />
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="id_flag" class="col-sm-2 control-label">类别:</label>
+                <div class="col-sm-10">
+                    <input id="flag"  name="flag" type="text" class="form-control" placeholder="输入类别" 
+                    value ="{{ form.flag.value }}" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="id_linkid" class="col-sm-2 control-label">关联ID:</label>
+                <div class="col-sm-10">
+                    <input id="linkid"  name="linkid" type="text" class="form-control" placeholder="输入关联ID" 
+                    value ="{{ form.linkid.value|default:""|safe }}" />
+                </div>
+              </div>
+             
+               <div class="form-group">
+                 <div class=" col-sm-offset-4 col-sm-10">
+                    <input type="submit" class="btn btn-default" value="保 存" />
+                    <input type=button class="btn btn-default" value="取 消" onclick="window.history.go(-1)">
+                 </div>   
+            </form>
+        
+      </div>
+    </div>
+        
+    </div>        
+
+{% endblock %}
+
+{% block footer %}
+  
+
+  
+{% endblock %}

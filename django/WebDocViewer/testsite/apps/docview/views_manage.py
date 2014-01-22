@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response
 from django import forms
 from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
 from sqlalchemy.sql import and_,or_, desc
-from .models import Book, BookSL
+from .models import Book, BookSL, UserSL
 from .tasks import syncBatchBooks
 
 from .DocConvert import DocConverter
@@ -38,8 +38,9 @@ session = Session()
 class Any:
     pass
 
-class BookListForm(forms.Form):
+class ListSearchForm(forms.Form):
     search = forms.CharField(label=u'查找',required = False, max_length=200)
+      
         
 class UploadFileForm(forms.Form):
     author = forms.CharField(label=u'作者',required = False, max_length=200)
@@ -50,6 +51,15 @@ class UploadFileForm(forms.Form):
     file = forms.FileField(label=u'上传',required = True, error_messages = {
            'required': u'请选择文件.',
         }, )
+        
+class UserInfoForm(forms.Form):
+    name = forms.CharField(label=u'姓名',required = False, max_length=200)
+    account = forms.CharField(label=u'登陆账号',required =True,  max_length=200)
+    password = forms.CharField(label=u'密码',required = True,  max_length=1024)
+    mobile = forms.CharField(label=u'电话',required = False,  max_length=200)
+    email = forms.CharField(label=u'邮箱',required = False, max_length=200)
+    flag = forms.IntegerField(label=u'级别',required = False, )
+    linkid = forms.CharField(label=u'关联ID',required = False,  max_length=200)
 
 # list of mobile User Agents
 mobile_uas = [
@@ -91,7 +101,7 @@ def printError():
 def booklist(request):
     data = None
     if request.method == 'POST':
-        form = BookListForm(request.POST, request.FILES)
+        form = ListSearchForm(request.POST, request.FILES)
         print request.POST
         if form.is_valid():
                 try:
@@ -114,8 +124,8 @@ def booklist(request):
             print "not valid"                
     else:
         data = session.query(BookSL).order_by(desc(BookSL.id)).all()[:10]
-        form = BookListForm()
-    return render(request, 'bookList.html', {'form': form, 'data' : data })    
+        form = ListSearchForm()
+    return render(request, 'manage/bookList.html', {'form': form, 'data' : data })    
 
 
 #### use uploadify for professional   
@@ -152,7 +162,7 @@ def upload(request):
                     
                     r = syncBatchBooks.delay(filename)
                     print "sync book job:", r
-                    return HttpResponseRedirect('/docview/manage/')
+                    return HttpResponseRedirect('/docview/manage/book/')
                 except Exception,e:
                     error = u"文件保存失败.请联系管理员"
                     session.rollback()
@@ -162,7 +172,7 @@ def upload(request):
     else:
         print "form get"
         form = UploadFileForm()
-    return render(request, 'bookUpload.html', {'form': form, 'info':info, 'error':error })
+    return render(request, 'manage/bookUpload.html', {'form': form, 'info':info, 'error':error })
     
 def bookedit(request, bookid):
     info = ''
@@ -182,7 +192,7 @@ def bookedit(request, bookid):
                 print 'data after:', data
                 session.commit()
                 info = '保存成功!'
-                return HttpResponseRedirect('/docview/manage/')
+                return HttpResponseRedirect('/docview/manage/book/')
             except Exception,e:
                 error = u"信息修改失败.请联系管理员"
                 session.rollback()
@@ -193,7 +203,7 @@ def bookedit(request, bookid):
         form = UploadFileForm(initial=data.__dict__)
         form.fields.pop('file', None)
         
-    return render(request, 'bookEdit.html', {'form': form, 'info':info, 'error':error })    
+    return render(request, 'manage/bookEdit.html', {'form': form, 'info':info, 'error':error })    
     
 def bookdelete(request, bookid):
     info = ''
@@ -209,7 +219,7 @@ def bookdelete(request, bookid):
         error = u"文档删除失败.请联系管理员"
         session.rollback()
         printError()            
-    return HttpResponseRedirect('/docview/manage/')        
+    return HttpResponseRedirect('/docview/manage/book/')        
     
     
 def handle_uploaded_file(f):
@@ -227,3 +237,90 @@ def handle_uploaded_file(f):
 #### use uploadify for professional   
 def search(request):
     return render(request, 'search.html', { })                   
+    
+def userlist(request):
+    data = None
+    if request.method == 'POST':
+        form = ListSearchForm(request.POST, request.FILES)
+        print request.POST
+        if form.is_valid():
+                try:
+                    keyword = form.cleaned_data['search'].strip()
+                    data = session.query(UserSL).filter(
+                        and_(
+                          UserSL.id > 0 if keyword == "" else  
+                          or_(
+                            UserSL.name.like('%%%s%%'%(keyword)),
+                            UserSL.account.like('%%%s%%'%(keyword)),
+                            UserSL.mobile.like('%%%s%%'%(keyword)),
+                            UserSL.email.like('%%%s%%'%(keyword)),
+                            UserSL.linkid.like('%%%s%%'%(keyword)),
+                            ),
+                          )
+                    ).order_by(desc(UserSL.id)).all()
+                    print data
+                except Exception,e:
+                    error = u"获取用户列表失败.请联系管理员"
+                    session.rollback()
+                    printError()
+        else:
+            print "not valid"                
+    else:
+        data = session.query(UserSL).order_by(desc(UserSL.id)).all()[:10]
+        form = ListSearchForm()
+    return render(request, 'manage/userList.html', {'form': form, 'data' : data })       
+        
+def useredit(request, userid):
+    info = ''
+    error = ''
+    print userid
+    data = session.query(UserSL).filter(
+                        and_(UserSL.id == userid,
+                        )).first()
+    if request.method == 'POST':
+        form = UserInfoForm(request.POST)
+        if form.is_valid():
+            try:
+                a = session.query(UserSL).filter(
+                        and_(
+                            UserSL.account == form.cleaned_data['account'],
+                            UserSL.id != userid,
+                            ),
+                    ).all()                
+                if len(a) > 0:
+                    error = u"登陆名已存在!"
+                else:                    
+                    update_model(data, form.cleaned_data)
+                    session.commit()
+                    info = '保存成功!'
+                    return HttpResponseRedirect('/docview/manage/user/')
+            except Exception,e:
+                error = u"信息修改失败.请联系管理员"
+                session.rollback()
+                printError()
+        else:
+            print "not valid"  
+            field, einfo = form.errors.items()[0]
+            print einfo
+            error = form[field].label +":" +  einfo.as_text()              
+    else:
+        form = UserInfoForm(initial=data.__dict__)
+        
+    return render(request, 'manage/userEdit.html', {'form':form, 'info':info, 'error':error })            
+        
+def userdelete(request, userid):
+    info = ''
+    error = ''
+    print userid
+    try:
+        data = session.query(UserSL).filter(
+                            and_(UserSL.id == userid,
+                            )).first()
+        session.delete(data)
+        session.commit()
+    except Exception,e:
+        error = u"用户删除失败.请联系管理员"
+        session.rollback()
+        printError()            
+    return HttpResponseRedirect('/docview/manage/user/')        
+     

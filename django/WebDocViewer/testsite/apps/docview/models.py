@@ -29,9 +29,15 @@ class Book(models.Model):
     class Meta:
         db_table = 'b_book'
 
-#taskpic
+#sqlalchemy book
 Book_table=Table("b_book", metadata, autoload=True)
 class BookSL(object):
     pass
 mapper(BookSL, Book_table)  
+
+#sqlalchemy book
+User_table=Table("b_user", metadata, autoload=True)
+class UserSL(object):
+    pass
+mapper(UserSL, User_table)  
   

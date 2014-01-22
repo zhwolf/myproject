@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block header %}
+<style>
+ 
+</style>    
+ <script type="text/javascript" language="javascript">    
+
+</script>
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <div class="row">
+            <a type="button" class="btn btn-info pull-right" href="/docview/user/register/" >免费注册</a>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-4">
+                {% if error %}
+                <div class="alert alert-danger col-sm-offset-2">
+                <strong>{{ error }}</strong>
+                </div>
+                {% endif %}
+              <form class="form-horizontal" role="form" action="." method="POST" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                  <div class="form-group">
+                     <label for="id_account" class="col-sm-2 control-label">账号</label>
+                     <div class="col-sm-10">
+                        <input id="account" name="account" type="text" class="form-control" placeholder="账号" />
+                     </div>                          
+                  </div>                
+
+                  <div class="form-group">
+                    <label for="id_password" class="col-sm-2 control-label">密码</label>
+                     <div class="col-sm-10">
+                         <input id="password" name="password" type="password" class="form-control" placeholder="密码" />
+                     </div>                          
+                  </div>                
+                
+                  <div class="form-group">
+                    <div class=" col-sm-offset-2 col-sm-10">
+                        <input type="submit" class="btn btn-primary btn-lg" value="登 陆" />
+                    </div>
+                  </div>                
+                  <input type="hidden" name="refer" value="{{ refer }}" />
+              </form>                        
+           
+          </div>
+        </div>
+        
+    </div>        
+
+{% endblock %}
+
+{% block footer %}
+  
+
+  
+{% endblock %}

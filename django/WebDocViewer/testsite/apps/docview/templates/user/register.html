@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block header %}
+<style>
+ 
+</style>    
+ <script type="text/javascript" language="javascript">    
+
+</script>
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <div class="row">
+            <a type="button" class="btn btn-info pull-right" href="/docview/login/" >已有账号?</a>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-4 col-sm-offset-4">
+                {% if error %}
+                <div class="alert alert-danger col-sm-offset-2">
+                <strong>{{ error }}</strong>
+                </div>
+                {% endif %}
+                
+                
+                <ul class="nav nav-tabs">
+{% jinja %}                    
+                  <li {% if regtype==0 %}  class="active" {% endif %} ><a href="/docview/user/register/0/">校内账号</a></li>
+                  <li {% if regtype==1 %}  class="active" {% endif %} ><a href="/docview/user/register/1/">校外账号</a></li>
+{% endjinja %}                  
+                </ul>                
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+              <form class="form-horizontal" role="form" action="." method="POST" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+                  <div class="form-group">
+                     <label for="id_account" class="col-sm-2 control-label">账户名</label>
+                     <div class="col-sm-10">
+                        <input id="account" name="account" type="text" class="form-control" placeholder="邮箱用户名手机号" 
+                            value ="{{ form.account.value|default:""|safe }}" />
+                     </div>                          
+                  </div>                
+
+{% jinja %}                    
+    {% if regtype==0  %}
+                  <div class="form-group">
+                     <label for="id_linkid" class="col-sm-2 control-label">关联号</label>
+                     <div class="col-sm-10">
+                        <input id="linkid" name="linkid" type="text" class="form-control" placeholder="校园网关联账号" 
+                            value ="" />
+                     </div>                          
+                  </div>                
+    {% elif regtype==1 %}                  
+    
+    {% endif %}            
+{% endjinja %}                  
+
+                  <div class="form-group">
+                    <label for="id_password" class="col-sm-2 control-label">请设置密码</label>
+                     <div class="col-sm-10">
+                         <input id="password" name="password" type="password" class="form-control" placeholder="密码" />
+                     </div>                          
+                  </div>                
+
+                  <div class="form-group">
+                    <label for="id_password1" class="col-sm-2 control-label">请确认密码</label>
+                     <div class="col-sm-10">
+                         <input id="password1" name="password1" type="password" class="form-control" placeholder="再次输入密码"  />
+                     </div>                          
+                  </div>                
+                
+                  <div class="form-group">
+                    <div class=" col-sm-offset-4 col-sm-4">
+                        <input type="submit" class="btn btn-primary btn-lg" value="注册" />
+                    </div>
+                  </div>                
+
+              </form>          
+          </div>
+        </div>
+        
+        
+    </div>        
+
+{% endblock %}
+
+{% block footer %}
+  
+
+  
+{% endblock %}
