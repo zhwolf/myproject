@@ -184,3 +184,13 @@ CELERYBEAT_SCHEDULE = {
         "args": (16, 16)
      },
 }
+
+from django.core.cache import cache
+if cache.get('bookclass', None) == None:
+    BooksClasses = {}
+    logging.info('begin to browser classes')
+    for dirName, subdirList, fileList in os.walk(BOOK_BASE):
+        BooksClasses[dirName] = subdirList
+    cache.set('bookclass', BooksClasses, timeout=None)        
+print cache.get('bookclass')    
+    

@@ -11,6 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/static/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/js/bootstrap/css/bootstrap-submenu.css" rel="stylesheet">
     <script src="/static/js/jquery/jquery.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -27,6 +28,8 @@
     body {
       padding-top: 70px;
     }
+}
+    
 </style>
 
 {% block header %}
@@ -78,24 +81,36 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
 
     <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
       <div class="container">
-
             <div class="btn-group btn-group-justified  dropup">
 
               <a  class="btn btn-primary" href="/">书库首页</a>
 
-              <div class="btn-group  dropup">  
+              <div class="btn-group dropup">  
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">全部文档<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-header">休闲</li>
-                        <li><a href="#">武侠</a></li>
-                        <li><a href="#">玄幻</a></li>
-                    <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a  href="#">休闲</a>
+                              <ul class="dropdown-menu">
+                                    <li><a href="#">武侠</a></li>
+                                    <li><a href="#">玄幻</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">其他</a>
+                                          <ul class="dropdown-menu">
+                                                <li><a href="#">武侠</a></li>
+                                                <li><a href="#">玄幻</a></li>
+                                          </ul>                                                             
+                                     </li>  
+                              </ul>
+                        </li>                                  
+
+                        <li class="divider"></li>
+                        
                         <li class="dropdown-header">学科</li>
                         <li><a href="#">英语</a></li>
                         <li><a href="#">考研</a></li>
                   </ul>
               </div>  
-
+           
 {% jinja %}    
                 {% if request.session and request.session.user %} 
                     {% if request.session.admin == 1 %}
@@ -129,8 +144,15 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery/jquery.placeholder.js"></script>
     <script src="/static/js/bootstrap/js/bootstrap.min.js"></script>
-    
+
+	<script>
+		$(function() {
+			// Invoke placeholder plugin
+			$('input, textarea').placeholder();
+		});
+	</script>    
 {% block footer %}
 
 {% endblock %}    
