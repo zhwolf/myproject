@@ -87,7 +87,7 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
 
               <div class="btn-group dropup">  
                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">全部文档<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
+                  <ul id='classmenu' name='classmenu' class="dropdown-menu">
                         <li class="dropdown-submenu">
                             <a  href="#">休闲</a>
                               <ul class="dropdown-menu">
@@ -144,15 +144,112 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/static/js/jquery/jquery.placeholder.js"></script>
-    <script src="/static/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery/jquery.placeholder.js"></script>
+<script src="/static/js/bootstrap/js/bootstrap.min.js"></script>
 
-	<script>
-		$(function() {
+<script>
+	    
+    function createmenu( json, father)
+    {
+        if (json.children.length <1)
+        {
+            return '<li><a href="#">'+ json.text +'</a></li>';
+        }
+        else{
+            var tmp = '';
+            if (father > 0)
+            {
+                tmp += '<li class="dropdown-submenu"><a  href="#">' + json.text  + '</a>';
+                tmp += '<ul class="dropdown-menu">';
+            }
+            for (var i = 0; i < json.children.length; i++)
+            {
+                tmp += createmenu(json.children[i], 1);
+                
+            }
+            if(father > 0)
+            {
+                tmp += '</ul>';
+                tmp += '</li>';
+            }
+            return tmp;
+        }
+        
+    }	    
+
+    $(function() {
 			// Invoke placeholder plugin
 			$('input, textarea').placeholder();
-		});
-	</script>    
+			/*
+		    var json ={
+		        children:
+		        [
+    		        {
+    		        
+    		            'text':'休闲',
+    		            children:
+    		            [
+    		                {
+            		            text:'武侠',
+            		            children:
+            		            [
+            		            ]
+            		         },
+    		                {
+            		            text:'玄幻',
+            		            children:
+            		            [
+            		            ]
+            		         },
+    		                {
+            		            text:'其他',
+            		            'children':
+            		            [
+            		                {
+                    		            text:'武侠',
+                    		            children:
+                    		            [
+                    		            ]
+                    		         },
+            		                {
+                    		            text:'玄幻',
+                    		            children:
+                    		            [
+                    		            ]
+                    		         }
+    
+            		            ]
+            		         }
+            		         
+    		            ]
+    		        },
+    		        {
+    		        
+    		            text:'学科',
+    		            children:
+    		            [
+    		                {
+            		            text:'考研',
+            		            children:
+            		            [
+            		            ]
+            		         },
+    		                {
+            		            text:'英语',
+            		            children:
+            		            [
+            		            ]
+            		         },
+    		            ]
+    		        },
+    		    ]
+	    	};	
+		    var s = createmenu(json,0);
+		    console.info(s);
+		    document.getElementById('classmenu').innerHTML  =s;	    			
+			*/
+	});
+</script>    
 {% block footer %}
 
 {% endblock %}    
