@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import RequestContext
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -12,17 +13,14 @@ from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
 from sqlalchemy.sql import and_,or_, desc
 from .models import Book, BookSL, UserSL
 from .tasks import syncBatchBooks
+from shared.utils import printError, DEFAULT_ENCODE
 
 from .DocConvert import DocConverter
 import datetime
 import uuid
 
 import subprocess 
-import os
-import logging
-import sys
-import traceback
-import StringIO
+
 import jieba
     
 
@@ -32,7 +30,6 @@ from haystack.query import SearchQuerySet
 from haystack.inputs import AutoQuery, Exact, Clean
 from haystack.views import SearchView, search_view_factory
 
-DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
 session = Session()
 
@@ -104,11 +101,6 @@ class LoginForm(forms.Form):
 class Any:
     pass
 
-def printError():
-    fp = StringIO.StringIO()
-    traceback.print_exc(file=fp)
-    ret = fp.getvalue()
-    logging.error("exception:%s",ret)
     
 def login(request, path):
     error = ''
@@ -148,7 +140,8 @@ def login(request, path):
             
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'error' : error, 'refer':refer })    
+    #return render(request, 'login.html', {'error' : error, 'refer':refer, 'menudata': "" })    
+    return render_to_response('login.html', {'error' : error, 'refer':refer }, context_instance=RequestContext(request) )    
         
 def logout(request):
     request.session.clear()        
@@ -167,9 +160,12 @@ def view(request, path):
     print request.META['HTTP_USER_AGENT']
     
     if  request.META['HTTP_USER_AGENT'].find('MSIE') >=0 or sufix == 'swf':
-        return render(request, 's_viewswf.html', { 'file' : any, } )
-    else:        
-        return render(request, 's_viewpdf.html', { 'file' : any, } )
+        html = 's_viewswf.html'
+        #return render(request, 's_viewswf.html', { 'file' : any, } )
+    else:       
+        html = 's_viewpdf.html' 
+        #return render(request, 's_viewpdf.html', { 'file' : any, } )
+    return render_to_response(html, { 'file' : any, } , context_instance=RequestContext(request) )    
     
 def getswf(request,path):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
@@ -200,4 +196,22 @@ def bigFileView(request, file_name):
         
 #### use uploadify for professional   
 def search(request):
-    return render(request, 'search.html', { })                   
+    #return render(request, 'search.html', { })                   
+    render_to_response('search.html', {} , context_instance=RequestContext(request) )    
+    
+def classview(request, path):
+    data = None
+    import chardet
+    print path, chardet.detect(path)
+    try:
+        data = session.query(BookSL).filter(
+            and_(
+                BookSL.bookclass.like('%%%s%%'%(path)), 
+              )).order_by(desc(BookSL.counter)).all()[:20]
+        print data              
+    except Exception,e:
+        error = u"登陆时发生内部错误.请联系管理员"
+        session.rollback()
+        printError()
+    return render_to_response('classview.html', {'data' : data }, context_instance=RequestContext(request) )            
+                              

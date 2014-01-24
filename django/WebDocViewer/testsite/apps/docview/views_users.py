@@ -10,6 +10,7 @@ from django import forms
 from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
 from sqlalchemy.sql import and_,or_, desc
 from .models import Book, UserSL
+from shared.utils import printError, DEFAULT_ENCODE
 
 import datetime
 import uuid
@@ -17,12 +18,7 @@ import uuid
 import subprocess 
 import os
 import logging
-import sys
-import traceback
-import StringIO
     
-
-DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
 session = Session()
 
@@ -35,13 +31,6 @@ class UserRegForm(forms.Form):
     password1 = forms.CharField(label=u'确认密码',required = True, max_length=200)
     linkid = forms.CharField(label=u'关联账号',required = True, max_length=200)
         
-
-def printError():
-    fp = StringIO.StringIO()
-    traceback.print_exc(file=fp)
-    ret = fp.getvalue()
-    logging.error("exception:%s",ret)
-
 def register(request,regtype):
     error = ""
     regtype = int(regtype) if regtype.isdigit() else 0

@@ -11,6 +11,7 @@ from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
 from sqlalchemy.sql import and_,or_, desc
 from .models import Book, BookSL, UserSL
 from .tasks import syncBatchBooks
+from shared.utils import printError, DEFAULT_ENCODE
 
 from .DocConvert import DocConverter
 import datetime
@@ -19,9 +20,6 @@ import uuid
 import subprocess 
 import os
 import logging
-import sys
-import traceback
-import StringIO
 import jieba
     
 
@@ -31,7 +29,6 @@ from haystack.query import SearchQuerySet
 from haystack.inputs import AutoQuery, Exact, Clean
 from haystack.views import SearchView, search_view_factory
 
-DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
 session = Session()
 
@@ -43,6 +40,7 @@ class ListSearchForm(forms.Form):
       
         
 class UploadFileForm(forms.Form):
+    bookclass = forms.CharField(label=u'文档分类',required = True, max_length=200)
     author = forms.CharField(label=u'作者',required = False, max_length=200)
     tags = forms.CharField(label=u'关键字',required = False,  max_length=200)
     descr = forms.CharField(label=u'简介',required = False,  max_length=1024)
@@ -91,12 +89,6 @@ def mobileBrowser(request):
                 mobile_browser = True
  
     return mobile_browser
-
-def printError():
-    fp = StringIO.StringIO()
-    traceback.print_exc(file=fp)
-    ret = fp.getvalue()
-    logging.error("exception:%s",ret)
 
 def booklist(request):
     data = None
@@ -168,7 +160,8 @@ def upload(request):
                     session.rollback()
                     printError()
         else:
-            print "not valid"                
+            field, einfo = form.errors.items()[0]
+            error = form[field].label +":" +  einfo.as_text()              
     else:
         print "form get"
         form = UploadFileForm()
@@ -198,7 +191,8 @@ def bookedit(request, bookid):
                 session.rollback()
                 printError()
         else:
-            print "not valid"                
+            field, einfo = form.errors.items()[0]
+            error = form[field].label +":" +  einfo.as_text()              
     else:
         form = UploadFileForm(initial=data.__dict__)
         form.fields.pop('file', None)
@@ -299,9 +293,7 @@ def useredit(request, userid):
                 session.rollback()
                 printError()
         else:
-            print "not valid"  
             field, einfo = form.errors.items()[0]
-            print einfo
             error = form[field].label +":" +  einfo.as_text()              
     else:
         form = UserInfoForm(initial=data.__dict__)

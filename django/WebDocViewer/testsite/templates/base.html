@@ -61,17 +61,32 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
 
     <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
       <div class="container">
-        <!--
-            <div class="navbar-collapse collapse">
-        -->            
+         <input type="hidden" id="menudata" name="menudata" value="{{ menudata }}" />
+            <!--
+            <ul class="nav nav-pills">
+                <li class="active">
+                  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">全部文档<span class="caret"></span></a>
+                  <ul id='classmenu' name='classmenu' class="dropdown-menu">
+                  </ul>
+              </li>  
+             --> 
               <form class="form-inline navbar-form" role="search" action="/docview/search/" method="get" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
                   <div class="input-group">
+                    <span class="input-group-btn">
+                        <div class="btn-group">
+                                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    全部文档 <span class="caret"></span>
+                                  </button>
+                                  <ul id='classmenu' name='classmenu' class="dropdown-menu">
+                                  </ul>
+                            </div>
+                    </span>              
                     <input type="text" class="form-control" placeholder="输入书名或者作者" name="q" id="id_q">
                     <span class="input-group-btn">
                       <button type="submit" class="btn btn-default">搜书</button>
                     </span>
                   </div>
-              </form>          
+              </form>    
       </div>
     </div>  
     
@@ -81,36 +96,11 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
 
     <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
       <div class="container">
-            <div class="btn-group btn-group-justified  dropup">
+
+            <div class="btn-group btn-group-justified">
 
               <a  class="btn btn-primary" href="/">书库首页</a>
 
-              <div class="btn-group dropup">  
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">全部文档<span class="caret"></span></a>
-                  <ul id='classmenu' name='classmenu' class="dropdown-menu">
-                        <li class="dropdown-submenu">
-                            <a  href="#">休闲</a>
-                              <ul class="dropdown-menu">
-                                    <li><a href="#">武侠</a></li>
-                                    <li><a href="#">玄幻</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#">其他</a>
-                                          <ul class="dropdown-menu">
-                                                <li><a href="#">武侠</a></li>
-                                                <li><a href="#">玄幻</a></li>
-                                          </ul>                                                             
-                                     </li>  
-                              </ul>
-                        </li>                                  
-
-                        <li class="divider"></li>
-                        
-                        <li class="dropdown-header">学科</li>
-                        <li><a href="#">英语</a></li>
-                        <li><a href="#">考研</a></li>
-                  </ul>
-              </div>  
-           
 {% jinja %}    
                 {% if request.session and request.session.user %} 
                     {% if request.session.admin == 1 %}
@@ -153,13 +143,13 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
     {
         if (json.children.length <1)
         {
-            return '<li><a href="#">'+ json.text +'</a></li>';
+            return '<li><a href="' + "/docview/classview/" + json.path + '">'+ json.label +'</a></li>';
         }
         else{
             var tmp = '';
             if (father > 0)
             {
-                tmp += '<li class="dropdown-submenu"><a  href="#">' + json.text  + '</a>';
+                tmp += '<li class="dropdown-submenu"><a  href="' + "/docview/classview/" + json.path + '">' + json.label  + '</a>';
                 tmp += '<ul class="dropdown-menu">';
             }
             for (var i = 0; i < json.children.length; i++)
@@ -180,74 +170,14 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
     $(function() {
 			// Invoke placeholder plugin
 			$('input, textarea').placeholder();
-			/*
-		    var json ={
-		        children:
-		        [
-    		        {
-    		        
-    		            'text':'休闲',
-    		            children:
-    		            [
-    		                {
-            		            text:'武侠',
-            		            children:
-            		            [
-            		            ]
-            		         },
-    		                {
-            		            text:'玄幻',
-            		            children:
-            		            [
-            		            ]
-            		         },
-    		                {
-            		            text:'其他',
-            		            'children':
-            		            [
-            		                {
-                    		            text:'武侠',
-                    		            children:
-                    		            [
-                    		            ]
-                    		         },
-            		                {
-                    		            text:'玄幻',
-                    		            children:
-                    		            [
-                    		            ]
-                    		         }
-    
-            		            ]
-            		         }
-            		         
-    		            ]
-    		        },
-    		        {
-    		        
-    		            text:'学科',
-    		            children:
-    		            [
-    		                {
-            		            text:'考研',
-            		            children:
-            		            [
-            		            ]
-            		         },
-    		                {
-            		            text:'英语',
-            		            children:
-            		            [
-            		            ]
-            		         },
-    		            ]
-    		        },
-    		    ]
-	    	};	
+			
+			var str = document.getElementById('menudata').value;
+			console.debug(str);
+			var json = eval("(" + str  + ")");
+
 		    var s = createmenu(json,0);
 		    console.info(s);
 		    document.getElementById('classmenu').innerHTML  =s;	    			
-			*/
 	});
 </script>    
 {% block footer %}

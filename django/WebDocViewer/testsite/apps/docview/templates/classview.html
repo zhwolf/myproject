@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block container %}
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+        <div class="row">
+        
+          {% for book  in data %}
+              <div class="col-md-2 col-xs-2">
+                <div class="thumbnail text_overflow"">
+                  <img src="/static/book.jpg" href='#' alt="...">
+                  <div class="caption">
+                    <h4>{{ book.name }}</h4>
+                    <p>{{ book.descr|truncatechars:20  }}</p>
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+
+        </div>
+
+    </div> <!-- /container -->
+{% endblock %}

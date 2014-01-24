@@ -46,8 +46,10 @@ def jinja(parser, token):
         if token.token_type == template.TOKEN_BLOCK and token.contents == 'endjinja':  
             break  
         contents.append(string_from_token(token))  
-    contents = u''.join(contents)  
+    contents = u''.join(contents)
+    
     return JinjaNode(contents)  
+            
   
 class JinjaNode(template.Node):  
     def __init__(self, contents):  

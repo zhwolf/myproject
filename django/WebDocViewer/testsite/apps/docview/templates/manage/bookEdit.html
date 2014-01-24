@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block header %}
+<script src="/static/js/jquery/tree.jquery.js"></script>
+<link rel="stylesheet" href="/static/js/jquery/jqtree.css">
+
  <script type="text/javascript" language="javascript">    
 
 </script>
@@ -8,9 +11,18 @@
 
 {% block container %}
     <div class="container">
-  
-    <div class="row">
+        {% if not form.bookclass.value %}
+            <div class="row">
+                <div class="panel panel panel-warning col-sm-2 col-sm-offset-1">
+                  <div class="panel-heading">请选择新文档的类别</div>
+                  <div class="panel-body" id="classtree" name="classtree">
+                  </div>
+                </div>        
+            <div class="col-sm-6 ">
+        {% else %}            
       <div class="col-sm-8 col-sm-offset-2">
+        {% endif %}            
+      
             {% if info %}
             <div class="col-sm-offset-2">
                 <span class="label label-success  ">{{ info }}</span>
@@ -24,9 +36,15 @@
             {% endif %}
             
             <form class="form-horizontal" role="form" action="." method="POST" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-                {% if form.author.errors %}
-                    <span class="label label-danger  col-sm-offset-2">{{ form.author.errors.as_text }}</span>                        
-                {% endif %}
+
+              <div class="form-group">
+                <label for="id_bookclass" class="col-sm-2 control-label">文档分类</label>
+                <div class="col-sm-10">
+                   <input id="bookclass"  name="bookclass" type="text" class="form-control" readonly="readonly" placeholder="请从左边选择文档类别" 
+                        value ="{{ form.bookclass.value|default:""|safe }}" />
+                </div>
+              </div>
+
               <div class="form-group">
                 <label for="id_author" class="col-sm-2 control-label">作者:</label>
                 <div class="col-sm-10">
@@ -36,9 +54,7 @@
               </div>
 
 
-                {% if form.cost.errors %}
-                    <span class="label label-danger  col-sm-offset-2">{{ form.cost.errors.as_text }}</span>   
-                {% endif %}
+
               <div class="form-group">
                 <label for="id_cost" class="col-sm-2 control-label">价值:</label>
                 <div class="col-sm-10">
@@ -47,9 +63,7 @@
                 </div>
               </div>
                 
-                {% if form.tags.errors %}
-                    <span class="label label-danger  col-sm-offset-2">{{ form.tags.errors.as_text }}</span>   
-                {% endif %}
+
               <div class="form-group">
                 <label for="id_tags" class="col-sm-2 control-label">关键字:</label>
                 <div class="col-sm-10">
@@ -58,9 +72,7 @@
                 </div>
               </div>
     
-               {% if form.descr.errors %}
-                    <span class="label label-danger  col-sm-offset-2">{{ form.descr.errors.as_text }}</span>   
-                {% endif %}
+
               <div class="form-group">
                 <label for="id_descr" class="col-sm-2 control-label">文档简介:</label>
                 <div class="col-sm-10">
@@ -92,6 +104,32 @@
 
 {% block footer %}
   
-
+ <script type="text/javascript" language="javascript">    
+    $(function() {
+        if ( ! document.getElementById('classtree'))
+            return;
+            
+		var str = document.getElementById('menudata').value;
+		var data = eval("(" + str  + ")");
+	    
+        $('#classtree').tree({
+            data: data.children,
+            autoOpen: true
+        });
+        
+        $('#classtree').bind(
+            'tree.select',
+            function(event) {
+                if (event.node) {
+                    var node = event.node;
+                    $('#bookclass').attr("value", node.path);
+                }
+                else {
+                    $('#bookclass').attr("value", "");
+                }
+            }
+        );        
+    });
+</script>
   
 {% endblock %}

@@ -79,7 +79,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
+    "shared.utils.sharedContext"
 )
+
+SESSION_ENGINE= 'django.contrib.sessions.backends.file'
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 
 ROOT_URLCONF = 'testsite.urls'
 
@@ -183,14 +187,4 @@ CELERYBEAT_SCHEDULE = {
         "schedule": datetime.timedelta(seconds=30),
         "args": (16, 16)
      },
-}
-
-from django.core.cache import cache
-if cache.get('bookclass', None) == None:
-    BooksClasses = {}
-    logging.info('begin to browser classes')
-    for dirName, subdirList, fileList in os.walk(BOOK_BASE):
-        BooksClasses[dirName] = subdirList
-    cache.set('bookclass', BooksClasses, timeout=None)        
-print cache.get('bookclass')    
-    
+}   

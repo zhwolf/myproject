@@ -6,12 +6,12 @@ import views,views_manage, views_users
 urlpatterns = patterns('',
     #url(r'^$', views.index, name='index' ),
     
-    url(r'^showswf/+(?P<path>.*)/$', views.getswf, name='getdoc' ),
-    url(r'^showpdf/+(?P<path>.*)/$', views.getpdf, name='getdoc' ),
-    url(r'^view/+(?P<path>.*)/$', views.view, name='view' ),
+    url(r'^showswf/+(?P<path>.*)/$', views.getswf, name='doc_showswf' ),
+    url(r'^showpdf/+(?P<path>.*)/$', views.getpdf, name='doc_showpdf' ),
+    url(r'^view/+(?P<path>.*)/$', views.view, name='doc_view' ),
     url(r'^pdfviewer/', TemplateView.as_view(template_name="pdfviewer.html") ),
 
-    url(r'^search/$', search_view_factory(view_class=views.BookSearchView, load_all=False, template='search/search.html', form_class=views.BookSearchForm), name='book_search'),
+    url(r'^search/$', search_view_factory(view_class=views.BookSearchView, load_all=False, template='search/search.html', form_class=views.BookSearchForm), name='doc_search'),
     
     
     url(r'^manage/book/$', views_manage.booklist, name='doc_manage_index' ),
@@ -29,4 +29,6 @@ urlpatterns = patterns('',
 
     url(r'^login/+@*(?P<path>.*)$', views.login, name='login' ),
     url(r'^logout/$', views.logout, name='logout' ),
+    
+    url(r'^classview/+(?P<path>.*)$', views.classview, name='doc_classview' ),
 )
