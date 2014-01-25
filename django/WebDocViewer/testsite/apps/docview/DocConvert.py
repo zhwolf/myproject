@@ -60,7 +60,7 @@ class DocConverter:
             self.printError()       
 
     def getswfFromRelpath(self, relpath):
-        return self.getsef( os.path.join(self.basedir, path).strip())
+        return self.getswf( os.path.join(self.basedir, path).strip())
     
     def getpdf(self, fullpath,basedir=None, outputdir=None):
         if basedir == None:
@@ -95,6 +95,11 @@ class DocConverter:
             logging.info("Good. File already exists:%s", fullpath)
             return swffile
         
+        if not os.path.isdir( os.path.dirname(swffile) ) :
+            try:
+                os.makedirs(os.path.dirname(swffile))
+            except Exception,e:
+                self.printError()            
         
         cmdpath = self.SWFTOOLS.get(sufix, None)
         logging.info('path:%s sufix:%s cmdpath:%s', path, sufix, cmdpath)
@@ -119,7 +124,12 @@ class DocConverter:
         if os.path.isfile(swffile):
             logging.info("Good. File already exists:%s", fullpath)
             return swffile
-        
+        if not os.path.isdir( os.path.dirname(swffile) ) :
+            try:
+                os.makedirs(os.path.dirname(swffile))
+            except Exception,e:
+                self.printError()            
+
         cmdpath = self.UNOCONVTOOL
         port = OfficePortQueue.get()
         try:
