@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block header %}
+<style>
+ 
+</style>    
+ <script type="text/javascript" language="javascript">    
+
+</script>
+{% endblock %}
+
+{% block container %}
+
+
+    <div class="container">
+        
+        <div class="row"
+            <div class="col-sm-offset-4 col-sm-4">
+                {% if error %}   
+                <div class="panel panel-danger">
+                {% else %}    
+                <div class="panel panel-info">
+                {% endif %}   
+                    {% if title %}
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>{{ title }}</strong></h3>
+                    </div>
+                    {% endif %}
+                    <div class="panel-body">
+                        {{ info }}
+                        {{ error }}
+                    </div>
+                </div>
+            </div>        
+
+             <div class=" col-sm-offset-4 col-sm-2">
+                <input type=button class="btn btn-default" value="知道了" onclick="window.history.go(-1)">
+             </div>               
+                 
+        </div>            
+        
+    </div>        
+
+{% endblock %}
+
+{% block footer %}
+  
+
+  
+{% endblock %}

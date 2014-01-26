@@ -50,7 +50,7 @@
                     <td>{{ item.cost }}</td>
                     <td>{{ item.uploadtime }}</td>
                     <td><a  class="btn btn-primary btn-md active" role="button" href="/docview/manage/bookedit/{{ item.id }}/" >修改</a></td>
-                    <td><a  class="btn btn-primary btn-md active" role="button" href="/docview/manage/bookdelete/{{ item.id }}/" >删除</a></td>
+                    <td><a  class="btn btn-primary btn-md active" role="button" href="/docview/manage/bookdelete/{{ item.id }}/"  onClick="deleteConfirm()"  >删除</a></td>
                   </tr>
                     {% endfor %}
                 </tbody>            

@@ -131,6 +131,8 @@ class WhooshSearchBackend(BaseSearchBackend):
                 self.index = self.storage.open_index(schema=self.schema)
             except index.EmptyIndexError:
                 self.index = self.storage.create_index(self.schema)
+            except:                
+                self.index = self.storage.open_index(schema=self.schema)
 
         self.setup_complete = True
 
@@ -951,7 +953,6 @@ class ChineseTokenizer(Tokenizer):
                     pass
                 else:
                     continue
-            print w                    
             token.original = token.text = w
             token.pos = start_pos
             token.startchar = start_pos

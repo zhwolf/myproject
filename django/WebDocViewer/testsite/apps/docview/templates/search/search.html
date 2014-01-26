@@ -25,7 +25,7 @@
                     {% for result in page.object_list %}
                     
                         <div class="list-group myhilight">
-                          <a href="/docview/view/aaa.pdf" class="list-group-item ">
+                          <a href="/docview/view/{{ result.object.bookid }}/" class="list-group-item ">
                             <h4 class="list-group-item-heading">
                             {{ result.object.name }}
                             </h4>

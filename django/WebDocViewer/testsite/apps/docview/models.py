@@ -41,3 +41,10 @@ class UserSL(object):
     pass
 mapper(UserSL, User_table)  
   
+
+UserBook_table=Table("b_user_book", metadata, autoload=True)
+class UserBookSL(object):
+    pass
+mapper(UserBookSL, UserBook_table)  
+  
+  

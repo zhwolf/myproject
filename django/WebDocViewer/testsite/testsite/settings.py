@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     ### 第三方库
     'haystack',
+    'kombu.transport.django',
     'djcelery',
     'south',
     ### 本地apps
@@ -176,10 +177,18 @@ def unicode2local(str):
 #######
 # Celery settings
 ######    
-BROKER_URL = 'amqp://guest:guest@localhost:5672//'
-CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
+####
+#### rabbitmq
+#BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+#CELERY_RESULT_BACKEND = 'amqp://guest:guest@localhost:5672//'
+#CELERY_TASK_SERIALIZER = 'json'
+
+### django db
+BROKER_URL = 'django://'
+#CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend'
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 CELERY_TASK_SERIALIZER = 'json'
-#CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend',
+
 
 CELERYBEAT_SCHEDULE = {
     "runs-every-30-seconds": {

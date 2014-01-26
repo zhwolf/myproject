@@ -7,15 +7,28 @@
         <div class="row">
         
           {% for book  in data %}
-              <div class="col-md-2 col-xs-2">
-                <div class="thumbnail text_overflow"">
-                  <img src="/static/book.jpg" href='#' alt="...">
-                  <div class="caption">
-                    <h4>{{ book.name }}</h4>
-                    <p>{{ book.descr|truncatechars:20  }}</p>
-                  </div>
-                </div>
-              </div>
+
+              
+                <div class="panel panel-collapse col-md-2 col-xs-2">
+                
+                        <div class="list-group">
+                          <a href="/docview/view/{{ book.bookid }}/" class="list-group-item ">
+                            <h5 class="list-group-item-heading">
+                            {{ book.name }}
+                            </h5>
+                            <p  class="list-group-item-text">
+                                {{ book.name }}
+                            </p>                            
+                            <p  class="list-group-item-text">
+                                {{ book.author }}
+                            </p>                            
+                            <p class="list-group-item-text">
+                                {{ book.descr|truncatechars:20 }}
+                            </p>                                 
+                          </a>
+                        </div>
+
+                </div>              
           {% endfor %}
 
         </div>

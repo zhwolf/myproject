@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load highlight %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+                <div class="panel">
+                    <span class="label label-info">曾经看过...</span>
+                </div>                
+                
+                <div class="panel panel-collapse">
+                
+                    {% for result  in data %}
+                        <div class="list-group">
+                          <a href="/docview/view/{{ result.bookid }}/" class="list-group-item ">
+                            <h4 class="list-group-item-heading">
+                            {{ result.name }}
+                            </h4>
+                            <p  class="list-group-item-text">
+                                {{ result.author }}
+                            </p>                            
+                            <p class="list-group-item-text">
+                                {{ result.descr|truncatechars:20 }}
+                            </p>                                 
+                          </a>
+                        </div>
+                    {% endfor %}                                            
+                </div>
+
+            
+    </div> <!-- /container -->
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript"> 
+
+</script>
+{% endblock %}

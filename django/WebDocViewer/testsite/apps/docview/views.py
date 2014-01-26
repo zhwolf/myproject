@@ -16,7 +16,7 @@ from .tasks import syncBatchBooks
 from shared.utils import printError, DEFAULT_ENCODE
 
 from .DocConvert import DocConverter
-import datetime
+import datetime,os
 import uuid
 
 import subprocess 
@@ -146,15 +146,52 @@ def login(request, path):
 def logout(request):
     request.session.clear()        
     return HttpResponseRedirect('/')
+    
+def viewhistory(request):
+    helper = {}
+    result = []
+    viewed = request.session.get('history', [])    
+    for item in viewed:
+        if not helper.has_key(item):
+            helper[item] =1
+            result.append(item)
+    print result 
+    try:
+        data = session.query(BookSL).filter(
+            and_(
+                BookSL.bookid.in_(result[-20:]), 
+              ))
+    except Exception,e:
+        session.rollback()
+        printError()        
+    return render_to_response('history.html', {'data' : data, }, context_instance=RequestContext(request) )   
+        
+         
+     
+    
+def getbook(bookid):
+    try:
+        data = session.query(BookSL).filter(
+            and_(
+                BookSL.bookid == bookid, 
+              )).order_by(desc(BookSL.id)).first()
+    except Exception,e:
+        session.rollback()
+        printError()        
+    return data            
 
-def view(request, path):
+def view(request, bookid):
+    data = getbook(bookid)
+    if data == None:       
+        return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
+    path = data.path                
     fullapth = os.path.join(settings.BOOK_BASE, path)
     f = os.path.basename(path)
     sufix = os.path.splitext(path)[1][1:].lower()
     any = Any()
     any.name = f
-    any.abpath = r"/" + f
-    any.fullpath= path
+    any.abpath = r"/" + path
+    any.bookid= data.bookid
     any.size = os.path.getsize(fullapth)
     any.time = os.path.getctime(fullapth)
     print request.META['HTTP_USER_AGENT']
@@ -166,14 +203,52 @@ def view(request, path):
         html = 's_viewpdf.html' 
         #return render(request, 's_viewpdf.html', { 'file' : any, } )
     return render_to_response(html, { 'file' : any, } , context_instance=RequestContext(request) )    
+        
+def directview(request, path):
+    fullapth = os.path.join(settings.BOOK_BASE, path)
+    f = os.path.basename(path)
+    sufix = os.path.splitext(path)[1][1:].lower()
+    any = Any()
+    any.name = f
+    any.abpath = r"/" + path
+    any.fullpath= fullapth
+    any.size = os.path.getsize(fullapth)
+    any.time = os.path.getctime(fullapth)
+    print request.META['HTTP_USER_AGENT']
     
-def getswf(request,path):
+    if  request.META['HTTP_USER_AGENT'].find('MSIE') >=0 or sufix == 'swf':
+        html = 's_viewswf.html'
+        #return render(request, 's_viewswf.html', { 'file' : any, } )
+    else:       
+        html = 's_viewpdf.html' 
+        #return render(request, 's_viewpdf.html', { 'file' : any, } )
+    return render_to_response(html, { 'file' : any, } , context_instance=RequestContext(request) )    
+        
+def getswf(request,bookid):
+    data = getbook(bookid)
+    if data == None :      
+        return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
+    viewed = request.session.get('history', [])
+    viewed.append(bookid)
+    request.session['history'] = viewed[-20:]      
+    return   getswffile(request, data.path)
+
+def getpdf(request,bookid):
+    data = getbook(bookid)
+    if data == None :      
+        return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
+    viewed = request.session.get('history', [])
+    viewed.append(bookid)
+    request.session['history'] = viewed[-20:]      
+    return getpdffile(request, data.path )
+        
+def getswffile(request,path):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
     fullpath = os.path.join(settings.BOOK_BASE, path).strip()
     fullpath = converter.getswf(fullpath)    
     return bigFileView(request, fullpath )
 
-def getpdf(request,path):
+def getpdffile(request,path):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
     fullpath = os.path.join(settings.BOOK_BASE, path).strip()
     fullpath = converter.getpdf(fullpath)    
@@ -201,14 +276,11 @@ def search(request):
     
 def classview(request, path):
     data = None
-    import chardet
-    print path, chardet.detect(path)
     try:
         data = session.query(BookSL).filter(
             and_(
                 BookSL.bookclass.like('%%%s%%'%(path)), 
               )).order_by(desc(BookSL.counter)).all()[:20]
-        print data              
     except Exception,e:
         error = u"登陆时发生内部错误.请联系管理员"
         session.rollback()

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="utf-8">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +13,7 @@
     <link href="/static/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/js/bootstrap/css/bootstrap-submenu.css" rel="stylesheet">
     <script src="/static/js/jquery/jquery.js"></script>
+    <script src="/static/js/common.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -101,7 +102,20 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
 
               <a  class="btn btn-primary" href="/">书库首页</a>
 
-{% jinja %}    
+{% jinja %}   
+            {% if request.session and request.session.user %} 
+                {% if request.session.admin == 1 %}
+                   <a class="btn btn-primary" href="/docview/history/">最近看过</a>
+                   <a class="btn btn-primary" href="/docview/manage/book/">文档管理</a>
+                   <a class="btn btn-primary" href="/docview/manage/user/">用户管理</a>
+                   <a class="btn btn-primary" href="/docview/logout/">退出登陆</a>
+                {% else %}           
+                   <a class="btn btn-primary" href="/docview/user/myfavorite/">我的收藏</a>
+                   <a class="btn btn-primary" href="/docview/history/">最近看过</a>
+                   <a class="btn btn-primary" href="#">我的空间</a>
+                   <a class="btn btn-primary" href="/docview/logout/">退出登陆</a>
+                {% endif %}
+            {% elif 0 %} 
                 {% if request.session and request.session.user %} 
                     {% if request.session.admin == 1 %}
                         <div class="btn-group  dropup">  
@@ -117,7 +131,7 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
                           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">我的空间<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                   <li><a href="#">用户信息</a></li>
-                                  <li><a href="#">我的收藏</a></li>
+                                  <li><a href="/docview/user/myfavorite/">我的收藏</a></li>
                                   <li><a href="/docview/logout/">退出登陆</a></li>
                             </ul>
                         </div>  
@@ -125,6 +139,11 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
                 {% else %}           
                     <a class="btn btn-primary"  href="/docview/login/">用户登陆</a>
                 {% endif %}
+            {% else %}           
+                <a class="btn btn-primary" href="/docview/history/">最近看过</a>
+                <a class="btn btn-primary"  href="/docview/login/">用户登陆</a>
+            {% endif %}                
+            
 {% endjinja %}                
             </div><!-- /btn-group -->
 
@@ -172,11 +191,11 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
 			$('input, textarea').placeholder();
 			
 			var str = document.getElementById('menudata').value;
-			console.debug(str);
+			//console.debug(str);
 			var json = eval("(" + str  + ")");
 
 		    var s = createmenu(json,0);
-		    console.info(s);
+		    //console.info(s);
 		    document.getElementById('classmenu').innerHTML  =s;	    			
 	});
 </script>    

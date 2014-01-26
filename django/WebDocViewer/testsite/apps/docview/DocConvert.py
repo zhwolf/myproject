@@ -10,6 +10,7 @@ import StringIO
 import locale
 import threading
 import Queue
+import uuid
 DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
 
@@ -38,6 +39,7 @@ class DocConverter:
             'wav': os.path.join(SWFTOOL_BASE, "wav2swf.exe"),
         }        
         self.UNOCONVTOOL= os.path.join(self.toolbasedir, "tools/unoconv/unoconv")
+        self.PDF2TXT = os.path.join(self.toolbasedir, "tools/unoconv/pdf2txt.py")
 
     def getswf(self, fullpath,basedir=None, outputdir=None):
         if basedir == None:
@@ -46,7 +48,7 @@ class DocConverter:
             outputdir=self.outputdir
         try:
             fullpath = fullpath.strip()
-            relate_path = os.path.relpath( os.path.dirname(fullpath), basedir)
+            relate_path = os.path.relpath( fullpath, basedir)
             sufix = os.path.splitext(fullpath)[1][1:].lower()
             logging.info( "getswf:%s, relate_path:%s, basedir:%s",sufix, relate_path, basedir)
             if sufix != 'swf' :
@@ -70,7 +72,7 @@ class DocConverter:
         
         try:
             fullpath = fullpath.strip()
-            relate_path = os.path.relpath(os.path.dirname(fullpath), basedir)
+            relate_path = os.path.relpath(fullpath, basedir)
             sufix = os.path.splitext(fullpath)[1][1:].lower()
             logging.info( "getpdf:%s",sufix    )
             if sufix != 'pdf' :
@@ -89,7 +91,7 @@ class DocConverter:
         fs = os.path.splitext(path)
         filename = fs[0]
         sufix = fs[1][1:].lower().strip()
-        swffile = os.path.join(todir, '%s.swf' %(filename))
+        swffile = os.path.join(todir, 'swf/transfered.swf')
         
         if os.path.isfile(swffile):
             logging.info("Good. File already exists:%s", fullpath)
@@ -118,44 +120,82 @@ class DocConverter:
         fs = os.path.splitext(path)
         filename = fs[0]
         sufix = fs[1][1:].lower().strip()
+            
         thisfile = '%s.pdf' %(os.path.splitext(fullpath)[0])
-        swffile = os.path.join(todir, '%s.pdf' %(filename))
+        swffile = os.path.join(todir, 'pdf/transfered.pdf' )
+
+        if not os.path.isdir( os.path.dirname(swffile) ) :
+            try:
+                os.makedirs(os.path.dirname(swffile))
+            except Exception,e:
+                self.printError()            
+        
+        if os.path.isfile(swffile):
+            logging.info("Good. File already exists:%s", fullpath)
+        else:
+            cmdpath = self.UNOCONVTOOL
+            port = OfficePortQueue.get()
+            try:
+                #pdf_lock.acquire()
+                ret, logs = self.execmd( r'python "%s" -f pdf -p %s "%s"' % (cmdpath,port, fullpath) )
+                OfficePortQueue.put(port)
+            except Exception,e:
+                OfficePortQueue.put(port+1)
+                self.printError()
+                return ""
+            finally:
+                #pdf_lock.release()            
+                pass
+                            
+            if ret:
+                logging.info( "thisfile:%s    swffile:%s",thisfile,  swffile)
+                try:
+                    os.remove(swffile)
+                except Exception,e:
+                    pass
+                os.rename(thisfile, swffile)
+            elif ret==1:
+                return ""
+            
+        #now convert to text
+        self.convert2txt( swffile, todir)
+                      
+        return swffile
+     
+    def convert2txt(self,fullpath,todir):
+        logging.info("convert %s to txt", fullpath)
+        path = os.path.basename( fullpath)
+        fs = os.path.splitext(path)
+        filename = fs[0]
+        sufix = fs[1][1:].lower().strip()
+        swffile = os.path.join(todir, 'txt/transfered.txt')
         
         if os.path.isfile(swffile):
             logging.info("Good. File already exists:%s", fullpath)
             return swffile
+        
         if not os.path.isdir( os.path.dirname(swffile) ) :
             try:
                 os.makedirs(os.path.dirname(swffile))
             except Exception,e:
                 self.printError()            
 
-        cmdpath = self.UNOCONVTOOL
-        port = OfficePortQueue.get()
+
+        cmdpath = self.PDF2TXT
         try:
-            #pdf_lock.acquire()
-            ret, logs = self.execmd( r'python "%s" -f pdf -p %s "%s"' % (cmdpath,port, fullpath) )
-            OfficePortQueue.put(port)
+            #pdf2txt.py -o output.html samples/naacl06-shinyama.pdf
+            ret, logs = self.execmd( r'python "%s" -o "%s" "%s"' % (cmdpath,swffile, fullpath) )
         except Exception,e:
-            OfficePortQueue.put(port+1)
             self.printError()
             return ""
         finally:
-            #pdf_lock.release()            
-            pass
-                        
+            pass        
+                
         if ret:
-            logging.info( "thisfile:%s    swffile:%s",thisfile,  swffile)
-            try:
-                os.remove(swffile)
-            except Exception,e:
-                pass
-            os.rename(thisfile, swffile)
             return swffile
         elif ret==1:
-            return ""
-     
-    
+            return ""        
+        
     def execmd(self,cmd):
         #cmd = cmd.encode(DEFAULT_ENCODE)
         cmd = cmd.encode(DEFAULT_ENCODE) 

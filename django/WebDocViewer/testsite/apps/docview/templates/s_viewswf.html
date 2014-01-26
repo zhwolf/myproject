@@ -16,7 +16,7 @@
                          { config : {
                          //SwfFile : escape('ajax.swf'),  
                          //SwfFile : '/docview/showswf/paper.swf',
-                         SwfFile :  '/docview/showswf' + filename ,
+                         SwfFile :  '/docview/showswf/' + filename ,
                          Scale : 0.6, 
                          ZoomTransition : 'easeOut',
                          ZoomTime : 0.5,
@@ -39,6 +39,8 @@
                            localeChain: 'zh_CN'
                          }});
     }
+    
+      
 </script>    
 
 {% endblock %}
@@ -46,13 +48,14 @@
 {% block container %}
 
     <div class="container">
-        
+       
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
             <span style="margin-right:30px">{{ file.name }}</span>
             <a href="#bookinfo" data-toggle="collapse" class="text-right">详细»</a>    
-            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:viewDoc('{{ file.abpath }}');">查看</a>
+            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:viewDoc('{{ file.bookid }}');">查看</a>
+            <a  class="btn btn-primary btn-md active pull-right" role="button" href="javascript:void(0);" onclick="javascript:collectfavorite('{% url 'user_addfavorite' file.bookid %}');">收藏</a>
           </h4>
         </div>
         <div id="bookinfo" class="panel-collapse collapse in">

@@ -4,9 +4,11 @@
 <script language="javascript"> 
     function loadpdf(url)
     {
-        var pdf = '/docview/pdfviewer/#/docview/showpdf' + url;
+        var pdf = '/docview/pdfviewer/#/docview/showpdf/' + url;
         $('#theviewer').attr("src",pdf); 
     }
+    
+    
 </script>
 {% endblock %}
 
@@ -19,7 +21,8 @@
           <h4 class="panel-title">
             <span style="margin-right:30px">{{ file.name }}</span>
             <a href="#bookinfo" data-toggle="collapse" data-toggle="collapse" class="text-right">详细</a>    
-            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:loadpdf('{{ file.abpath }}');">查看</a>
+            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:loadpdf('{{ file.bookid }}');">查看</a>
+            <a  class="btn btn-primary btn-md active pull-right" role="button" href="javascript:void(0);" onclick="javascript:collectfavorite('{% url 'user_addfavorite' file.bookid %}');">收藏</a>
           </h4>
         </div>
         <div id="bookinfo" class="panel-collapse collapse ">
@@ -32,7 +35,7 @@
 
       <div class="row">
          <div class="col-md-12 col-xs-12">
-            <iframe id="theviewer" src='/docview/pdfviewer/#/docview/showpdf/aaa.pdf' width='100%' height='600'> </iframe>
+            <iframe id="theviewer"  width='100%' height='600'> </iframe>
         </div>   
      </div>  
      

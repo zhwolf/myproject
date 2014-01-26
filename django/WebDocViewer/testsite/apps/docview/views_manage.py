@@ -131,7 +131,7 @@ def upload(request):
         if form.is_valid():
             print "not valid"                
             f = request.FILES['file']
-            filename = handle_uploaded_file(f)
+            filename = handle_uploaded_file(f, form.cleaned_data['bookclass'].strip())
             if filename == "":
                 error = u"文件保存失败.请联系管理员"
             else:
@@ -216,8 +216,8 @@ def bookdelete(request, bookid):
     return HttpResponseRedirect('/docview/manage/book/')        
     
     
-def handle_uploaded_file(f):
-    filename = os.path.join(settings.BOOK_BASE, f.name)
+def handle_uploaded_file(f, todir):
+    filename = os.path.join(  os.path.join( settings.BOOK_BASE,todir), f.name)
     try:
         logging.info("saving file:%s", filename )
         with open(filename, 'wb+') as destination:
