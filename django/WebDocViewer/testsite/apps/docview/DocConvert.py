@@ -42,6 +42,8 @@ class DocConverter:
         self.PDF2TXT = os.path.join(self.toolbasedir, "tools/unoconv/pdf2txt.py")
 
     def getswf(self, fullpath,basedir=None, outputdir=None):
+        if None or not fullpath:
+            return ''        
         if basedir == None:
             basedir=self.basedir
         if outputdir == None:
@@ -63,8 +65,10 @@ class DocConverter:
 
     def getswfFromRelpath(self, relpath):
         return self.getswf( os.path.join(self.basedir, path).strip())
-    
-    def getpdf(self, fullpath,basedir=None, outputdir=None):
+
+    def gettxt(self, fullpath,basedir=None, outputdir=None):
+        if None or not fullpath:
+            return ''
         if basedir == None:
             basedir=self.basedir
         if outputdir == None:
@@ -77,6 +81,28 @@ class DocConverter:
             logging.info( "getpdf:%s",sufix    )
             if sufix != 'pdf' :
                 fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
+            fullpath =   self.convert2txt(fullpath, os.path.join( outputdir , relate_path ))
+            return fullpath
+        except Exception, e:
+            self.printError()    
+                
+    def getpdf(self, fullpath,basedir=None, outputdir=None):
+        if None or not fullpath:
+            return ''        
+        if basedir == None:
+            basedir=self.basedir
+        if outputdir == None:
+            outputdir=self.outputdir
+        
+        try:
+            fullpath = fullpath.strip()
+            relate_path = os.path.relpath(fullpath, basedir)
+            sufix = os.path.splitext(fullpath)[1][1:].lower()
+            logging.info( "getpdf:%s",sufix    )
+            if sufix != 'pdf' :
+                fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
+            else:
+                convert2txt(fullpath, os.path.join( outputdir , relate_path ))
             return fullpath
         except Exception, e:
             self.printError()                

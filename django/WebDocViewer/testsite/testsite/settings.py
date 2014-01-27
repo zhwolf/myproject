@@ -192,8 +192,9 @@ CELERY_TASK_SERIALIZER = 'json'
 
 CELERYBEAT_SCHEDULE = {
     "runs-every-30-seconds": {
-        "task": "apps.docview.tasks.test_add",
-        "schedule": datetime.timedelta(seconds=30),
-        "args": (16, 16)
+        "task": "apps.docview.tasks.syncBooks",
+        "schedule": datetime.timedelta(seconds=60),
+        #"args": (16, 16),
+        "relative": True,
      },
 }   

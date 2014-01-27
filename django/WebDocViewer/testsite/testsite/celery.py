@@ -43,9 +43,9 @@ def shcedule():
     pass    
     
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
-    s.bind(('127.0.0.1', 2531))
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(('127.0.0.1', 25311))
     print "I am under singleton now"
     a = threading.Thread(target = worker)
     a.daemon = True
@@ -57,4 +57,5 @@ try:
     time.sleep(2)
     a.start()
 except Exception,e:
+    print e
     pass    

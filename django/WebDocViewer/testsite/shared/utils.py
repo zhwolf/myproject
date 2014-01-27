@@ -11,6 +11,8 @@ import logging
 import sys
 import traceback
 import StringIO
+import locale
+
 
 DEFAULT_ENCODE =  sys.stdin.encoding or locale.getdefaultlocale()[1] or sys.getdefaultencoding()
 
