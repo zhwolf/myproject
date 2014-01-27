@@ -147,6 +147,25 @@ def logout(request):
     request.session.clear()        
     return HttpResponseRedirect('/')
     
+def index(request):
+    try:
+        topdata = session.query(BookSL).filter(
+            and_(
+              )).order_by(desc(BookSL.id)).all()[:5]
+    except Exception,e:
+        session.rollback()
+        printError()    
+        
+    try:
+        data = session.query(BookSL).filter(
+            and_(
+              )).order_by(desc(BookSL.counter)).all()[:20]
+    except Exception,e:
+        error = u"登陆时发生内部错误.请联系管理员"
+        session.rollback()
+        printError()          
+    return render_to_response('index.html', {'data' : data, 'topdata': topdata }, context_instance=RequestContext(request) )    
+    
 def viewhistory(request):
     helper = {}
     result = []

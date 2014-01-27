@@ -3,6 +3,7 @@
 from django.db import models
 from django.conf import settings
 import sys
+import os
 
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, MetaData
 from sqlalchemy.orm import mapper
@@ -29,10 +30,25 @@ class Book(models.Model):
     class Meta:
         db_table = 'b_book'
 
+DocImages = {
+    'pdf' : 'pdf.jpg',
+    'doc' : 'word.jpg',
+    'docx' : 'word.jpg',
+    'xls' : 'excel.jpg',
+    'xlsx' : 'excel.jpg',
+    'ppt' : 'ppt.jpg',
+    'pptx' : 'ppt.jpg',
+    'other' : 'other.jpg',
+}
+
 #sqlalchemy book
 Book_table=Table("b_book", metadata, autoload=True)
 class BookSL(object):
-    pass
+    def getImage(self):
+        format = (self.format or os.path.splitext(self.path or self.name)[1][1:]  or 'other').lower()
+        jpg = DocImages.get(format , DocImages['other'])
+        return '/static/image/' + jpg
+        
 mapper(BookSL, Book_table)  
 
 #sqlalchemy book

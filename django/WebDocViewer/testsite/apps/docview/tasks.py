@@ -7,8 +7,9 @@ import os, sys
 import traceback
 import StringIO
 import logging
-
-from .models import Book
+from shared.utils import printError, DEFAULT_ENCODE
+import datetime,os
+import uuid
 
 
 @shared_task
@@ -43,27 +44,64 @@ def syncBatchBooks(paths):
 @shared_task
 def syncBooks():
     from .DocConvert import DocConverter
-    import threadpool
-    converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
+    from .models import BookSL
+    from apps.backends.DBEnginee.djSQLAlchemy import Session
     
+    session = Session()
+    data_db = {}
+    try
+        dbdatas = session.query(BookSL).filter(
+            and_(
+              )).all()
+        for data in  dbdatas:  
+            data_db[data.path] = data
+    except Exception,e:
+        session.rollback()
+        printError() 
+        data_db = None
+    
+    converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
     data = []
     books = os.walk(settings.BOOK_BASE)
     for path, directory, files in books:
-        print sys.stdin.encoding
-        for filename in files:    
-            filepath =  unicode(os.path.join(path, filename), settings.DEFAULT_ENCODE)
+        for filename in files:
+            if path == '.':
+                continue
+            filename =  unicode(filename, DEFAULT_ENCODE)   
+            filepath =  unicode(os.path.join(path, filename), DEFAULT_ENCODE)
             data.append(filepath)
-            #converter.getswf(filepath)
-            
-    pool = threadpool.ThreadPool(5) 
-    requests = threadpool.makeRequests(converter.getswf, data) 
-    [pool.putRequest(req) for req in requests] 
-    pool.wait()           
+            try:
+                converter.getswf(filepath)
+            except Exception,e:
+                printError()                 
+                continue
+            #sync database
+            if data_db == None:
+                continue
+            item = data_db.get(filepath, None)
+            needupdate = False
+            if item == None:
+                needupdate = True
+                print "need add:", filepath
+                item = BookSL()
+                item.name, item.format = os.path.splitext(os.path.basename(filename))
+                item.format = item.format[1:].lower()
+                item.uploadtime = datetime.datetime.now()
+                item.path = filepath
+                item.uploader = ''
+                item.bookid =  '%s' % (uuid.uuid1())
+                item.cost = 0
+                item.bookclass = os.path.basename(filepath).replace('\\', '/')
+                item.counter = 0
+            else:
+                if item.summary == None or item.summary == '':
+                    pass  
+                    
+            if  needupdate:         
+                try:
+                    session.commit()
+                except Exception,e:
+                    session.rollback()
+                    printError()                 
     print " syncBooks:DONE"    
         
- 
-def printError():
-    fp = StringIO.StringIO()
-    traceback.print_exc(file=fp)
-    ret = fp.getvalue()
-    logging.error("exception:%s",ret)       

@@ -1,209 +1,91 @@
 {% extends "base.html" %}
 
+ <link href="/static/js/carousel.css" rel="stylesheet">
+<style>
+
+</style>    
 {% block container %}
     <div class="container">
+    <div id="desktopTest" class="hidden-xs"></div>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        {% for book  in topdata %}
+            <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if not forloop.counter0 %}active{% endif %}"></li>
+        {% endfor %}            
+      </ol>
+      <div class="carousel-inner">
+        {% for book  in topdata %}
+            <div class="item {% if not forloop.counter0 %}active{% endif %}">
+              <img data-src="holder.js/300x100/auto/#777:#7a7a7a/text:First slide" class="carouse_img"  alt="First slide">
+              <a href="{% url 'doc_view' book.bookid %} ">
+                <div class="carousel-caption">
+                  <h5><strong>{{ book.name }}</strong></h5>
+                  <p><small>{{ book.author |truncatechars:30  }}</small></p>
+                  <p class="hidden-xs"><small>{{ book.descr|truncatechars:50  }}</small></p>
+                </div>
+              </a>
+            </div>
+        {% endfor%}            
+      </div>
+      
+      {% if topdata %}
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      {% endif %}            
+    </div><!-- /.carousel -->
 
-      <!-- Main component for a primary marketing message or call to action -->
+    <!-- books -->
         <div class="row">
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
+      {% for book  in data %}
+                <div class="panel panel-collapse col-md-4 col-xs-12">
 
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
+                        <div class="col-xs-4 col-md-4">
+                            <a href="{% url 'doc_view' book.bookid %}" class="thumbnail">
+                              <img src="{{ book.getImage }}" alt="...">
+                            </a>
+                        </div>    
+                        
+                        <div class="list-group col-xs-8 col-md-8">
+                          <a href="{% url 'doc_view' book.bookid %}" class="list-group-item ">
+                            <p  class="list-group-item-text">
+                               <strong><small>
+                                {{ book.name }}
+                                </small></strong>
+                            </p>     
+                            <p  class="list-group-item-text">
+                                <small>
+                                {{ book.author |truncatechars:20 }}
+                                </small>
+                            </p>                            
+                            <p class="list-group-item-text">
+                                <small>
+                                {{ book.descr|truncatechars:20 }}
+                                </small>
+                            </p>                                 
+                          </a>
+                        </div>
+                </div>              
+     {% endfor %}
+        </div>    
 
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-            <!-- book -->
-          <div class="col-md-2 col-xs-4">
-            <div class="thumbnail">
-              <img src="/static/book.jpg" alt="...">
-              <div class="caption">
-                <h4>倚天屠龙记</h4>
-                <p>...</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
 
     </div> <!-- /container -->
+{% endblock %}
+
+
+{% block footer %}
+<script src="/static/js/bootstrap/js/holder.min.js"></script>
+<script type="text/javascript"> 
+    $(function() {
+        if ($('#desktopTest').is(':hidden')) {
+        }
+        else{
+            $('.carouse_img').attr('data-src', "holder.js/4000x500/auto/#777:#7a7a7a/text:First slide" );
+        }
+    });
+
+</script>
 {% endblock %}
