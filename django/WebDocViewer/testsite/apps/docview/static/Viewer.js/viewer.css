@@ -18,12 +18,12 @@ select {
 #titlebar {
     position: absolute;
     z-index: 2; 
-    top: 0px;
+    bottom: 0px;
     left: 0px;
     height: 32px;
     width: 100%;
     overflow: hidden;
-
+    
     -webkit-box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px 1px 3px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 1px 3px rgba(50, 50, 50, 0.75);
@@ -53,11 +53,12 @@ select {
 #toolbarContainer {
     position: absolute;
     z-index: 2; 
-    bottom: 0px;
+    top: 0px;
     left: 0px;
     height: 32px;
     width: 100%;
     overflow: hidden;
+
 
     -webkit-box-shadow: 0px -1px 3px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px -1px 3px rgba(50, 50, 50, 0.75);

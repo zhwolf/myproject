@@ -184,6 +184,7 @@ def unicode2local(str):
 #CELERY_TASK_SERIALIZER = 'json'
 
 ### django db
+CELERYD_CONCURRENCY=1
 BROKER_URL = 'django://'
 CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend'
 #CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
@@ -193,7 +194,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERYBEAT_SCHEDULE = {
     "runs-every-30-seconds": {
         "task": "apps.docview.tasks.syncBooks",
-        "schedule": datetime.timedelta(seconds=60),
+        "schedule": datetime.timedelta(seconds=60*60),
         #"args": (16, 16),
         "relative": True,
      },

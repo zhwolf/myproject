@@ -95,48 +95,30 @@ language:(navigator.browserLanguage || navigator.language).toLowerCase()
 
             <div class="btn-group btn-group-justified">
 
-              <a  class="btn btn-primary" href="/">书库首页</a>
+              <a  class="btn btn-primary" href="/">首页</a>
+
+              <a class="btn btn-primary" href="/docview/history/">看过</a>
+              <a class="btn btn-primary" href="/docview/user/myfavorite/">收藏</a>
+              <a class="btn btn-primary" href="#">空间</a>
 
 {% jinja %}   
             {% if request.session and request.session.user %} 
                 {% if request.session.admin == 1 %}
-                   <a class="btn btn-primary" href="/docview/history/">最近看过</a>
-                   <a class="btn btn-primary" href="/docview/manage/book/">文档管理</a>
-                   <a class="btn btn-primary" href="/docview/manage/user/">用户管理</a>
-                   <a class="btn btn-primary" href="/docview/logout/">退出登陆</a>
+                   <div class="btn-group  dropup">  
+                      <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">管理<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                              <li><a href="/docview/manage/book/">文档管理</a></li>
+                              <li><a href="/docview/manage/user/">用户管理</a></li>
+                        </ul>
+                    </div>  
+                    
+                   <a class="btn btn-primary" href="/docview/logout/">退出</a>
+                   
                 {% else %}           
-                   <a class="btn btn-primary" href="/docview/user/myfavorite/">我的收藏</a>
-                   <a class="btn btn-primary" href="/docview/history/">最近看过</a>
-                   <a class="btn btn-primary" href="#">我的空间</a>
-                   <a class="btn btn-primary" href="/docview/logout/">退出登陆</a>
-                {% endif %}
-            {% elif 0 %} 
-                {% if request.session and request.session.user %} 
-                    {% if request.session.admin == 1 %}
-                        <div class="btn-group  dropup">  
-                          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">后台管理<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                  <li><a href="/docview/manage/book/">文档管理</a></li>
-                                  <li><a href="/docview/manage/user/">用户管理</a></li>
-                                  <li><a href="/docview/logout/">退出登陆</a></li>
-                            </ul>
-                        </div>  
-                    {% else %}           
-                        <div class="btn-group  dropup">  
-                          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">我的空间<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                  <li><a href="#">用户信息</a></li>
-                                  <li><a href="/docview/user/myfavorite/">我的收藏</a></li>
-                                  <li><a href="/docview/logout/">退出登陆</a></li>
-                            </ul>
-                        </div>  
-                    {% endif %}
-                {% else %}           
-                    <a class="btn btn-primary"  href="/docview/login/">用户登陆</a>
+                   <a class="btn btn-primary" href="/docview/logout/">退出</a>
                 {% endif %}
             {% else %}           
-                <a class="btn btn-primary" href="/docview/history/">最近看过</a>
-                <a class="btn btn-primary"  href="/docview/login/">用户登陆</a>
+                <a class="btn btn-primary"  href="/docview/login/">登陆</a>
             {% endif %}                
             
 {% endjinja %}                

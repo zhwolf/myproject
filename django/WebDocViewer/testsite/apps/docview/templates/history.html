@@ -18,14 +18,16 @@
                     {% for result  in data %}
                         <div class="list-group">
                           <a href="/docview/view/{{ result.bookid }}/" class="list-group-item ">
-                            <h4 class="list-group-item-heading">
-                            {{ result.name }}
-                            </h4>
                             <p  class="list-group-item-text">
-                                {{ result.author }}
+                               <strong><small>
+                            {{ result.name }}
+                                </small></strong>
+                            </p>                              
+                            <p  class="list-group-item-text">
+                                <small>{{ result.author }}</small>
                             </p>                            
                             <p class="list-group-item-text">
-                                {{ result.descr|truncatechars:20 }}
+                                <small>{{ result.descr|truncatechars:20 }}</small>
                             </p>                                 
                           </a>
                         </div>

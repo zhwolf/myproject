@@ -18,22 +18,24 @@
                         <div class="panel panel-collapse col-md-10 col-xs-10">
                             <div class="list-group">
                               <a href="/docview/view/{{ result.bookid }}/" class="list-group-item ">
-                                <h4 class="list-group-item-heading">
-                                {{ result.name }}
-                                </h4>
                                 <p  class="list-group-item-text">
-                                    {{ result.author }}
+                                   <strong>
+                                    <small>{{ result.name|truncatechars:20  }}</small>
+                                    </strong>
+                                </p>                                     
+                                <p  class="list-group-item-text">
+                                    <small>{{ result.author|truncatechars:20 }}</small>
                                 </p>                            
                                 <p class="list-group-item-text">
-                                    {{ result.descr|truncatechars:20 }}
+                                    <small>{{ result.descr|truncatechars:20 }}
                                 </p>                                 
                               </a>
                             </div>
                         </div>
                         
                         <div col-md-2 col-xs-2>                        
-                            <a type="button" class="btn btn-warning"  onClick="deleteConfirm()" href="{% url 'user_removefavorite' favdata.id %}" >
-                              <span class="glyphicon glyphicon-remove-circle"></span>删除
+                            <a type="button" class="btn btn-warning btn-sm"  onClick="deleteConfirm()" href="{% url 'user_removefavorite' favdata.id %}" >
+                              <span class="glyphicon glyphicon-remove-circle"></span><small>删除</small>
                             </a>                        
                         <div>                            
                     {% endfor %}                                            

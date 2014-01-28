@@ -6,7 +6,7 @@ from django.template import add_to_builtins
 # Django starts so that shared_task will use this app.
 
 
-#from .celery import app as celery_app
+from .celery import app as celery_app
 #simpletask.run()
 
 add_to_builtins('apps.backends.jinja2.jinja_tag')

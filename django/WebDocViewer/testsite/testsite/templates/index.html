@@ -6,7 +6,7 @@
 </style>    
 {% block container %}
     <div class="container">
-    <div id="desktopTest" name="desktopTest" class="hidden-xs"></div>
+    <div id="desktopTest" name="desktopTest" class="visible-lg visible-md"></div>
     <!-- Carousel
     ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -19,7 +19,7 @@
       <div class="carousel-inner">
         {% for book  in topdata %}
             <div class="item {% if not forloop.counter0 %}active{% endif %}">
-              <img data-src="holder.js/300x100/auto/#777:#7a7a7a/text:First slide" class="carouse_img"  alt="First slide">
+              <img data-src="holder.js/300x100/auto/#777:#7a7a7a/text:." class="carouse_img visible-xs visible-sm"  alt="First slide">
               <a href="{% url 'doc_view' book.bookid %} ">
                 <div class="carousel-caption">
                   <h5><strong>{{ book.name }}</strong></h5>
@@ -81,20 +81,17 @@
 <script src="/static/js/jquery/jquery.browser.min.js"></script>
 <script type="text/javascript"> 
     $(function() {
-        if ($.browser.name == "msie")
-        {
-            alert('ie');
-            $('.carouse_img').attr('data-src', "" );
-            $('.carouse_img').attr('src', "/static/image/slide-01.jpg" );
-        }
-        else
-        {
             if ($('#desktopTest').is(':hidden')) {
             }
             else{
-                $('.carouse_img').attr('data-src', "holder.js/4000x500/auto/#777:#7a7a7a/text:First slide" );
+                if ( $.browser.name == "msie" && $.browser.version < "9.0" )
+                {
+                }
+                else
+                {
+                    $('.carouse_img').replaceWith('<img data-src="holder.js/2000x300/auto/#777:#7a7a7a/text:." class="carouse_img"  alt="">');
+                }
             }
-        }
     });
 
 </script>
