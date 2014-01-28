@@ -78,12 +78,22 @@
 
 {% block footer %}
 <script src="/static/js/bootstrap/js/holder.min.js"></script>
+<script src="/static/js/jquery/jquery.browser.min.js"></script>
 <script type="text/javascript"> 
     $(function() {
-        if ($('#desktopTest').is(':hidden')) {
+        if ($.browser.name == "msie")
+        {
+            alert('ie');
+            $('.carouse_img').attr('data-src', "" );
+            $('.carouse_img').attr('src', "/static/image/slide-01.jpg" );
         }
-        else{
-            $('.carouse_img').attr('data-src', "holder.js/4000x500/auto/#777:#7a7a7a/text:First slide" );
+        else
+        {
+            if ($('#desktopTest').is(':hidden')) {
+            }
+            else{
+                $('.carouse_img').attr('data-src', "holder.js/4000x500/auto/#777:#7a7a7a/text:First slide" );
+            }
         }
     });
 
