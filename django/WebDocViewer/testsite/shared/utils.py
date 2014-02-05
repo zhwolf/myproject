@@ -64,9 +64,9 @@ def sharedContext(request):
         if cache.get('bookclass_json', '') == '':
             logging.info('begin to browser classes')
             dirstr, dirdict, dichelper = walkdir(settings.BOOK_BASE)
-            cache.set('bookclass_json', dirstr, timeout=None)        
-            cache.set('bookclass_dict', dirdict, timeout=None)        
-            cache.set('bookclass_helper', dichelper, timeout=None)   
+            cache.set('bookclass_json', dirstr, timeout= 60 *60)        
+            cache.set('bookclass_dict', dirdict, timeout= 60 *60)        
+            cache.set('bookclass_helper', dichelper, timeout= 60 *60)   
             
     getbookclass()
     s = cache.get('bookclass_json', '')
