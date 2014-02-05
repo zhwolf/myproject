@@ -22,40 +22,40 @@ def debug_task(self):
     print('Request: {0!r}'.format(self.request))
     
     
-print "Into celery"    
-import socket
-import subprocess 
-from djcelery.management.commands import celery
-import time
-
-def worker():
-    #return
-    args = ['manage.py', 'celery', 'worker', '-lINFO']
-    command = celery.Command()
-    command.run_from_argv(args)
-    pass
-    
-def shcedule():
-    #return
-    args = ['manage.py', 'celery', 'beat', '-lINFO']
-    command = celery.Command()
-    command.run_from_argv(args)
-    pass    
-    
-
-try:
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('127.0.0.1', 25311))
-    print "I am under singleton now"
-    a = threading.Thread(target = worker)
-    a.daemon = True
-
-    b = threading.Thread(target = shcedule)
-    b.daemon = True
-    
-    b.start()
-    time.sleep(2)
-    a.start()
-except Exception,e:
-    print e
-    pass    
+#print "Into celery"    
+#import socket
+#import subprocess 
+#from djcelery.management.commands import celery
+#import time
+#
+#def worker():
+#    #return
+#    args = ['manage.py', 'celery', 'worker', '-lINFO']
+#    command = celery.Command()
+#    command.run_from_argv(args)
+#    pass
+#    
+#def shcedule():
+#    #return
+#    args = ['manage.py', 'celery', 'beat', '-lINFO']
+#    command = celery.Command()
+#    command.run_from_argv(args)
+#    pass    
+#    
+#
+#try:
+#    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#    s.bind(('127.0.0.1', 25311))
+#    print "I am under singleton now"
+#    a = threading.Thread(target = worker)
+#    a.daemon = True
+#
+#    b = threading.Thread(target = shcedule)
+#    b.daemon = True
+#    
+#    b.start()
+#    time.sleep(2)
+#    a.start()
+#except Exception,e:
+#    print e
+#    pass    

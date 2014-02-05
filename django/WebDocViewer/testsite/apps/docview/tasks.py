@@ -33,14 +33,63 @@ def test_xsum(numbers):
 @shared_task
 def syncBatchBooks(paths):
     from .DocConvert import DocConverter
+    from .models import BookSL
+    from apps.backends.DBEnginee.djSQLAlchemy import Session
+    from sqlalchemy.sql import and_,or_, desc
     print "syncBatchBooks", paths
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
-    
+    session = Session()
+    dirs=[]
     if isinstance(paths, str) or isinstance(paths, unicode):
-        converter.getswf(paths)
+        dirs.append(paths)
     else:
-        for path in paths:
-            converter.getswf(path)
+        dirs=paths
+    for path in dirs:
+        relpath = path
+        if path.find(":") < 0:
+            path= os.path.join(settings.BOOK_BASE, path)
+        else:            
+            relpath = os.path.relpath(path, settings.BOOK_BASE)
+        relpath.replace("/", "\\")            
+        converter.getswf(path)
+        try:
+            item = session.query(BookSL).filter(
+                and_( BookSL.path == relpath
+                  )).first()
+        except Exception,e:
+            session.rollback()
+            printError() 
+        needupdate = False
+        if item == None:
+            needupdate = True
+            item = BookSL()
+            session.add(item)
+            item.name, item.format = os.path.splitext(os.path.basename(path))
+            item.format = item.format[1:].lower()
+            item.uploadtime = datetime.datetime.now()
+            item.path = relpath
+            item.uploader = ''
+            item.bookid =  '%s' % (uuid.uuid1())
+            item.cost = 0
+            item.bookclass = os.path.dirname(relpath).replace('\\', '/')
+            item.counter = 0
+        #for pdf
+        if os.path.splitext(path)[1][1:].lower().strip() != 'swf':
+            if item.summary == None or item.summary == '':
+                item.summary=  testsum(converter.gettxt(path))
+                needupdate = True
+            if item.pagenum <= 0 or item.pagenum == None:
+                item.pagenum = converter.getPdfPageNum(path)
+                needupdate = True
+                
+        if  needupdate:         
+            try:
+                session.commit()
+            except Exception,e:
+                session.rollback()
+                printError()               
+        
+                
     print " syncBatchBooks:DONE"
     
 @shared_task
@@ -101,16 +150,20 @@ def syncBooks():
                 item.name, item.format = os.path.splitext(os.path.basename(filename))
                 item.format = item.format[1:].lower()
                 item.uploadtime = datetime.datetime.now()
-                item.path = filepath
+                item.path = os.path.join(relpath,filename)
                 item.uploader = ''
                 item.bookid =  '%s' % (uuid.uuid1())
                 item.cost = 0
-                item.bookclass = os.path.basename(filepath).replace('\\', '/')
+                item.bookclass = relpath.replace('\\', '/')
                 item.counter = 0
-            if item.summary == None or item.summary == '':
-                item.summary=  testsum(converter.gettxt(filepath))
-                needupdate = True
-                
+            #for pdf
+            if os.path.splitext(filepath)[1][1:].lower().strip() != 'swf':
+                if item.summary == None or item.summary == '':
+                    item.summary=  testsum(converter.gettxt(filepath))
+                    needupdate = True
+                if item.pagenum <= 0 or item.pagenum == None:
+                    item.pagenum = converter.getPdfPageNum(filepath)
+                    needupdate = True
                     
             if  needupdate:         
                 try:
@@ -131,7 +184,8 @@ def testsum(filename):
     txt = ""
     for line in f.readlines():
         try:
-            txt += line.decode('utf-8','ignore').encode(DEFAULT_ENCODE).strip()
+            #txt += line.decode('utf-8','ignore').encode(DEFAULT_ENCODE).strip()
+            txt += line
         except:
             printError()  
             pass            

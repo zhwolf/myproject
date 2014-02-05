@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     ### 第三方库
     'haystack',
     'kombu.transport.django',
-    'djcelery',
+    #'djcelery',
     'south',
     ### 本地apps
     'apps.backends.DBEnginee',
@@ -177,6 +177,7 @@ def unicode2local(str):
 #######
 # Celery settings
 ######    
+
 ####
 #### rabbitmq
 #BROKER_URL = 'amqp://guest:guest@localhost:5672//'
@@ -186,16 +187,26 @@ def unicode2local(str):
 ### django db
 CELERYD_CONCURRENCY=1
 BROKER_URL = 'django://'
+#CELERY_RESULT_BACKEND = 'cache+memcached://127.0.0.1:11211/'
 CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend'
 #CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 CELERY_TASK_SERIALIZER = 'json'
 
+##
+##redis
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
 
 CELERYBEAT_SCHEDULE = {
     "runs-every-30-seconds": {
-        "task": "apps.docview.tasks.syncBooks",
-        "schedule": datetime.timedelta(seconds=60*60),
-        #"args": (16, 16),
+        #"task": "apps.docview.tasks.syncBooks",
+        #"schedule": datetime.timedelta(seconds=60*60),
+        
+        "task": "apps.docview.tasks.test_add",
+        "schedule": datetime.timedelta(seconds=30),
+        "args": (16, 16),
+            
         "relative": True,
      },
 }   

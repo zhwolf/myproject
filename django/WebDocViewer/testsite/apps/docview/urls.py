@@ -7,7 +7,9 @@ urlpatterns = patterns('',
     #url(r'^$', views.index, name='index' ),
     
     url(r'^showswf/+(?P<bookid>.*?)/*$', views.getswf, name='doc_showswf' ),
-    url(r'^showpdf/+(?P<bookid>.*?)/*$', views.getpdf, name='doc_showpdf' ),
+    url(r'^showpdf/+(?P<bookid>.*?)/+(?P<page>\d+)/$', views.getpdf, name='doc_showpdf' ),
+    url(r'^getpdfpage/+(?P<bookid>.*?)/+(?P<page>\d+)/$', views.getpdfpage, name='doc_getpdfpage' ),
+
     url(r'^view/+(?P<bookid>.*?)/*$', views.view, name='doc_view' ),
     url(r'^directview/+(?P<path>.*)/$', views.directview, name='doc_directview' ),
     url(r'^pdfviewer/', TemplateView.as_view(template_name="pdfviewer.html") ),
@@ -30,10 +32,15 @@ urlpatterns = patterns('',
     url(r'^user/addfav/+(?P<bookid>.*?)/$', views_users.addfavorite, name='user_addfavorite' ),
     url(r'^user/myfavorite/$', views_users.myfavorite, name='user_myfavorite' ),
     url(r'^user/myfavorite/remove/+(?P<id>\d+)/$', views_users.removefavorite, name='user_removefavorite' ),
+    url(r'^user/myspace/$', TemplateView.as_view(template_name="user/myspace.html") ),
 
 
     url(r'^login/+@*(?P<path>.*)$', views.login, name='login' ),
     url(r'^logout/$', views.logout, name='logout' ),
     
     url(r'^classview/+(?P<path>.*)$', views.classview, name='doc_classview' ),
+    
+    
+    url(r'^test/testpdf/$', TemplateView.as_view(template_name="test.html") ),
+    url(r'^test/getpdf/+(?P<bookid>.*?)/+(?P<page>\d+)/$' , views.testgetpdf, name='doc_getpdf' ),
 )

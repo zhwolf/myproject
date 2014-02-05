@@ -1,52 +1,233 @@
-﻿{% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block header %}
-<script language="javascript"> 
-    function loadpdf(url)
-    {
-        var pdf = '/docview/pdfviewer/#/docview/showpdf/' + url;
-        $('#theviewer').attr("src",pdf); 
-    }
-    
-    
-</script>
 {% endblock %}
-
+  
 {% block container %}
+  
+        <div class="container">
+            
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <span style="margin-right:30px">{{ file.name }}</span>
+                    <a href="#bookinfo" data-toggle="collapse" data-toggle="collapse" class="text-right">详细</a>    
+                    <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:loadpdf('{{ file.bookid }}');">查看</a>
+                    <a  class="btn btn-primary btn-md active pull-right" role="button" href="javascript:void(0);" onclick="javascript:collectfavorite('{% url 'user_addfavorite' file.bookid %}');">收藏</a>
+                  </h4>
+                </div>
+                <div id="bookinfo" class="panel-collapse collapse ">
+                  <div class="panel-body">
+                        <span style="margin-left:30px">大小:{{ file.size|filesizeformat }}</span>
+                        <span style="margin-left:30px">日期:{{ file.time|date:'%Y-%m-%d' }}</span>
+                  </div>
+                </div>
+              </div>              
+               
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="btn-group">
+                        <a class="btn btn-default" href="#" role="button" onclick="goPrevious()">
+                          <img src="/static/js/pdf.js/image/toolbarButton-pageUp.png">
+                       </a>                        
+                        <a class="btn btn-default" href="#" role="button" onclick="goNext()">
+                          <img src="/static/js/pdf.js/image/toolbarButton-pageDown.png">
+                       </a>                        
+                        <span>P: <span id="page_num"></span> / <span id="page_count"></span></span>
+                    </div>           
+                    
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-default" href="#" role="button" onclick="zoomIn()">
+                          <img src="/static/js/pdf.js/image/toolbarButton-zoomIn.png">
+                       </a>                        
+                       
+                      <button type="button" id="scalebtn" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        80% <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"onclick="setScale(0.5)" >50%</a></li>
+                        <li><a href="#"onclick="setScale(0.75)" >75%</a></li>
+                        <li><a href="#"onclick="setScale(1)" >100%</a></li>
+                        <li><a href="#"onclick="setScale(1.25)" >125%</a></li>
+                        <li><a href="#"onclick="setScale(1.5)" >150%</a></li>
+                        <li><a href="#"onclick="setScale(2)" >200%</a></li>
+                      </ul>
 
-    <div class="container">
-        
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <span style="margin-right:30px">{{ file.name }}</span>
-            <a href="#bookinfo" data-toggle="collapse" data-toggle="collapse" class="text-right">详细</a>    
-            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:loadpdf('{{ file.bookid }}');">查看</a>
-            <a  class="btn btn-primary btn-md active pull-right" role="button" href="javascript:void(0);" onclick="javascript:collectfavorite('{% url 'user_addfavorite' file.bookid %}');">收藏</a>
-          </h4>
+                    
+                        <a class="btn btn-default" href="#" role="button" onclick="zoomOut()">
+                          <img src="/static/js/pdf.js/image/toolbarButton-zoomOut.png">
+                       </a>                        
+                       
+                        <a id="loading">
+                          <img src="/static/image/loading.gif">
+                       </a>                        
+                       
+                    </div>                         
+            
+               </div>
+         </div>
+         
+                    <div id = "canvasContainer" class="container ui-widget-content">
+                            <canvas id = "canvas" class=""></canvas>
+                    </div>
+         
+
         </div>
-        <div id="bookinfo" class="panel-collapse collapse ">
-          <div class="panel-body">
-                <span style="margin-left:30px">大小:{{ file.size|filesizeformat }}</span>
-                <span style="margin-left:30px">日期:{{ file.time }}</span>
-          </div>
-        </div>
-      </div>  
-
-      <div class="row">
-         <div class="col-md-12 col-xs-12">
-            <iframe id="theviewer"  width='100%' height='600'> </iframe>
-        </div>   
-     </div>  
-     
-  </div>         
-
 
 {% endblock %}
 
 {% block footer %}
   
 
+  <script type="text/javascript" src="/static/js/pdf.js/pdf.js"></script>
+
+      
+  <script type="text/javascript">
+
+    //
+    // NOTE: 
+    // Modifying the URL below to another server will likely *NOT* work. Because of browser
+    // security restrictions, we have to use a file server with special headers
+    // (CORS) - most servers don't support cross-origin browser requests.
+    //
+    var DEFAULT_SCALE_DELTA = 1.1;
+    var UNKNOWN_SCALE = 0;
+    var MIN_SCALE = 0.25;
+    var MAX_SCALE = 4.0;    
+
+    //
+    // Disable workers to avoid yet another cross-origin issue (workers need the URL of
+    // the script to be loaded, and currently do not allow cross-origin scripts)
+    //
+    PDFJS.disableWorker = false;
+
+    var m_pdfDoc = null,
+        m_baseurl  = "";
+        m_totalPage = 0,
+        m_pageStart = 0,
+        m_pageCount = 0;
+        m_pageNum = 1,
+        m_scale = 0.8,
+        m_canvas = document.getElementById('canvas'),
+        m_ctx = m_canvas.getContext('2d');
+
+    //
+    // Get page info from document, resize m_canvas accordingly, and render page
+    //
+    function renderPage(num) {
+      
+      
+      // Using promise to fetch the page
+      //alert(m_pageStart + ":" + num + ":" + m_pageNum);
+      m_pdfDoc.getPage(num - m_pageStart +1).then(function(page) {
+        var viewport = page.getViewport(m_scale);
+        m_canvas.height = viewport.height;
+        m_canvas.width = viewport.width;
+
+        // Render PDF page into m_canvas context
+        var renderContext = {
+          canvasContext: m_ctx,
+          viewport: viewport
+        };
+        page.render(renderContext);
+      });
+
+      // Update page counters
+      document.getElementById('page_num').textContent = m_pageNum;
+      document.getElementById('page_count').textContent = m_totalPage;
+      $("#loading").hide();  
+    }
+
+    //
+    // Go to previous page
+    //
+    function goPrevious() {
+      if (m_pageNum <= 1)
+        return;
+      m_pageNum--;
+      getpage(m_pageNum);
+    }
+
+    //
+    // Go to next page
+    //
+    function goNext() {
+      if (m_pageNum >= m_totalPage)
+        return;
+      m_pageNum++;
+      getpage(m_pageNum);
+    }
+
+    function setScale(value) {
+        var scale = parseFloat(value).toFixed(2);
+    
+        if (scale > 0) {
+            $("#loading").show();  
+            m_scale = scale;
+            renderPage(m_pageNum);
+            $( "#scalebtn" ).text( Math.round(m_scale * 100) +'%');       
+        }
+    };
+    
+    function zoomIn(ticks) {
+        var newScale =  parseFloat(m_scale)  + 0.1;
+        
+        if ( newScale <= MAX_SCALE)
+            setScale(newScale);
+    };
+
+    function zoomOut(ticks) {
+        var newScale =  parseFloat(m_scale) - 0.1;
+
+        if (newScale >= MIN_SCALE)
+            setScale(newScale);
+    };
+    
+    //
+    // Asynchronously download PDF as an ArrayBuffer
+    //
+
+    function getpage(page)
+    {
+        $("#loading").show();  
+        if ( page >= m_pageCount+ m_pageStart || page < m_pageStart)
+        {
+            $.ajax({      
+                cache:false,
+                type: "GET",      
+                url: m_baseurl + page + "/",      
+                dataType:   "json",      
+                success: function(json){      
+                    PDFJS.getDocument(json.url).then(function getPdfHelloWorld(_pdfDoc) {
+                      m_pdfDoc = _pdfDoc;
+                      m_totalPage = json.total;
+                      m_pageStart = json.start;
+                      m_pageCount = json.num;
+                      renderPage(m_pageNum);
+                      
+                    });
+                        
+                }       
+            });
+        }
+        else{
+           renderPage(m_pageNum);
+        }            
+    }
+    
+    function loadpdf(bookid)
+    {
+        m_baseurl = '/docview/showpdf/' + bookid + "/";
+        m_pageNum = 1;
+        m_pageStart = 1;
+        m_totalPage =10;
+        getpage(m_pageNum);
+    }
+    
+    $(function() {
+        $("#loading").hide();
+    });    
+
+  </script>  
   
 {% endblock %}
-

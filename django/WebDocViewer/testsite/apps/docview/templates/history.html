@@ -15,20 +15,28 @@
                 
                 <div class="panel panel-collapse">
                 
-                    {% for result  in data %}
+                    {% for book  in data %}
                         <div class="list-group">
-                          <a href="/docview/view/{{ result.bookid }}/" class="list-group-item ">
+                          <a href="/docview/view/{{ book.bookid }}/" class="list-group-item ">
                             <p  class="list-group-item-text">
                                <strong><small>
-                            {{ result.name }}
+                            {{ book.name }}
                                 </small></strong>
                             </p>                              
                             <p  class="list-group-item-text">
-                                <small>{{ result.author }}</small>
+                                <small>
+                                {{ book.author|default:"作者:未知"  }}
+                                </small>
                             </p>                            
                             <p class="list-group-item-text">
-                                <small>{{ result.descr|truncatechars:20 }}</small>
-                            </p>                                 
+                                <small>
+                                 {% if book.descr %}    
+                                   {{ book.descr|truncatechars:20 }}
+                                 {% else %}
+                                    {{ book.summary|truncatechars:20 }}
+                                 {% endif %}
+                                </small>
+                            </p>                                                         
                           </a>
                         </div>
                     {% endfor %}                                            

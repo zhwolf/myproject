@@ -11,6 +11,8 @@ import locale
 import threading
 import Queue
 import uuid
+import shutil
+from pdfminer.pdfpage import PDFPage
 DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
 
@@ -40,6 +42,7 @@ class DocConverter:
         }        
         self.UNOCONVTOOL= os.path.join(self.toolbasedir, "tools/unoconv/unoconv")
         self.PDF2TXT = os.path.join(self.toolbasedir, "tools/unoconv/pdf2txt.py")
+        self.SPLITPDF = os.path.join(self.toolbasedir, "tools/pdftk/pdftk.exe")
 
     def getswf(self, fullpath,basedir=None, outputdir=None):
         if None or not fullpath:
@@ -53,12 +56,13 @@ class DocConverter:
             relate_path = os.path.relpath( fullpath, basedir)
             sufix = os.path.splitext(fullpath)[1][1:].lower()
             logging.info( "getswf:%s, relate_path:%s, basedir:%s",sufix, relate_path, basedir)
-            if sufix != 'swf' :
-                cmdpath = self.SWFTOOLS.get(sufix, None)
-                apath = ""
-                if cmdpath == None:
-                    fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
-                fullpath = self.convert2swf(fullpath, os.path.join( outputdir , relate_path ))
+
+            cmdpath = self.SWFTOOLS.get(sufix, None)
+            apath = ""
+            if cmdpath == None or sufix=="pdf":
+                fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
+            fullpath = self.convert2swf(fullpath, os.path.join( outputdir , relate_path ))
+
             return fullpath
         except Exception, e:
             self.printError()       
@@ -79,9 +83,8 @@ class DocConverter:
             relate_path = os.path.relpath(fullpath, basedir)
             sufix = os.path.splitext(fullpath)[1][1:].lower()
             logging.info( "getpdf:%s",sufix    )
-            if sufix != 'pdf' :
-                fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
-            fullpath =   self.convert2txt(fullpath, os.path.join( outputdir , relate_path ))
+            fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))  
+            fullpath =   self.convert2txt(fullpath, os.path.join( outputdir , relate_path )) 
             return fullpath
         except Exception, e:
             self.printError()    
@@ -99,17 +102,26 @@ class DocConverter:
             relate_path = os.path.relpath(fullpath, basedir)
             sufix = os.path.splitext(fullpath)[1][1:].lower()
             logging.info( "getpdf:%s",sufix    )
-            if sufix != 'pdf' :
-                fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
-            else:
-                convert2txt(fullpath, os.path.join( outputdir , relate_path ))
+            fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
             return fullpath
         except Exception, e:
             self.printError()                
 
     def getpdfFromRelpath(self, relpath):
         return self.getpdf( os.path.join(self.basedir, path).strip())
-            
+    
+    def getBookdOutputDir(self, fullpath):
+        relate_path = os.path.relpath( fullpath, self.basedir)
+        return os.path.join( self.outputdir , relate_path )
+        
+    def getPdfFilepath(self, fullpath):
+        return  os.path.join(self.getBookdOutputDir(fullpath), 'pdf/transfered.pdf')
+
+    def getSwfFilepath(self, fullpath):
+        return  os.path.join(self.getBookdOutputDir(fullpath), 'swf/transfered.swf')
+
+    def getTxtFilepath(self, fullpath):
+        return  os.path.join(self.getBookdOutputDir(fullpath), 'txt/transfered.txt')
         
     def convert2swf(self,fullpath, todir):
         logging.info("convert %s to swf", fullpath)
@@ -118,27 +130,37 @@ class DocConverter:
         filename = fs[0]
         sufix = fs[1][1:].lower().strip()
         swffile = os.path.join(todir, 'swf/transfered.swf')
-        
-        if os.path.isfile(swffile):
-            logging.info("Good. File already exists:%s", fullpath)
-            return swffile
-        
+
         if not os.path.isdir( os.path.dirname(swffile) ) :
             try:
                 os.makedirs(os.path.dirname(swffile))
             except Exception,e:
                 self.printError()            
         
+        if os.path.isfile(swffile):
+            logging.info("Good. File already exists:%s", fullpath)
+            return swffile
+        elif sufix=="swf":
+            if os.path.isfile( swffile ):
+                logging.info("Good. File already exists:%s", swffile)
+            else:
+                shutil.copyfile(fullpath, swffile )     
+            return swffile
+        
         cmdpath = self.SWFTOOLS.get(sufix, None)
         logging.info('path:%s sufix:%s cmdpath:%s', path, sufix, cmdpath)
         if cmdpath == None:
             return ""
         #ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G' % (cmdpath, fullpath, swffile) )
-        ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
+        ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9' % (cmdpath, fullpath, swffile) )
         if ret:
             return swffile
         elif ret==1:
-            return ""
+            ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
+            if ret:
+                return swffile
+            elif ret==1:
+                return ""
     
     def convert2pdf(self,fullpath,todir):
         logging.info("convert %s to pdf", fullpath)
@@ -154,9 +176,14 @@ class DocConverter:
             try:
                 os.makedirs(os.path.dirname(swffile))
             except Exception,e:
-                self.printError()            
+                self.printError()  
         
-        if os.path.isfile(swffile):
+        if sufix == "pdf":                          
+            if os.path.isfile( swffile ):
+                logging.info("Good. File already exists:%s", swffile)
+            else:
+                shutil.copyfile(fullpath, swffile )    
+        elif os.path.isfile(swffile):
             logging.info("Good. File already exists:%s", fullpath)
         else:
             cmdpath = self.UNOCONVTOOL
@@ -185,6 +212,8 @@ class DocConverter:
             
         #now convert to text
         self.convert2txt( swffile, todir)
+        
+        self.splitPdf(fullpath)
                       
         return swffile
      
@@ -195,17 +224,16 @@ class DocConverter:
         filename = fs[0]
         sufix = fs[1][1:].lower().strip()
         swffile = os.path.join(todir, 'txt/transfered.txt')
-        
-        if os.path.isfile(swffile):
-            logging.info("Good. File already exists:%s", fullpath)
-            return swffile
-        
+
         if not os.path.isdir( os.path.dirname(swffile) ) :
             try:
                 os.makedirs(os.path.dirname(swffile))
             except Exception,e:
                 self.printError()            
-
+        
+        if os.path.isfile(swffile):
+            logging.info("Good. File already exists:%s", fullpath)
+            return swffile
 
         cmdpath = self.PDF2TXT
         try:
@@ -221,6 +249,40 @@ class DocConverter:
             return swffile
         elif ret==1:
             return ""        
+            
+    def getPdfPageNum(self,fullpath):
+        fp = file(self.getPdfFilepath(fullpath), 'rb')
+        i = 0
+        for page in     PDFPage.get_pages(fp):
+            i +=1
+        fp.close()        
+        logging.debug("page num:%s", i)
+        return i
+    
+    def splitPdf(self,fullpath, step=10):
+        filename = self.getPdfFilepath(fullpath)
+        pageNum = self.getPdfPageNum(fullpath)
+        pages = (pageNum-1) / step
+        outputfile = os.path.join(os.path.dirname(filename), 'transfered_%04d.pdf' %(pages))
+        if os.path.isfile(outputfile):
+            logging.info("Good. File already exists:%s", outputfile)
+            return
+        
+        os.chdir(os.path.dirname(filename))
+        for i in range(pages+1):
+            cmdpath = self.SPLITPDF
+            try:
+                #pdf2txt.py -o output.html samples/naacl06-shinyama.pdf
+                #pdftk.exe transfered.pdf cat 1-10 output aaa.pdf
+                #outputfile = os.path.join(os.path.dirname(filename), 'transfered_%04d.pdf' %(i))
+                outputfile = 'transfered_%04d.pdf' %(i)
+                cmd= r'"%s" "%s" cat %s-%s output "%s"' % (cmdpath, os.path.basename(filename), i*step+1, min( (i+1)*step, pageNum ), outputfile)
+                ret, logs = self.execmd( cmd )
+            except Exception,e:
+                self.printError()
+                return ""
+            finally:
+                pass        
         
     def execmd(self,cmd):
         #cmd = cmd.encode(DEFAULT_ENCODE)

@@ -16,7 +16,7 @@ from .tasks import syncBatchBooks
 from shared.utils import printError, DEFAULT_ENCODE
 
 from .DocConvert import DocConverter
-import datetime,os
+import datetime,os, json
 import uuid
 
 import subprocess 
@@ -44,6 +44,7 @@ class BookSearchView(SearchView):
         Generates the actual HttpResponse to send back to the user.
         """
         (paginator, page) = self.build_page()
+        print self.form.keywords
 
         context = {
             'query': self.query,
@@ -51,7 +52,7 @@ class BookSearchView(SearchView):
             'page': page,
             'paginator': paginator,
             'suggestion': None,
-            'keywords' : " ".join(jieba.cut_for_search(self.query))
+            'keywords' : " ".join(self.form.keywords)
         }
 
         if self.results and hasattr(self.results, 'query') and self.results.query.backend.include_spelling:
@@ -66,6 +67,8 @@ class BookSearchForm(SearchForm):
         
     def __init__(self, *args, **kwargs):
         super(BookSearchForm, self).__init__(*args, **kwargs)
+        self.keywords = []
+
         
     def search(self):
         print 'test............'
@@ -83,11 +86,13 @@ class BookSearchForm(SearchForm):
         
         query = self.cleaned_data['q']
 
-        words=jieba.cut_for_search(query)  
-        
         sqs = self.searchqueryset.filter(content=query) # actually I have one more field here...
-        for word in words:
+        for word in jieba.cut_for_search(query):
             sqs = sqs.filter_or(content=word)
+            self.keywords.append(word)
+        if self.keywords.count(query) <=0:
+            self.keywords.insert(0, query)
+        
         return sqs
         
 class LoginForm(forms.Form):
@@ -185,8 +190,7 @@ def viewhistory(request):
         printError()        
     return render_to_response('history.html', {'data' : data, }, context_instance=RequestContext(request) )   
         
-         
-     
+    
     
 def getbook(bookid):
     try:
@@ -252,14 +256,29 @@ def getswf(request,bookid):
     request.session['history'] = viewed[-20:]      
     return   getswffile(request, data.path)
 
-def getpdf(request,bookid):
+def getpdf(request,bookid, page):
+    data = getbook(bookid)
+    page = int(page)
+    if data == None :      
+        return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
+    if page <=1:            
+        viewed = request.session.get('history', [])
+        viewed.append(bookid)
+        request.session['history'] = viewed[-20:]      
+    
+    result = {}
+    result['url'] = "/docview/getpdfpage/%s/%s/" %(bookid, page)
+    result['start'] = (page-1)/10 * 10 +1
+    result['num'] = 10
+    result['total'] = data.pagenum
+    return HttpResponse(json.dumps(result))       
+    
+def getpdfpage(request,bookid, page):
+    page = int(page)
     data = getbook(bookid)
     if data == None :      
         return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
-    viewed = request.session.get('history', [])
-    viewed.append(bookid)
-    request.session['history'] = viewed[-20:]      
-    return getpdffile(request, data.path )
+    return getpdffile(request, data.path,page )    
         
 def getswffile(request,path):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
@@ -267,10 +286,14 @@ def getswffile(request,path):
     fullpath = converter.getswf(fullpath)    
     return bigFileView(request, fullpath )
 
-def getpdffile(request,path):
+def getpdffile(request,path, page = None):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
     fullpath = os.path.join(settings.BOOK_BASE, path).strip()
     fullpath = converter.getpdf(fullpath)    
+    if page > 0:
+        pages = (page-1) / 10
+        fullpath = os.path.join(os.path.dirname(fullpath), 'transfered_%04d.pdf' %(pages))
+    print fullpath            
     return bigFileView(request, fullpath )
 
 def bigFileView(request, file_name):
@@ -305,4 +328,21 @@ def classview(request, path):
         session.rollback()
         printError()
     return render_to_response('classview.html', {'data' : data }, context_instance=RequestContext(request) )            
-                              
+
+def testpdf(request):
+    return render_to_response('test.html', { }, context_instance=RequestContext(request) )            
+
+def testgetpdf(request, bookid,page):
+    result = {}
+    page = int(page)
+    if page <=2:
+        result['url'] = "/static/aaa-1.pdf";
+        result['start'] = 1;
+        result['num'] = 2;
+        result['total'] = 27;
+    else:        
+        result['url'] = "/static/aaa-2.pdf";
+        result['start'] = 3;
+        result['num'] = 25;
+        result['total'] = 27;
+    return HttpResponse(json.dumps(result))         

@@ -179,10 +179,7 @@ def bookedit(request, bookid):
         form.fields.pop('file', None)
         if form.is_valid():
             try:
-                print form.cleaned_data
-                print 'data before:', data
                 update_model(data, form.cleaned_data)
-                print 'data after:', data
                 session.commit()
                 info = '保存成功!'
                 return HttpResponseRedirect('/docview/manage/book/')
@@ -207,8 +204,19 @@ def bookdelete(request, bookid):
         data = session.query(BookSL).filter(
                             and_(BookSL.id == bookid,
                             )).first()
+        
+        if data.path != None and data.path.strip() != '':
+            path = data.path.strip()
+            if path[0] != '/' and path[0] != '\\':
+                path = os.path.join( settings.BOOK_BASE, data.path )
+                if os.path.isfile(path):
+                    try:
+                        os.remove(path)
+                    except Exception,e:
+                        printError()            
         session.delete(data)
         session.commit()
+        
     except Exception,e:
         error = u"文档删除失败.请联系管理员"
         session.rollback()

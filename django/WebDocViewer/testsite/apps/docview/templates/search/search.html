@@ -24,22 +24,31 @@
         
                     {% for result in page.object_list %}
                     
-                        <div class="list-group myhilight">
-                          <a href="/docview/view/{{ result.object.bookid }}/" class="list-group-item ">
-                            <h4 class="list-group-item-heading">
-                            {{ result.object.name }}
-                            </h4>
-                            <p  class="list-group-item-text">
-                                {{ result.object.author }}
-                            </p>                            
-                            <p class="list-group-item-text">
-                                {% highlight  result.object.descr with keywords css_class "keyword" %}
-                            </p>                                 
-                            <p class="list-group-item-text">
-                                {% highlight  result.object.summary with keywords css_class "keyword" %}
-                            </p>                                 
-                          </a>
-                        </div>                    
+                        {% if result.object.bookid %}
+                    
+                            <div class="list-group myhilight">
+                              <a href="/docview/view/{{ result.object.bookid }}/" class="list-group-item ">
+                                <h4 class="list-group-item-heading">
+                                {{ result.object.name }}
+                                </h4>
+                                <p  class="list-group-item-text">
+                                    {{ result.object.author|default:"" }}
+                                </p>                            
+                                {% if  result.object.descr %}
+                                <p class="list-group-item-text">
+                                    {% highlight  result.object.descr with keywords css_class "keyword" %}
+                                </p>  
+                                {% endif %}                               
+                                
+                                {% if  result.object.summary %}
+                                <p class="list-group-item-text">
+                                    {% highlight  result.object.summary with keywords css_class "keyword" %}
+                                </p>                                 
+                                {% endif %}                               
+                              </a>
+                            </div>                    
+                            
+                       {% endif %}                               
                         
                     {% empty %}
                         <p>没有符合条件的结果,试试使用更简短的关键字?</p>

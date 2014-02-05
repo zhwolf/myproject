@@ -23,8 +23,14 @@
               <a href="{% url 'doc_view' book.bookid %} ">
                 <div class="carousel-caption">
                   <h5><strong>{{ book.name }}</strong></h5>
-                  <p><small>{{ book.author |truncatechars:30  }}</small></p>
-                  <p class="hidden-xs"><small>{{ book.descr|truncatechars:50  }}</small></p>
+                  <p><small>{{ book.author|default:""|truncatechars:30  }}</small></p>
+                  <p class="hidden-xs"><small>
+                       {% if book.descr %}    
+                            {{ book.descr|truncatechars:50 }}
+                       {% else %}
+                            {{ book.summary|truncatechars:50 }}
+                       {% endif %}
+                    </small></p>
                 </div>
               </a>
             </div>
@@ -57,14 +63,18 @@
                             </p>     
                             <p  class="list-group-item-text">
                                 <small>
-                                {{ book.author |truncatechars:20 }}
+                                {{ book.author|default:"作者:未知"  }}
                                 </small>
                             </p>                            
                             <p class="list-group-item-text">
                                 <small>
-                                {{ book.descr|truncatechars:20 }}
+                                 {% if book.descr %}    
+                                   {{ book.descr|truncatechars:20 }}
+                                 {% else %}
+                                    {{ book.summary|truncatechars:20 }}
+                                 {% endif %}
                                 </small>
-                            </p>                                 
+                            </p>                                                              
                           </a>
                         </div>
                 </div>              
