@@ -211,20 +211,25 @@ def view(request, bookid):
     fullapth = os.path.join(settings.BOOK_BASE, path)
     f = os.path.basename(path)
     sufix = os.path.splitext(path)[1][1:].lower()
+    
+    converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
+    if  request.META['HTTP_USER_AGENT'].find('MSIE') >=0 or sufix == 'swf':
+        html = 's_viewswf.html'
+        
+        if not os.path.isfile( converter.getSwfFilepath(fullapth) ):
+            return render_to_response('info.html', { 'title' : u'提示', 'error': u'对不起,文档还未处理完毕，请耐心等待.' } , context_instance=RequestContext(request) )   
+    else:       
+        html = 's_viewpdf.html' 
+        if not os.path.isfile( converter.getPdfFilepath(fullapth) ):
+            return render_to_response('info.html', { 'title' : u'提示', 'error': u'对不起,文档还未处理完毕，请耐心等待.' } , context_instance=RequestContext(request) )   
+                
     any = Any()
     any.name = f
     any.abpath = r"/" + path
     any.bookid= data.bookid
     any.size = os.path.getsize(fullapth)
     any.time = os.path.getctime(fullapth)
-    print request.META['HTTP_USER_AGENT']
-    
-    if  request.META['HTTP_USER_AGENT'].find('MSIE') >=0 or sufix == 'swf':
-        html = 's_viewswf.html'
-        #return render(request, 's_viewswf.html', { 'file' : any, } )
-    else:       
-        html = 's_viewpdf.html' 
-        #return render(request, 's_viewpdf.html', { 'file' : any, } )
+                
     return render_to_response(html, { 'file' : any, } , context_instance=RequestContext(request) )    
         
 def directview(request, path):
@@ -283,13 +288,13 @@ def getpdfpage(request,bookid, page):
 def getswffile(request,path):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
     fullpath = os.path.join(settings.BOOK_BASE, path).strip()
-    fullpath = converter.getswf(fullpath)    
+    fullpath = converter.getSwfFilepath(fullpath)    
     return bigFileView(request, fullpath )
 
 def getpdffile(request,path, page = None):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
     fullpath = os.path.join(settings.BOOK_BASE, path).strip()
-    fullpath = converter.getpdf(fullpath)    
+    fullpath = converter.getPdfFilepath(fullpath)    
     if page > 0:
         pages = (page-1) / 10
         fullpath = os.path.join(os.path.dirname(fullpath), 'transfered_%04d.pdf' %(pages))
