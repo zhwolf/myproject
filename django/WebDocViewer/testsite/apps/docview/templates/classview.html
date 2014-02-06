@@ -39,6 +39,12 @@
                           </a>
                         </div>
                 </div>              
+                
+
+                {% if forloop.counter|divisibleby:"3" %}
+                    <div class="clearfix hidden-xs"></div>
+                {% endif %}
+                                
      {% endfor %}
         </div>
 

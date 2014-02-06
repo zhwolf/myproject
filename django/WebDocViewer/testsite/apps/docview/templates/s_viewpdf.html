@@ -10,21 +10,25 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
+                    <small>
                     <span style="margin-right:30px">{{ file.name }}</span>
                     <a href="#bookinfo" data-toggle="collapse" data-toggle="collapse" class="text-right">详细</a>    
                     <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:loadpdf('{{ file.bookid }}');">查看</a>
                     <a  class="btn btn-primary btn-md active pull-right" role="button" href="javascript:void(0);" onclick="javascript:collectfavorite('{% url 'user_addfavorite' file.bookid %}');">收藏</a>
+                    </small>
                   </h4>
                 </div>
                 <div id="bookinfo" class="panel-collapse collapse ">
                   <div class="panel-body">
+                    <small>
                         <span style="margin-left:30px">大小:{{ file.size|filesizeformat }}</span>
                         <span style="margin-left:30px">日期:{{ file.time|date:'%Y-%m-%d' }}</span>
+                    </small>
                   </div>
                 </div>
               </div>              
                
-            <div class="row">
+            <div id="controlbar" class="row">
                 <div class="col-md-12 col-xs-12">
                     <div class="btn-group">
                         <a class="btn btn-default" href="#" role="button" onclick="goPrevious()">
@@ -65,11 +69,13 @@
                     </div>                         
             
                </div>
-         </div>
+           </div>
          
-                    <div id = "canvasContainer" class="container ui-widget-content">
-                            <canvas id = "canvas" class=""></canvas>
-                    </div>
+            <div id="desktopTest" name="desktopTest" class="visible-lg visible-md"></div>
+            
+           <div id = "canvasContainer">
+                <canvas id = "canvas" class="center-block"></canvas>
+            </div>
          
 
         </div>
@@ -217,6 +223,9 @@
     
     function loadpdf(bookid)
     {
+        if ($('#controlbar').is(':hidden')) {
+            $("#controlbar").show();
+        }
         m_baseurl = '/docview/showpdf/' + bookid + "/";
         m_pageNum = 1;
         m_pageStart = 1;
@@ -226,6 +235,15 @@
     
     $(function() {
         $("#loading").hide();
+        $("#controlbar").hide();
+        
+        if ($('#desktopTest').is(':hidden')) {
+        }
+        else{
+            m_scale = 1;            
+            $( "#scalebtn" ).text( Math.round(m_scale * 100) +'%'); 
+        }
+        
     });    
 
   </script>  

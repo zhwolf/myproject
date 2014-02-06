@@ -46,6 +46,7 @@
     <!-- books -->
         <div class="row">
       {% for book  in data %}
+      
                 <div class="panel panel-collapse col-md-4 col-xs-12">
 
                         <div class="col-xs-4 col-md-4">
@@ -78,6 +79,11 @@
                           </a>
                         </div>
                 </div>              
+
+                {% if forloop.counter|divisibleby:"3" %}
+                    <div class="clearfix hidden-xs"></div>
+                {% endif %}
+                
      {% endfor %}
         </div>    
 
