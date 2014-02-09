@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="utf-8">
   <head>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="爱读书库">
+    <meta name="author" content="zhwolf_zj@163.com">
+    <meta name="keywords" content="windows 8, 书库">    
 
     <title>爱读书库</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/static/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/js/bootstrap/css/bootstrap-submenu.css" rel="stylesheet">
-    <script src="/static/js/common.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="/static/js/bootstrap/js/html5shiv.min.js"></script>
-      <script src="/static/js/bootstrap/js/respond.min.js"></script>
-    <![endif]-->
+    <link href="/static/js/Metro-UI-CSS/css/modern.css" rel="stylesheet">
+    <link href="/static/js/Metro-UI-CSS/css/theme-dark.css" rel="stylesheet">
+    <link href="/static/js/Metro-UI-CSS/css/modern-responsive.css" rel="stylesheet">
+    
+    <script src="/static/js/jquery/jquery.js"></script>
+    <script src="/static/js/jquery/jquery.placeholder.js"></script>
     
 <style>
-    body {
-      padding-top: 70px;
-    }
+
 }
     
 </style>
@@ -32,150 +28,16 @@
 
 {% endblock %}
 
-  </head>
-<!--
-var browser={
-    versions:function(){
-    var u = navigator.userAgent, app = navigator.appVersion;
-    return {//移动终端浏览器版本信息
-    trident: u.indexOf('Trident') > -1, //IE内核
-    presto: u.indexOf('Presto') > -1, //opera内核
-    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-    mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端
-    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-    iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
-    iPad: u.indexOf('iPad') > -1, //是否iPad
-    webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
-    };
-}(),
-language:(navigator.browserLanguage || navigator.language).toLowerCase()
-};
--->
-  <body>
+</head>
 
-    <div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
-      <div class="container">
-         <input type="hidden" id="menudata" name="menudata" value="{{ menudata }}" />
-            <!--
-            <ul class="nav nav-pills">
-                <li class="active">
-                  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">全部文档<span class="caret"></span></a>
-                  <ul id='classmenu' name='classmenu' class="dropdown-menu">
-                  </ul>
-              </li>  
-             --> 
-              <form class="form-inline navbar-form" role="search" action="/docview/search/" method="get" {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>{% csrf_token %}
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                        <div class="btn-group">
-                                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    全部文档 <span class="caret"></span>
-                                  </button>
-                                  <ul id='classmenu' name='classmenu' class="dropdown-menu">
-                                  </ul>
-                            </div>
-                    </span>              
-                    <input type="text" class="form-control" placeholder="输入书名或者作者" name="q" id="id_q">
-                    <span class="input-group-btn">
-                      <button type="submit" class="btn btn-default">搜书</button>
-                    </span>
-                  </div>
-              </form>    
-      </div>
-    </div>  
-    
+
+<body>
+
 {% block container %}
 
 {% endblock %}
 
-    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-      <div class="container">
 
-            <div class="btn-group btn-group-justified">
-
-              <a  class="btn btn-primary" href="/">首页</a>
-
-              <a class="btn btn-primary" href="/docview/history/">看过</a>
-              <a class="btn btn-primary" href="/docview/user/myfavorite/">收藏</a>
-              <a class="btn btn-primary" href="/docview/user/myspace/">空间</a>
-
-{% jinja %}   
-            {% if request.session and request.session.user %} 
-                {% if request.session.admin == 1 %}
-                   <div class="btn-group  dropup">  
-                      <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">管理<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                              <li><a href="/docview/manage/book/">文档管理</a></li>
-                              <li><a href="/docview/manage/user/">用户管理</a></li>
-                        </ul>
-                    </div>  
-                    
-                   <a class="btn btn-primary" href="/docview/logout/">退出</a>
-                   
-                {% else %}           
-                   <a class="btn btn-primary" href="/docview/logout/">退出</a>
-                {% endif %}
-            {% else %}           
-                <a class="btn btn-primary"  href="/docview/login/">登陆</a>
-            {% endif %}                
-            
-{% endjinja %}                
-            </div><!-- /btn-group -->
-
-      </div>
-    </div>  
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-<script src="/static/js/jquery/jquery.js"></script>
-<script src="/static/js/jquery/jquery.placeholder.js"></script>
-<script src="/static/js/bootstrap/js/bootstrap.min.js"></script>
-
-<script>
-    function createmenu( json, father)
-    {
-        if (json.children.length <1)
-        {
-            return '<li><a href="' + "/docview/classview/" + json.path + '">'+ json.label +'</a></li>';
-        }
-        else{
-            var tmp = '';
-            if (father > 0)
-            {
-                tmp += '<li class="dropdown-submenu"><a  href="' + "/docview/classview/" + json.path + '">' + json.label  + '</a>';
-                tmp += '<ul class="dropdown-menu">';
-            }
-            for (var i = 0; i < json.children.length; i++)
-            {
-                tmp += createmenu(json.children[i], 1);
-                
-            }
-            if(father > 0)
-            {
-                tmp += '</ul>';
-                tmp += '</li>';
-            }
-            return tmp;
-        }
-        
-    }	    
-
-    $(function() {
-			// Invoke placeholder plugin
-			$('input, textarea').placeholder();
-			
-			var str = document.getElementById('menudata').value;
-			//console.debug(str);
-			var json = eval("(" + str  + ")");
-
-		    var s = createmenu(json,0);
-		    //console.info(s);
-		    document.getElementById('classmenu').innerHTML  =s;	    			
-	});
-</script>    
 {% block footer %}
 
 {% endblock %}    

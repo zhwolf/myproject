@@ -1,114 +1,151 @@
 {% extends "base.html" %}
 
- <link href="/static/js/carousel.css" rel="stylesheet">
+{% block header %}
+
 <style>
-
+.tile.icon  > .tile-content  > i {
+  font-size: 64px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+}
 </style>    
+{% endblock %}
+
 {% block container %}
-    <div class="container">
-    <div id="desktopTest" name="desktopTest" class="visible-lg visible-md"></div>
-    <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        {% for book  in topdata %}
-            <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if not forloop.counter0 %}active{% endif %}"></li>
-        {% endfor %}            
-      </ol>
-      <div class="carousel-inner">
-        {% for book  in topdata %}
-            <div class="item {% if not forloop.counter0 %}active{% endif %}">
-              <img data-src="holder.js/300x100/auto/#777:#7a7a7a/text:." class="carouse_img visible-xs visible-sm"  alt="First slide">
-              <a href="{% url 'doc_view' book.bookid %} ">
-                <div class="carousel-caption">
-                  <h5><strong>{{ book.name }}</strong></h5>
-                  <p><small>{{ book.author|default:""|truncatechars:30  }}</small></p>
-                  <p class="hidden-xs"><small>
-                       {% if book.descr %}    
-                            {{ book.descr|truncatechars:50 }}
-                       {% else %}
-                            {{ book.summary|truncatechars:50 }}
-                       {% endif %}
-                    </small></p>
-                </div>
-              </a>
-            </div>
-        {% endfor%}            
-      </div>
-      
-      {% if topdata %}
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-      {% endif %}            
-    </div><!-- /.carousel -->
+<div class="page secondary fixed-header">
 
-    <!-- books -->
-        <div class="row">
-      {% for book  in data %}
-      
-                <div class="panel panel-collapse col-md-4 col-xs-12">
 
-                        <div class="col-xs-4 col-md-4">
-                            <a href="{% url 'doc_view' book.bookid %}" class="thumbnail">
-                              <img src="{{ book.getImage }}" alt="...">
-                            </a>
-                        </div>    
-                        
-                        <div class="list-group col-xs-8 col-md-8">
-                          <a href="{% url 'doc_view' book.bookid %}" class="list-group-item ">
-                            <p  class="list-group-item-text">
-                               <strong><small>
-                                {{ book.name }}
-                                </small></strong>
-                            </p>     
-                            <p  class="list-group-item-text">
-                                <small>
-                                {{ book.author|default:"作者:未知"  }}
-                                </small>
-                            </p>                            
-                            <p class="list-group-item-text">
-                                <small>
-                                 {% if book.descr %}    
-                                   {{ book.descr|truncatechars:20 }}
-                                 {% else %}
-                                    {{ book.summary|truncatechars:20 }}
-                                 {% endif %}
-                                </small>
-                            </p>                                                              
-                          </a>
-                        </div>
-                </div>              
+    <div class="page-region">
+        <div class="page-region-content tiles">
 
-                {% if forloop.counter|divisibleby:"3" %}
-                    <div class="clearfix hidden-xs"></div>
-                {% endif %}
+            <div class="tile-group tile-drag">
+
+
+                <a href="#"  class=" tile double double-vertical image-slider outline-color-green " data-role="tile-slider" data-param-period="5000" data-param-direction="left">
+                    <div class="tile-content">
+                        <img src="/static/image/guanggao_test1.jpg" alt="">
+                    </div>
+                    <div class="tile-content">
+                        <img src="/static/image/guanggao_test2.jpg" alt="">
+                    </div>
+                    <div class="tile-content">
+                        <p>
+                            我是迷人的小广告
+                        </p>
+                    </div>
+                    <div class="brand">
+                        <div class="name">广告位</div>
+                    </div>
+                </a>                
+
+                <a href="{% url 'doc_classview' '论文' %}" class="tile  outline-color-green icon">
+                    <div class="tile-content">
+                         <i class="icon-lab"></i>
+                    </div>
+                    <div class="brand">
+                        <div class="name"><h4>论文</h4></div>
+                    </div>
+                </a>
+
+                <a href="{% url 'doc_classview' '小说' %}"  class="tile icon outline-color-green ">
+                    <div class="tile-content">
+                         <i class="icon-book"></i>
+                    </div>
+                    <div class="brand">
+                        <div class="name"><h4>小说.文学</h4></div>
+                    </div>
+                </a>
+
+                <a href="{% url 'doc_classview' '管理' %}"  class="tile bg-color-orangeDark icon outline-color-green ">
+                    <div class="tile-content">
+                         <i class="icon-address-book"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>管理.面试</h4></span>
+                    </div>
+                </a>
+
+
+                <a href="{% url 'doc_classview' '金融' %}"  class="tile bg-color-green icon outline-color-green ">
+                    <div class="tile-content">
+                         <i class="icon-stats-up"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>金融.证券</h4></span>
+                    </div>
+                </a>
+
+                <a href="{% url 'doc_classview' '通信' %}"  class="tile bg-color-red icon outline-color-green ">
+                    <div class="tile-content">
+                         <i class="icon-broadcast"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>通信.电子</h4></span>
+                    </div>
+                </a>
+
+                <a href="{% url 'doc_classview' '考研' %}"  class="tile icon outline-color-green  ">
+                    <div class="tile-content">
+                        <i class="icon-newspaper"></i>                        
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>考研.英语</h4></span>
+                    </div>
+                </a>
                 
-     {% endfor %}
-        </div>    
+                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-blueDark outline-color-green icon">
+                    <div class="tile-content">
+                         <i class="icon-calculate"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>IT.编程</h4></span>
+                    </div>
+                </a>
+                
+                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-purple outline-color-green icon">
+                    <div class="tile-content">
+                         <i class="icon-search"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>搜索</h4></span>
+                    </div>
+                </a>                    
+                
+
+                <a href="#"  class="tile bg-color-darken icon outline-color-green ">
+                    <div class="tile-content">
+                         <i class="icon-user-3"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>个人中心</h4></span>
+                    </div>
+                </a>
+
+                <a href="#"  class="tile  bg-color-blue icon outline-color-green " >
+                    <div class="tile-content">
+                         <i class="icon-help-2"></i>
+                    </div>
+                    <div class="brand">
+                        <span class="name"><h4>有关会员</h4></span>
+                    </div>
+                </a>
 
 
-    </div> <!-- /container -->
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 
 {% block footer %}
-<script src="/static/js/bootstrap/js/holder.min.js"></script>
-<script src="/static/js/jquery/jquery.browser.min.js"></script>
-<script type="text/javascript"> 
-    $(function() {
-            if ($('#desktopTest').is(':hidden')) {
-            }
-            else{
-                if ( $.browser.name == "msie" && $.browser.version < "9.0" )
-                {
-                }
-                else
-                {
-                    $('.carouse_img').replaceWith('<img data-src="holder.js/2000x300/auto/#777:#7a7a7a/text:." class="carouse_img"  alt="">');
-                }
-            }
-    });
+    <script src="/static/js/Metro-UI-CSS/js/tile-slider.js"></script>
+    <script src="/static/js/Metro-UI-CSS/js/tile-drag.js"></script>
 
-</script>
 {% endblock %}
