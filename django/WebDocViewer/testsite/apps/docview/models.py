@@ -31,14 +31,14 @@ class Book(models.Model):
         db_table = 'b_book'
 
 DocImages = {
-    'pdf' : 'pdf.jpg',
-    'doc' : 'word.jpg',
-    'docx' : 'word.jpg',
-    'xls' : 'excel.jpg',
-    'xlsx' : 'excel.jpg',
-    'ppt' : 'ppt.jpg',
-    'pptx' : 'ppt.jpg',
-    'other' : 'other.jpg',
+    'pdf' : 'pdf.png',
+    'doc' : 'word.png',
+    'docx' : 'word.png',
+    'xls' : 'excel.png',
+    'xlsx' : 'excel.png',
+    'ppt' : 'ppt.png',
+    'pptx' : 'ppt.png',
+    'other' : 'other.png',
 }
 
 #sqlalchemy book

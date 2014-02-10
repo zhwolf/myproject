@@ -132,7 +132,7 @@ def login(request, path):
                         if refer == '':
                             if str(request.session['admin']) == "1":
                                 return redirect('doc_manage_index')       
-                            return redirect('/')
+                            return redirect('user_myfavorite')
                         else:    
                             return redirect('refer')
                 except Exception,e:
@@ -148,7 +148,7 @@ def login(request, path):
             if str(request.session['admin']) == "1":
                 return redirect('doc_manage_index')    
             else:
-                return redirect("/")
+                return redirect("user_myfavorite")
         else:
             form = LoginForm()
     #return render(request, 'login.html', {'error' : error, 'refer':refer, 'menudata': "" })    

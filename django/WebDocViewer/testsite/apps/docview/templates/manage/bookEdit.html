@@ -1,4 +1,4 @@
-{% extends "manage/manageBase.html" %}
+{% extends "manageBase.html" %}
 
 {% block header %}
 <link rel="stylesheet" href="/static/js/jquery/jqtree.css">
@@ -10,6 +10,11 @@
 
 {% block region %}
     <div class="container">
+        <ol class="breadcrumb  visible-lg visible-md">
+          <li><a href="/">首页</a></li>
+          <li><a href="{% url 'doc_manage_index' %}">文档管理</a></li>
+          <li><a href=".">文档编辑</a></li>
+        </ol>            
            <input type="hidden" id="menudata" name="menudata" value="{{ menudata }}" />
     
         {% if not form.bookclass.value %}

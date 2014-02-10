@@ -1,13 +1,16 @@
-{% extends "base.html" %}
+{% extends "manageBase.html" %}
 {% load highlight %}
 
 {% block header %}
 
 {% endblock %}
 
-{% block container %}
+{% block region %}
     <div class="container">
-
+        <ol class="breadcrumb visible-lg visible-md">
+          <li><a href="/">首页</a></li>
+          <li><a href=".">曾经看过</a></li>
+        </ol>  
       <!-- Main component for a primary marketing message or call to action -->
                 <div class="panel">
                     <span class="label label-info">曾经看过...</span>

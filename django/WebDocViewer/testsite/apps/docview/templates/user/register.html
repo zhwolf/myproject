@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "manageBase.html" %}
 
 {% block header %}
 <style>
@@ -9,10 +9,15 @@
 </script>
 {% endblock %}
 
-{% block container %}
+{% block region %}
     <div class="container">
+        <ol class="breadcrumb  visible-lg visible-md">
+          <li><a href="/">首页</a></li>
+          <li><a href=".">注册</a></li>
+        </ol>        
+        
         <div class="row">
-            <a type="button" class="btn btn-info pull-right" href="/docview/login/" >已有账号?</a>
+            <a type="button" class="btn btn-info pull-right  col-sm-1 " href="/docview/login/" >已有账号?</a>
         </div>
         
         <div class="row">

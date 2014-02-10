@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "normal.html" %}
 
 {% block header %}
 {% endblock %}
@@ -7,6 +7,13 @@
   
         <div class="container">
             
+
+        <ol class="breadcrumb  visible-lg visible-md">
+          <li><a href="/">首页</a></li>
+          <li><a>{{ file.name }}</a></li>
+        </ol>   
+                    
+            <!--
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
@@ -27,57 +34,70 @@
                   </div>
                 </div>
               </div>              
-               
-            <div id="controlbar" class="row">
-                <div class="col-md-12 col-xs-12">
-                    <div class="btn-group">
-                        <a class="btn btn-default" href="#" role="button" onclick="goPrevious()">
-                          <img src="/static/js/pdf.js/image/toolbarButton-pageUp.png">
-                       </a>                        
-                        <a class="btn btn-default" href="#" role="button" onclick="goNext()">
-                          <img src="/static/js/pdf.js/image/toolbarButton-pageDown.png">
-                       </a>                        
-                        <span>P: <span id="page_num"></span> / <span id="page_count"></span></span>
-                    </div>           
-                    
-                    <div class="btn-group btn-group-sm">
-                        <a class="btn btn-default" href="#" role="button" onclick="zoomIn()">
-                          <img src="/static/js/pdf.js/image/toolbarButton-zoomIn.png">
-                       </a>                        
-                       
-                      <button type="button" id="scalebtn" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        80% <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"onclick="setScale(0.5)" >50%</a></li>
-                        <li><a href="#"onclick="setScale(0.75)" >75%</a></li>
-                        <li><a href="#"onclick="setScale(1)" >100%</a></li>
-                        <li><a href="#"onclick="setScale(1.25)" >125%</a></li>
-                        <li><a href="#"onclick="setScale(1.5)" >150%</a></li>
-                        <li><a href="#"onclick="setScale(2)" >200%</a></li>
-                      </ul>
-
-                    
-                        <a class="btn btn-default" href="#" role="button" onclick="zoomOut()">
-                          <img src="/static/js/pdf.js/image/toolbarButton-zoomOut.png">
-                       </a>                        
-                       
-                        <a id="loading">
-                          <img src="/static/image/loading.gif">
-                       </a>                        
-                       
-                    </div>                         
-            
-               </div>
-           </div>
-         
+          -->  
             <div id="desktopTest" name="desktopTest" class="visible-lg visible-md"></div>
             
-           <div id = "canvasContainer">
+           <div id = "canvasContainer" class="container">
                 <canvas id = "canvas" class="center-block"></canvas>
             </div>
          
-
+            <div id="controlbar" class="navbar navbar-inverse  navbar-fixed-bottom" role="navigation">
+                <div class="container">
+                    <!--
+                    <div class="col-md-12 col-xs-12">
+                    -->
+                        <div class="btn-group btn-group-md">
+                            <a type="button" class="btn btn-primary" href="/">
+                              <span class="glyphicon glyphicon-home"></span>
+                           </a>                        
+                                                        
+                            <a type="button" class="btn btn-primary" href="#" onclick="goPrevious()">
+                              <span class="glyphicon glyphicon-arrow-left"></span>
+                           </a>                        
+                            <a class="btn btn-primary" href="#" role="button" onclick="goNext()">
+                              <span class="glyphicon glyphicon-arrow-right"></span>
+                           </a>                        
+                        </div>           
+                        
+                        <div class="btn-group btn-group-md dropup">
+                            <a class="btn btn-primary" href="#" role="button" onclick="zoomIn()">
+                              <span class="glyphicon glyphicon-zoom-in"></span>
+                           </a>                        
+                           
+                          <button type="button" id="scalebtn" class="btn dropdown-toggle btn-primary" data-toggle="dropdown">
+                            
+                            80% <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu " role="menu">
+                            <li><a href="#"onclick="setScale(0.5)" >50%</a></li>
+                            <li><a href="#"onclick="setScale(0.75)" >75%</a></li>
+                            <li><a href="#"onclick="setScale(1)" >100%</a></li>
+                            <li><a href="#"onclick="setScale(1.25)" >125%</a></li>
+                            <li><a href="#"onclick="setScale(1.5)" >150%</a></li>
+                            <li><a href="#"onclick="setScale(2)" >200%</a></li>
+                          </ul>
+    
+                        
+                            <a class="btn btn-primary" href="#" role="button" onclick="zoomOut()">
+                              <span class="glyphicon glyphicon-zoom-out"></span>
+                           </a>                        
+                           
+                        </div>                         
+                        
+                        <strong><span class="text-info"><span id="page_num" class="text-info"></span> / <span id="page_count" class="text-info"></span></span></strong>
+                           
+                            <a id="loading">
+                              <img src="/static/image/loading.gif">
+                           </a>                        
+                        
+                <!--
+                   </div>
+                   -->
+              </div>        
+                   
+           </div>
+           
+           
         </div>
 
 {% endblock %}
@@ -223,9 +243,7 @@
     
     function loadpdf(bookid)
     {
-        if ($('#controlbar').is(':hidden')) {
-            $("#controlbar").show();
-        }
+
         m_baseurl = '/docview/showpdf/' + bookid + "/";
         m_pageNum = 1;
         m_pageStart = 1;
@@ -235,7 +253,6 @@
     
     $(function() {
         $("#loading").hide();
-        $("#controlbar").hide();
         
         if ($('#desktopTest').is(':hidden')) {
         }
@@ -244,6 +261,7 @@
             $( "#scalebtn" ).text( Math.round(m_scale * 100) +'%'); 
         }
         
+        loadpdf('{{ file.bookid }}');
     });    
 
   </script>  

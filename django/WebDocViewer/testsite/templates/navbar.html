@@ -1,0 +1,36 @@
+    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+      <div class="container">
+
+            <div class="btn-group btn-group-justified">
+
+              <a  class="btn btn-primary" href="/">首页</a>
+
+              <a class="btn btn-primary" href="/docview/history/">看过</a>
+              <a class="btn btn-primary" href="/docview/user/myfavorite/">收藏</a>
+              <a class="btn btn-primary" href="/docview/user/myspace/">空间</a>
+
+{% jinja %}   
+            {% if request.session and request.session.user %} 
+                {% if request.session.admin == 1 %}
+                   <div class="btn-group  dropup">  
+                      <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">管理<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                              <li><a href="/docview/manage/book/">文档管理</a></li>
+                              <li><a href="/docview/manage/user/">用户管理</a></li>
+                        </ul>
+                    </div>  
+                    
+                   <a class="btn btn-primary" href="/docview/logout/">退出</a>
+                   
+                {% else %}           
+                   <a class="btn btn-primary" href="/docview/logout/">退出</a>
+                {% endif %}
+            {% else %}           
+                <a class="btn btn-primary"  href="/docview/login/">登陆</a>
+            {% endif %}                
+            
+{% endjinja %}                
+            </div><!-- /btn-group -->
+
+      </div>
+    </div>  

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "manageBase.html" %}
 
 {% block header %}
 <script type="text/javascript" src="/static/js/flexpaper/flexpaper_flash.js"></script>
@@ -6,6 +6,48 @@
 <script type="text/javascript" src="/static/js/flexpaper/flexpaper_flash_debug.js"></script>
 -->
 
+<script type="text/javascript"> 
+
+</script>    
+
+{% endblock %}
+
+{% block region %}
+
+    <div class="container">
+        <ol class="breadcrumb  visible-lg visible-md">
+          <li><a href="/">首页</a></li>
+          <li><a>{{ file.name }}</a></li>
+        </ol>           
+       
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <span style="margin-right:30px">{{ file.name }}</span>
+            <a href="#bookinfo" data-toggle="collapse" class="text-right">详细»</a>    
+            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:viewDoc('{{ file.bookid }}');">查看</a>
+            <a  class="btn btn-primary btn-md active pull-right" role="button" href="javascript:void(0);" onclick="javascript:collectfavorite('{% url 'user_addfavorite' file.bookid %}');">收藏</a>
+          </h4>
+        </div>
+        <div id="bookinfo" class="panel-collapse collapse in">
+          <div class="panel-body">
+                <span style="margin-left:30px">大小:{{ file.size|filesizeformat }}</span>
+                <span style="margin-left:30px">日期:{{ file.time|date:'%Y-%m-%d' }}</span>
+          </div>
+        </div>
+      </div>        
+      
+        
+        <div class="row">
+          <div class="col-md-12 col-xs-12">
+            <a id="viewerPlaceHolder" style="width:100%;height:600px;display:block"></a>         
+          </div>  
+        </div>            
+    </div> <!-- /container -->
+    
+{% endblock %}
+
+{% block footer %}
 <script type="text/javascript"> 
 
     function viewDoc(filename)
@@ -40,39 +82,10 @@
                          }});
     }
     
-      
-</script>    
-
-{% endblock %}
-
-{% block container %}
-
-    <div class="container">
-       
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <span style="margin-right:30px">{{ file.name }}</span>
-            <a href="#bookinfo" data-toggle="collapse" class="text-right">详细»</a>    
-            <a  class="btn btn-primary btn-md active" role="button" href="javascript:void(0);" onclick="javascript:viewDoc('{{ file.bookid }}');">查看</a>
-            <a  class="btn btn-primary btn-md active pull-right" role="button" href="javascript:void(0);" onclick="javascript:collectfavorite('{% url 'user_addfavorite' file.bookid %}');">收藏</a>
-          </h4>
-        </div>
-        <div id="bookinfo" class="panel-collapse collapse in">
-          <div class="panel-body">
-                <span style="margin-left:30px">大小:{{ file.size|filesizeformat }}</span>
-                <span style="margin-left:30px">日期:{{ file.time|date:'%Y-%m-%d' }}</span>
-          </div>
-        </div>
-      </div>        
-      
-        
-        <div class="row">
-          <div class="col-md-12 col-xs-12">
-            <a id="viewerPlaceHolder" style="width:100%;height:480px;display:block"></a>         
-          </div>  
-        </div>            
-    </div> <!-- /container -->
-    
+    $(function() {
+			// Invoke placeholder plugin
+		viewDoc('{{ file.bookid }}');
+	});      
+</script>
 {% endblock %}
 
