@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from django.shortcuts import render
+from django.shortcuts import render, redirect,render_to_response
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.template import RequestContext
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django import forms
 from django.utils.encoding import force_text
 from apps.backends.DBEnginee.djSQLAlchemy import Session,update_model
@@ -132,9 +130,11 @@ def login(request, path):
                         request.session['admin'] = 1 if data.flag ==1 else 0
                         
                         if refer == '':
-                            return HttpResponseRedirect('/')
+                            if str(request.session['admin']) == "1":
+                                return redirect('doc_manage_index')       
+                            return redirect('/')
                         else:    
-                            return HttpResponseRedirect('refer')
+                            return redirect('refer')
                 except Exception,e:
                     error = u"登陆时发生内部错误.请联系管理员"
                     session.rollback()
@@ -144,7 +144,13 @@ def login(request, path):
             error = info.as_text()
             
     else:
-        form = LoginForm()
+        if request.session.get('user', '') !='' and request.session.get('userid', '') !='' and request.session.get('userkey', '') !='' and request.session.get('admin', '') != '':
+            if str(request.session['admin']) == "1":
+                return redirect('doc_manage_index')    
+            else:
+                return redirect("/")
+        else:
+            form = LoginForm()
     #return render(request, 'login.html', {'error' : error, 'refer':refer, 'menudata': "" })    
     return render_to_response('login.html', {'error' : error, 'refer':refer }, context_instance=RequestContext(request) )    
         

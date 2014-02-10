@@ -227,6 +227,11 @@ def bookdelete(request, bookid):
 def handle_uploaded_file(f, todir):
     filename = os.path.join(  os.path.join( settings.BOOK_BASE,todir), f.name)
     try:
+        os.makedirs(os.path.dirname(filename))
+    except Exception,e:
+        self.printError()            
+    
+    try:
         logging.info("saving file:%s", filename )
         with open(filename, 'wb+') as destination:
             for chunk in f.chunks():

@@ -20,8 +20,49 @@ def sharedContext(request):
     def walkdir(basedir):
         class Any:
             pass
-        helper = {}
-        result = {}
+        result = {
+            'label': '',
+            'path': '/',
+            'children':[
+                {
+                    'label': u'论文',
+                    'path': u'/论文/',
+                    'children':[],
+                },
+                {
+                    'label':  u'小说.文学',
+                    'path':   u'/小说/',
+                    'children':[],
+                },
+                {
+                    'label':  u'管理.面试',
+                    'path':   u'/管理/',
+                    'children':[],
+                },
+                {
+                    'label':  u'金融.证券',
+                    'path':   u'/金融/',
+                    'children':[],
+                },
+                {
+                    'label':  u'通信.电子',
+                    'path':   u'/通信/',
+                    'children':[],
+                },
+                {
+                    'label':  u'考研.英语',
+                    'path':   u'/考研/',
+                    'children':[],
+                },
+                {
+                    'label':  u'IT.编程',
+                    'path':   u'/IT/',
+                    'children':[],
+                },
+            ]
+        }    
+        helper = result
+        '''
         for path, dirs, files in os.walk(basedir):
             name = unicode(os.path.relpath(path, basedir),  DEFAULT_ENCODE)
             if name == ".":
@@ -57,6 +98,7 @@ def sharedContext(request):
                 child['children'] = item.children
                 
                 data.children.append(child)
+        '''                
         return json.dumps(result), result, helper
     
     
@@ -64,9 +106,9 @@ def sharedContext(request):
         if cache.get('bookclass_json', '') == '':
             logging.info('begin to browser classes')
             dirstr, dirdict, dichelper = walkdir(settings.BOOK_BASE)
-            cache.set('bookclass_json', dirstr, timeout= 60 *60)        
-            cache.set('bookclass_dict', dirdict, timeout= 60 *60)        
-            cache.set('bookclass_helper', dichelper, timeout= 60 *60)   
+            cache.set('bookclass_json', dirstr, timeout= None)        
+            cache.set('bookclass_dict', dirdict, timeout= None)        
+            cache.set('bookclass_helper', dichelper, timeout= None)   
             
     getbookclass()
     s = cache.get('bookclass_json', '')

@@ -1,0 +1,29 @@
+{% extends "normal.html" %}
+
+{% block header %}
+ <script type="text/javascript" language="javascript">    
+
+</script>
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+            <ul class="nav nav-pills navbar-inverse"  role="navigation">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="{% url 'doc_manage_index' %}">文档管理</a></li>
+                    <li><a href="{% url 'user_manage_index' %}">用户管理</a></li>
+                    <li><a href="{% url 'logout' %}">退出</a></li>
+            </ul>            
+     
+            <div class="container">
+    {% block region %}
+      
+    {% endblock %}        
+            </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+  
+{% endblock %}

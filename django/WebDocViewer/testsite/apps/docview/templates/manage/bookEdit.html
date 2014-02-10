@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "manage/manageBase.html" %}
 
 {% block header %}
 <link rel="stylesheet" href="/static/js/jquery/jqtree.css">
@@ -8,8 +8,10 @@
 </script>
 {% endblock %}
 
-{% block container %}
+{% block region %}
     <div class="container">
+           <input type="hidden" id="menudata" name="menudata" value="{{ menudata }}" />
+    
         {% if not form.bookclass.value %}
             <div class="row">
                 <div class="panel panel panel-warning col-sm-2 col-sm-offset-1">

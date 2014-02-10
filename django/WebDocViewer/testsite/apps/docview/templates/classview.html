@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "normal.html" %}
 
 {% block container %}
     <div class="container">
@@ -6,47 +6,51 @@
       <!-- Main component for a primary marketing message or call to action -->
         
         <div class="row">
-      {% for book  in data %}
-                <div class="panel panel-collapse col-md-4 col-xs-12">
-
-                        <div class="col-xs-4 col-md-4">
-                            <a href="{% url 'doc_view' book.bookid %}" class="thumbnail">
-                              <img src="{{ book.getImage }}" alt="...">
-                            </a>
-                        </div>    
-                        
-                        <div class="list-group col-xs-8 col-md-8">
-                          <a href="{% url 'doc_view' book.bookid %}" class="list-group-item ">
-                            <p  class="list-group-item-text">
-                               <strong><small>
-                                {{ book.name }}
-                                </small></strong>
-                            </p>     
-                            <p  class="list-group-item-text">
-                                <small>
-                                {{ book.author|default:"作者:未知"  }}
-                                </small>
-                            </p>                            
-                            <p class="list-group-item-text">
-                                <small>
-                                 {% if book.descr %}    
-                                   {{ book.descr|truncatechars:20 }}
-                                 {% else %}
-                                    {{ book.summary|truncatechars:20 }}
-                                 {% endif %}
-                                </small>
-                            </p>                                 
-                          </a>
-                        </div>
-                </div>              
-                
-
-                {% if forloop.counter|divisibleby:"3" %}
-                    <div class="clearfix hidden-xs"></div>
-                {% endif %}
+              {% for book  in data %}
+                        <div class="panel panel-collapse col-md-4 col-xs-12">
+        
+                                <div class="col-xs-4 col-md-4">
+                                    <a href="{% url 'doc_view' book.bookid %}" class="thumbnail">
+                                      <img src="{{ book.getImage }}" alt="...">
+                                    </a>
+                                </div>    
                                 
-     {% endfor %}
-        </div>
+                                <div class="list-group col-xs-8 col-md-8">
+                                  <a href="{% url 'doc_view' book.bookid %}" class="list-group-item ">
+                                    <p  class="list-group-item-text">
+                                       <strong><small>
+                                        {{ book.name }}
+                                        </small></strong>
+                                    </p>     
+                                    <p  class="list-group-item-text">
+                                        <small>
+                                        {{ book.author|default:"作者:未知"  }}
+                                        </small>
+                                    </p>                            
+                                    <p class="list-group-item-text">
+                                        <small>
+                                         {% if book.descr %}    
+                                           {{ book.descr|truncatechars:20 }}
+                                         {% else %}
+                                            {{ book.summary|truncatechars:20 }}
+                                         {% endif %}
+                                        </small>
+                                    </p>                                 
+                                  </a>
+                                </div>
+                        </div>              
+                        
+        
+                        {% if forloop.counter|divisibleby:"3" %}
+                            <div class="clearfix hidden-xs"></div>
+                        {% endif %}
+             {% empty %}
+                <div class="col-sm-offset-2">
+                    <span class="label label-success">抱歉,该类别下未收录任何文档</span>    
+                </div>                                           
+             {% endfor %}
+             
+                </div>
 
     </div> <!-- /container -->
 {% endblock %}

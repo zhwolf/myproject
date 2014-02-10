@@ -1,13 +1,14 @@
-{% extends "base.html" %}
+{% extends "manage/manageBase.html" %}
 
 {% block header %}
 <link rel="stylesheet" href="/static/js/jquery/jqtree.css">
 
 {% endblock %}
 
-{% block container %}
+{% block region %}
     <div class="container">
-  
+           <input type="hidden" id="menudata" name="menudata" value="{{ menudata }}" />
+
   
 
     <div class="row">
