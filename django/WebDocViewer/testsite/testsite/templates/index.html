@@ -25,10 +25,10 @@
     <div class="page-region">
         <div class="page-region-content tiles">
 
-            <div class="tile-group tile-drag">
-
-
-                <a href="#"  class=" tile double double-vertical image-slider outline-color-green " data-role="tile-slider" data-param-period="5000" data-param-direction="left">
+            <div class="row">
+            <div class="grid">
+            <div class="tile-group tile-drag span12">
+                <a href="#"  class=" tile double double-vertical image-slider outline-color-green" data-role="tile-slider" data-param-period="5000" data-param-direction="left">
                     <div class="tile-content">
                         <img src="/static/image/guanggao_test1.jpg" alt="">
                     </div>
@@ -45,7 +45,7 @@
                     </div>
                 </a>                
 
-                <a href="{% url 'doc_classview' '论文' %}" class="tile  outline-color-green icon">
+                <a href="{% url 'doc_classview' '论文' %}" class="tile  outline-color-green icon ">
                     <div class="tile-content">
                          <i class="icon-lab"></i>
                     </div>
@@ -53,7 +53,6 @@
                         <div class="name"><h4>论文</h4></div>
                     </div>
                 </a>
-
                 <a href="{% url 'doc_classview' '小说' %}"  class="tile icon outline-color-green ">
                     <div class="tile-content">
                          <i class="icon-book"></i>
@@ -100,7 +99,7 @@
                     </div>
                 </a>
                 
-                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-blueDark outline-color-green icon">
+                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-blueDark outline-color-green icon ">
                     <div class="tile-content">
                          <i class="icon-calculate"></i>
                     </div>
@@ -109,7 +108,7 @@
                     </div>
                 </a>
                 
-                <a href="{% url 'doc_search' %}"  class="tile bg-color-purple outline-color-green icon">
+                <a href="{% url 'doc_search' %}"  class="tile bg-color-purple outline-color-green icon ">
                     <div class="tile-content">
                          <i class="icon-search"></i>
                     </div>
@@ -139,7 +138,8 @@
 
 
             </div>
-
+        </div>
+        </div>
 
         </div>
     </div>

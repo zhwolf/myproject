@@ -257,6 +257,8 @@ class DocConverter:
             i +=1
         fp.close()        
         logging.debug("page num:%s", i)
+        if i >= 5000:
+            i = 1
         return i
     
     def splitPdf(self,fullpath, step=10):
