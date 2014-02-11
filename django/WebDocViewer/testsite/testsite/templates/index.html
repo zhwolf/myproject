@@ -19,14 +19,12 @@
 {% endblock %}
 
 {% block container %}
+
 <div class="page secondary fixed-header">
-
-
     <div class="page-region">
         <div class="page-region-content tiles">
 
-            <div class="row">
-            <div class="grid">
+            <div class="row tiles">
             <div class="tile-group tile-drag span12">
                 <a href="#"  class=" tile double double-vertical image-slider outline-color-green" data-role="tile-slider" data-param-period="5000" data-param-direction="left">
                     <div class="tile-content">
@@ -45,100 +43,100 @@
                     </div>
                 </a>                
 
-                <a href="{% url 'doc_classview' '论文' %}" class="tile  outline-color-green icon ">
+                <a href="{% url 'doc_classview' '论文' %}" class="tile bg-color-pinkDark outline-color-green icon double-vertical">
                     <div class="tile-content">
                          <i class="icon-lab"></i>
                     </div>
                     <div class="brand">
-                        <div class="name"><h4>论文</h4></div>
+                        <div class="name"><h3>论文</h3></div>
                     </div>
                 </a>
-                <a href="{% url 'doc_classview' '小说' %}"  class="tile icon outline-color-green ">
-                    <div class="tile-content">
-                         <i class="icon-book"></i>
-                    </div>
-                    <div class="brand">
-                        <div class="name"><h4>小说.文学</h4></div>
-                    </div>
-                </a>
-
-                <a href="{% url 'doc_classview' '管理' %}"  class="tile bg-color-orangeDark icon outline-color-green ">
+                
+                <a href="{% url 'doc_classview' '管理' %}"  class="tile bg-color-orangeDark icon outline-color-green double-vertical">
                     <div class="tile-content">
                          <i class="icon-address-book"></i>
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>管理.面试</h4></span>
+                        <span class="name"><h3>管理.面试</h3></span>
+                    </div>
+                </a>
+                
+                <a href="{% url 'doc_classview' '小说' %}"  class="tile icon outline-color-green double-vertical">
+                    <div class="tile-content">
+                         <i class="icon-book"></i>
+                    </div>
+                    <div class="brand">
+                        <div class="name"><h3>小说.文学</h3></div>
                     </div>
                 </a>
 
 
-                <a href="{% url 'doc_classview' '金融' %}"  class="tile bg-color-green icon outline-color-green ">
+                <a href="{% url 'doc_classview' '金融' %}"  class="tile bg-color-green icon outline-color-green double-vertical">
                     <div class="tile-content">
                          <i class="icon-stats-up"></i>
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>金融.证券</h4></span>
+                        <span class="name"><h3>金融.证券</h3></span>
                     </div>
                 </a>
 
-                <a href="{% url 'doc_classview' '通信' %}"  class="tile bg-color-red icon outline-color-green ">
+                <a href="{% url 'doc_classview' '通信' %}"  class="tile bg-color-red icon outline-color-green double">
                     <div class="tile-content">
                          <i class="icon-broadcast"></i>
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>通信.电子</h4></span>
+                        <span class="name"><h3>通信.电子</h3></span>
                     </div>
                 </a>
 
-                <a href="{% url 'doc_classview' '考研' %}"  class="tile icon outline-color-green  ">
+                <a href="{% url 'doc_classview' '考研' %}"  class="tile icon outline-color-green bg-color-orange  double">
                     <div class="tile-content">
                         <i class="icon-newspaper"></i>                        
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>考研.英语</h4></span>
+                        <span class="name"><h3>考研.英语</h3></span>
                     </div>
                 </a>
                 
-                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-blueDark outline-color-green icon ">
+                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-blueDark outline-color-green icon double-vertical">
                     <div class="tile-content">
                          <i class="icon-calculate"></i>
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>IT.编程</h4></span>
+                        <span class="name"><h3>IT.编程</h3></span>
                     </div>
                 </a>
                 
-                <a href="{% url 'doc_search' %}"  class="tile bg-color-purple outline-color-green icon ">
+                <a href="{% url 'doc_search' %}"  class="tile bg-color-greenDark outline-color-green icon double-vertical">
                     <div class="tile-content">
                          <i class="icon-search"></i>
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>搜索</h4></span>
+                        <span class="name"><h3>搜索</h3></span>
                     </div>
                 </a>                    
                 
 
-                <a href="/docview/login/"  class="tile bg-color-darken icon outline-color-green ">
+                <a href="/docview/login/"  class="tile bg-color-purple  icon outline-color-green double">
                     <div class="tile-content">
                          <i class="icon-user-3"></i>
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>个人中心</h4></span>
+                        <span class="name"><h3>个人中心</h3></span>
                     </div>
                 </a>
 
-                <a href="#"  class="tile  bg-color-blue icon outline-color-green " >
+                <a href="#"  class="tile  bg-color-blue icon outline-color-green double" >
                     <div class="tile-content">
                          <i class="icon-help-2"></i>
                     </div>
                     <div class="brand">
-                        <span class="name"><h4>有关会员</h4></span>
+                        <span class="name"><h3>有关会员</h3></span>
                     </div>
                 </a>
 
 
             </div>
-        </div>
         </div>
 
         </div>

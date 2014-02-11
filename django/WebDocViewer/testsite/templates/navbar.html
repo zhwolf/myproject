@@ -1,14 +1,13 @@
     <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
       <div class="container">
 
-            <div class="btn-group btn-group-justified">
+            <div class="btn-group btn-group-justified btn-group-lg">
 
               <a  class="btn btn-primary" href="/">首页</a>
 
               <a class="btn btn-primary" href="/docview/history/">看过</a>
               <a class="btn btn-primary" href="/docview/user/myfavorite/">收藏</a>
               <a class="btn btn-primary" href="/docview/user/myspace/">空间</a>
-
 {% jinja %}   
             {% if request.session and request.session.user %} 
                 {% if request.session.admin == 1 %}
