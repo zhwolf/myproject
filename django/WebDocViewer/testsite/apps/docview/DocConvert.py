@@ -16,7 +16,7 @@ from pdfminer.pdfpage import PDFPage
 DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
 
-#pdf_lock = threading.Lock() 
+pdf_lock = threading.Lock() 
 
 OfficePortQueue = Queue.Queue()
 #for i in range(10):
@@ -32,12 +32,12 @@ class DocConverter:
         SWFTOOL_BASE= os.path.join(self.toolbasedir, "tools/SWFTools")
         self.SWFTOOLS = {
             'font': os.path.join(SWFTOOL_BASE, "font2swf.exe"),
-            'gif' : os.path.join(SWFTOOL_BASE, "gif2swf.exe"),
+            #'gif' : os.path.join(SWFTOOL_BASE, "gif2swf.exe"),
             'gpdf': os.path.join(SWFTOOL_BASE, "gpdf2swf.exe"),
-            'jpeg': os.path.join(SWFTOOL_BASE, "jpeg2swf.exe"),
-            'jpg': os.path.join(SWFTOOL_BASE, "jpeg2swf.exe"),
+            #'jpeg': os.path.join(SWFTOOL_BASE, "jpeg2swf.exe"),
+            #'jpg': os.path.join(SWFTOOL_BASE, "jpeg2swf.exe"),
             'pdf': os.path.join(SWFTOOL_BASE, "pdf2swf.exe"),
-            'png': os.path.join(SWFTOOL_BASE, "png2swf.exe"),
+            #'png': os.path.join(SWFTOOL_BASE, "png2swf.exe"),
             'wav': os.path.join(SWFTOOL_BASE, "wav2swf.exe"),
         }        
         self.UNOCONVTOOL= os.path.join(self.toolbasedir, "tools/unoconv/unoconv")
@@ -59,9 +59,11 @@ class DocConverter:
 
             cmdpath = self.SWFTOOLS.get(sufix, None)
             apath = ""
+            swf_path = fullpath
             if cmdpath == None or sufix=="pdf":
-                fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
-            fullpath = self.convert2swf(fullpath, os.path.join( outputdir , relate_path ))
+                swf_path = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
+                #fullpath = self.convert2Odf(fullpath, os.path.join( outputdir , relate_path ))   
+            fullpath = self.convert2swf(swf_path, os.path.join( outputdir , relate_path ))
 
             return fullpath
         except Exception, e:
@@ -116,6 +118,9 @@ class DocConverter:
         
     def getPdfFilepath(self, fullpath):
         return  os.path.join(self.getBookdOutputDir(fullpath), 'pdf/transfered.pdf')
+        
+    def getOdfFilepath(self, fullpath):
+        return  os.path.join(self.getBookdOutputDir(fullpath), 'odf/transfered.odt')
 
     def getSwfFilepath(self, fullpath):
         return  os.path.join(self.getBookdOutputDir(fullpath), 'swf/transfered.swf')
@@ -155,11 +160,11 @@ class DocConverter:
         ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9' % (cmdpath, fullpath, swffile) )
         if ret:
             return swffile
-        elif ret==1:
+        else:
             ret, logs = self.execmd( r'"%s" "%s" -o "%s"  -T 9 -G -s poly2bitmap' % (cmdpath, fullpath, swffile) )
             if ret:
                 return swffile
-            elif ret==1:
+            else:
                 return ""
     
     def convert2pdf(self,fullpath,todir):
@@ -169,7 +174,7 @@ class DocConverter:
         filename = fs[0]
         sufix = fs[1][1:].lower().strip()
             
-        thisfile = '%s.pdf' %(os.path.splitext(fullpath)[0])
+        thisfile = os.path.join(todir, 'pdf/%s.pdf' %(filename) )
         swffile = os.path.join(todir, 'pdf/transfered.pdf' )
 
         if not os.path.isdir( os.path.dirname(swffile) ) :
@@ -178,36 +183,28 @@ class DocConverter:
             except Exception,e:
                 self.printError()  
         
-        if sufix == "pdf":                          
-            if os.path.isfile( swffile ):
-                logging.info("Good. File already exists:%s", swffile)
-            else:
-                shutil.copyfile(fullpath, swffile )    
-        elif os.path.isfile(swffile):
-            logging.info("Good. File already exists:%s", fullpath)
+        if os.path.isfile(swffile):
+            logging.info("Good. File already exists:%s", swffile)
         else:
             cmdpath = self.UNOCONVTOOL
             port = OfficePortQueue.get()
+            os.chdir(os.path.dirname(swffile))
             try:
-                #pdf_lock.acquire()
-                ret, logs = self.execmd( r'python "%s" -f pdf -p %s "%s"' % (cmdpath,port, fullpath) )
+                pdf_lock.acquire()
+                ret, logs = self.execmd( r'python "%s" -f pdf -o . -e Quality=5  -p %s "%s"' % (cmdpath,port, fullpath) )
                 OfficePortQueue.put(port)
             except Exception,e:
                 OfficePortQueue.put(port+1)
                 self.printError()
                 return ""
             finally:
-                #pdf_lock.release()            
+                pdf_lock.release()            
                 pass
                             
             if ret:
                 logging.info( "thisfile:%s    swffile:%s",thisfile,  swffile)
-                try:
-                    os.remove(swffile)
-                except Exception,e:
-                    pass
                 os.rename(thisfile, swffile)
-            elif ret==1:
+            else:
                 return ""
             
         #now convert to text
@@ -216,6 +213,62 @@ class DocConverter:
         self.splitPdf(fullpath)
                       
         return swffile
+        
+    def convert2Odf(self,fullpath,todir):
+        pdf_path = os.path.join(os.path.dirname(self.getPdfFilepath(fullpath)), "transfered.pdf")
+        if not os.path.isfile( pdf_path ):
+            logging.error("pdf file is not exist:%s", pdf_path)        
+        logging.info("convert %s to odf", fullpath)
+        path = os.path.basename( fullpath)
+        fs = os.path.splitext(path)
+        filename = fs[0]
+        sufix = fs[1][1:].lower().strip()
+            
+        thisfile = '%s.odt' %(os.path.splitext(pdf_path)[0])    
+        swffile = os.path.join(todir, 'odf/transfered.odt' )
+
+        if not os.path.isdir( os.path.dirname(swffile) ) :
+            try:
+                os.makedirs(os.path.dirname(swffile))
+            except Exception,e:
+                self.printError()  
+        
+        if sufix == "odt":                          
+            if os.path.isfile( swffile ):
+                logging.info("Good. File already exists:%s", swffile)
+            else:
+                shutil.copyfile(fullpath, swffile )    
+        elif os.path.isfile(swffile):
+            logging.info("Good. File already exists:%s", swffile)
+        else:
+            cmdpath = self.UNOCONVTOOL
+            port = OfficePortQueue.get()
+            try:
+                pdf_lock.acquire()
+                ret, logs = self.execmd( r'python "%s" -f odt -p %s "%s"' % (cmdpath,port, pdf_path) )
+                OfficePortQueue.put(port)
+            except Exception,e:
+                OfficePortQueue.put(port+1)
+                self.printError()
+                return ""
+            finally:
+                pdf_lock.release()            
+                pass
+                            
+            if ret:
+                logging.info( "thisfile:%s    swffile:%s",thisfile,  swffile)
+                try:
+                    os.remove(swffile)
+                except Exception,e:
+                    pass
+                os.rename(thisfile, swffile)         
+            else:
+                return ""
+            
+        #now convert to text
+        self.splitOdf(fullpath)
+        
+        return swffile        
      
     def convert2txt(self,fullpath,todir):
         logging.info("convert %s to txt", fullpath)
@@ -247,7 +300,7 @@ class DocConverter:
                 
         if ret:
             return swffile
-        elif ret==1:
+        else:
             return ""        
             
     def getPdfPageNum(self,fullpath):
@@ -284,8 +337,37 @@ class DocConverter:
                 self.printError()
                 return ""
             finally:
-                pass        
-        
+                pass  
+                      
+    def splitOdf(self, fullpath, step=10):
+        p_filename = self.getPdfFilepath(fullpath)
+        pageNum = self.getPdfPageNum(fullpath)
+        pages = (pageNum-1) / step        
+        filename = self.getOdfFilepath(fullpath)
+        outputfile = os.path.join(os.path.dirname(filename), 'transfered_%04d.odt' %(pages))
+        if os.path.isfile(outputfile):
+            logging.info("Good. File already exists:%s", outputfile)
+            return
+            
+        os.chdir(os.path.join( os.path.dirname(filename), ".."))
+        for i in range(pages+1):
+            cmdpath = self.UNOCONVTOOL
+            inputfile = os.path.join( os.path.dirname(p_filename) , 'transfered_%04d.pdf' %(i) )
+            if not os.path.isfile(inputfile):
+                continue
+            port = OfficePortQueue.get()
+            try:
+                pdf_lock.acquire()
+                ret, logs = self.execmd( r'python "%s" -f odt -p %s -o odf "%s"' % (cmdpath,port, inputfile) )
+                OfficePortQueue.put(port)
+            except Exception,e:
+                OfficePortQueue.put(port+1)
+                self.printError()
+                return ""
+            finally:
+                pdf_lock.release()            
+                pass
+                                        
     def execmd(self,cmd):
         #cmd = cmd.encode(DEFAULT_ENCODE)
         cmd = cmd.encode(DEFAULT_ENCODE) 
@@ -298,7 +380,7 @@ class DocConverter:
             if ret==0:
                 print 'DONE!'
                 return True, output
-            elif ret==1:
+            else:
                 print 'FAILED!'
                 return False, output    
         except Exception,e:

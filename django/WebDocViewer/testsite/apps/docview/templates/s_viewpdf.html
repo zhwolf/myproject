@@ -125,7 +125,7 @@
     // Disable workers to avoid yet another cross-origin issue (workers need the URL of
     // the script to be loaded, and currently do not allow cross-origin scripts)
     //
-    PDFJS.disableWorker = false;
+    PDFJS.disableWorker = true;
 
     var m_pdfDoc = null,
         m_baseurl  = "";

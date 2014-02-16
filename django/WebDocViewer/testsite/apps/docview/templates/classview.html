@@ -23,23 +23,23 @@
                                 <div class="list-group col-xs-8 col-md-8">
                                   <a href="{% url 'doc_view' book.bookid %}" class="list-group-item ">
                                     <p  class="list-group-item-text">
-                                       <strong><small>
+                                       <strong>
                                         {{ book.name }}
-                                        </small></strong>
+                                        </strong>
                                     </p>     
                                     <p  class="list-group-item-text">
-                                        <small>
+                                        
                                         {{ book.author|default:"作者:未知"  }}
-                                        </small>
+                                        
                                     </p>                            
                                     <p class="list-group-item-text">
-                                        <small>
+                                        
                                          {% if book.descr %}    
                                            {{ book.descr|truncatechars:20 }}
                                          {% else %}
                                             {{ book.summary|truncatechars:20 }}
                                          {% endif %}
-                                        </small>
+                                        
                                     </p>                                 
                                   </a>
                                 </div>
