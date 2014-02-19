@@ -3,7 +3,7 @@
 
             <div class="btn-group btn-group-justified btn-group-lg">
 
-              <a  class="btn btn-primary" href="/">首页</a>
+              <a  class="btn btn-primary" href="/">回退</a>
 
               <a class="btn btn-primary" href="/docview/history/">看过</a>
               <a class="btn btn-primary" href="/docview/user/myfavorite/">收藏</a>
@@ -11,7 +11,7 @@
 {% jinja %}   
             {% if request.session and request.session.user %} 
                 {% if request.session.admin == 1 %}
-                   <div class="btn-group  dropup">  
+                   <div class="btn-group  btn-group-lg dropup">  
                       <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">管理<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                               <li><a href="/docview/manage/book/">文档管理</a></li>

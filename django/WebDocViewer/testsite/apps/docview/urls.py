@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^manage/bookupload/$', views_manage.upload, name='doc_manage_upload' ),
     url(r'^manage/bookedit/+(?P<bookid>.*)/$', views_manage.bookedit, name='doc_manage_bookedit' ),
     url(r'^manage/bookdelete/+(?P<bookid>.*)/$', views_manage.bookdelete, name='doc_manage_bookdelete' ),
+    url(r'^manage/pdfregen/+(?P<bookid>.*)/$', views_manage.pdfregen, name='doc_manage_pdfregen' ),
 
     url(r'^manage/user/$', views_manage.userlist, name='user_manage_index' ),
     url(r'^manage/useredit/+(?P<userid>.*)/$', views_manage.useredit, name='manage_useredit' ),

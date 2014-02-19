@@ -44,7 +44,7 @@ class DocConverter:
         self.PDF2TXT = os.path.join(self.toolbasedir, "tools/unoconv/pdf2txt.py")
         self.SPLITPDF = os.path.join(self.toolbasedir, "tools/pdftk/pdftk.exe")
 
-    def getswf(self, fullpath,basedir=None, outputdir=None):
+    def getswf(self, fullpath,basedir=None, outputdir=None, convertPdf= False):
         if None or not fullpath:
             return ''        
         if basedir == None:
@@ -61,7 +61,7 @@ class DocConverter:
             apath = ""
             swf_path = fullpath
             if cmdpath == None or sufix=="pdf":
-                swf_path = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
+                swf_path = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ), convertPdf)   
                 #fullpath = self.convert2Odf(fullpath, os.path.join( outputdir , relate_path ))   
             fullpath = self.convert2swf(swf_path, os.path.join( outputdir , relate_path ))
 
@@ -85,13 +85,13 @@ class DocConverter:
             relate_path = os.path.relpath(fullpath, basedir)
             sufix = os.path.splitext(fullpath)[1][1:].lower()
             logging.info( "getpdf:%s",sufix    )
-            fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))  
+            fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ), False)  
             fullpath =   self.convert2txt(fullpath, os.path.join( outputdir , relate_path )) 
             return fullpath
         except Exception, e:
             self.printError()    
                 
-    def getpdf(self, fullpath,basedir=None, outputdir=None):
+    def getpdf(self, fullpath,basedir=None, outputdir=None, convertPdf= False):
         if None or not fullpath:
             return ''        
         if basedir == None:
@@ -104,7 +104,7 @@ class DocConverter:
             relate_path = os.path.relpath(fullpath, basedir)
             sufix = os.path.splitext(fullpath)[1][1:].lower()
             logging.info( "getpdf:%s",sufix    )
-            fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ))   
+            fullpath = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ), convertPdf)   
             return fullpath
         except Exception, e:
             self.printError()                
@@ -167,7 +167,7 @@ class DocConverter:
             else:
                 return ""
     
-    def convert2pdf(self,fullpath,todir):
+    def convert2pdf(self,fullpath,todir, convertPdf=False):
         logging.info("convert %s to pdf", fullpath)
         path = os.path.basename( fullpath)
         fs = os.path.splitext(path)
@@ -182,8 +182,12 @@ class DocConverter:
                 os.makedirs(os.path.dirname(swffile))
             except Exception,e:
                 self.printError()  
-        
-        if os.path.isfile(swffile):
+        if sufix == "pdf" and not convertPdf:                          
+            if os.path.isfile( swffile ):
+                logging.info("Good. File already exists:%s", swffile)
+            else:
+                shutil.copyfile(fullpath, swffile )            
+        elif os.path.isfile(swffile):
             logging.info("Good. File already exists:%s", swffile)
         else:
             cmdpath = self.UNOCONVTOOL

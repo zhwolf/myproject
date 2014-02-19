@@ -26,37 +26,37 @@ def sharedContext(request):
             'children':[
                 {
                     'label': u'论文',
-                    'path': u'/论文/',
+                    'path': u'论文',
                     'children':[],
                 },
                 {
                     'label':  u'小说.文学',
-                    'path':   u'/小说/',
+                    'path':   u'小说',
                     'children':[],
                 },
                 {
                     'label':  u'管理.面试',
-                    'path':   u'/管理/',
+                    'path':   u'管理',
                     'children':[],
                 },
                 {
                     'label':  u'金融.证券',
-                    'path':   u'/金融/',
+                    'path':   u'金融',
                     'children':[],
                 },
                 {
                     'label':  u'通信.电子',
-                    'path':   u'/通信/',
+                    'path':   u'通信',
                     'children':[],
                 },
                 {
                     'label':  u'考研.英语',
-                    'path':   u'/考研/',
+                    'path':   u'考研',
                     'children':[],
                 },
                 {
                     'label':  u'IT.编程',
-                    'path':   u'/IT/',
+                    'path':   u'IT',
                     'children':[],
                 },
             ]

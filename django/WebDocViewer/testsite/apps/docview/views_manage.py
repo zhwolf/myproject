@@ -12,7 +12,7 @@ from sqlalchemy.sql import and_,or_, desc
 from .models import Book, BookSL, UserSL
 from .tasks import syncBatchBooks
 from shared.utils import printError, DEFAULT_ENCODE
-
+import shutil
 from .DocConvert import DocConverter
 import datetime
 import uuid
@@ -226,10 +226,11 @@ def bookdelete(request, bookid):
     
 def handle_uploaded_file(f, todir):
     filename = os.path.join(  os.path.join( settings.BOOK_BASE,todir), f.name)
+    print filename, f.name, todir
     try:
         os.makedirs(os.path.dirname(filename))
     except Exception,e:
-        self.printError()            
+        printError()            
     
     try:
         logging.info("saving file:%s", filename )
@@ -329,3 +330,31 @@ def userdelete(request, userid):
         printError()            
     return HttpResponseRedirect('/docview/manage/user/')        
      
+def pdfregen(request, bookid):
+    info = ''
+    error = ''
+    print bookid
+    try:
+        data = session.query(BookSL).filter(
+                            and_(BookSL.id == bookid,
+                            )).first()
+        print data.path
+        if data.path != None and data.path.strip() != '':
+            path = data.path.strip()
+            if path[0] != '/' and path[0] != '\\':
+                filename = os.path.join( settings.BOOK_BASE, data.path )
+                converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
+                fullpath = os.path.join(settings.BOOK_BASE, path).strip()
+                fullpath = converter.getPdfFilepath(fullpath)    
+                if os.path.isfile(fullpath):
+                    try:
+                        shutil.rmtree( os.path.dirname(fullpath))
+                    except Exception,e:
+                        printError()            
+                    r = syncBatchBooks.delay(filename, True)
+        session.commit()
+    except Exception,e:
+        error = u"文档删除失败.请联系管理员"
+        session.rollback()
+        printError()            
+    return HttpResponseRedirect('/docview/manage/book/')    

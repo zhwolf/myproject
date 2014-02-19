@@ -31,7 +31,7 @@ def test_xsum(numbers):
     return sum(numbers)
     
 @shared_task
-def syncBatchBooks(paths):
+def syncBatchBooks(paths, convertPdf=False):
     from .DocConvert import DocConverter
     from .models import BookSL
     from apps.backends.DBEnginee.djSQLAlchemy import Session
@@ -51,7 +51,7 @@ def syncBatchBooks(paths):
         else:            
             relpath = os.path.relpath(path, settings.BOOK_BASE)
         relpath.replace("/", "\\")            
-        converter.getswf(path)
+        converter.getswf(path, convertPdf=convertPdf)
         try:
             item = session.query(BookSL).filter(
                 and_( BookSL.path == relpath
