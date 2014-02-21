@@ -224,9 +224,15 @@ def view(request, bookid):
         
         if not os.path.isfile( converter.getSwfFilepath(fullapth) ):
             return render_to_response('info.html', { 'title' : u'提示', 'error': u'对不起,文档还未处理完毕，请耐心等待.' } , context_instance=RequestContext(request) )   
-    else:       
-        html = 's_viewpdf.html' 
-        if not os.path.isfile( converter.getPdfFilepath(fullapth) ):
+    else:
+        ###pdf       
+        #html = 's_viewpdf.html' 
+        #if not os.path.isfile( converter.getPdfFilepath(fullapth) ):
+        #    return render_to_response('info.html', { 'title' : u'提示', 'error': u'对不起,文档还未处理完毕，请耐心等待.' } , context_instance=RequestContext(request) )   
+
+        ###pdf       
+        html = 's_viewhtml.html' 
+        if not os.path.isfile( converter.getPngFilepath(fullapth) ):
             return render_to_response('info.html', { 'title' : u'提示', 'error': u'对不起,文档还未处理完毕，请耐心等待.' } , context_instance=RequestContext(request) )   
                 
     any = Any()
@@ -254,7 +260,8 @@ def directview(request, path):
         html = 's_viewswf.html'
         #return render(request, 's_viewswf.html', { 'file' : any, } )
     else:       
-        html = 's_viewpdf.html' 
+        #html = 's_viewpdf.html' 
+        html = 's_viewhtml.html' 
         #return render(request, 's_viewpdf.html', { 'file' : any, } )
     return render_to_response(html, { 'file' : any, } , context_instance=RequestContext(request) )    
         
@@ -290,6 +297,21 @@ def getpdfpage(request,bookid, page):
     if data == None :      
         return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
     return getpdffile(request, data.path,page )    
+
+def gethtml(request,bookid, page):
+    data = getbook(bookid)
+    page = int(page)
+    if data == None :      
+        return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
+    if page <=1:            
+        viewed = request.session.get('history', [])
+        viewed.append(bookid)
+        request.session['history'] = viewed[-20:]      
+
+    result = {}
+    result['url'] = "/static/" + data.path + "/png/" + 'transfered_%04d.png' %(page-1)
+    result['total'] = data.pagenum
+    return HttpResponse(json.dumps(result))       
         
 def getswffile(request,path):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)

@@ -43,6 +43,7 @@ class DocConverter:
         self.UNOCONVTOOL= os.path.join(self.toolbasedir, "tools/unoconv/unoconv")
         self.PDF2TXT = os.path.join(self.toolbasedir, "tools/unoconv/pdf2txt.py")
         self.SPLITPDF = os.path.join(self.toolbasedir, "tools/pdftk/pdftk.exe")
+        self.PNGCONVERT= os.path.join(self.toolbasedir, "tools/ImageMagick/convert.exe")
 
     def getswf(self, fullpath,basedir=None, outputdir=None, convertPdf= False):
         if None or not fullpath:
@@ -63,6 +64,8 @@ class DocConverter:
             if cmdpath == None or sufix=="pdf":
                 swf_path = self.convert2pdf(fullpath, os.path.join( outputdir , relate_path ), convertPdf)   
                 #fullpath = self.convert2Odf(fullpath, os.path.join( outputdir , relate_path ))   
+                self.convert2Png(fullpath, os.path.join( outputdir , relate_path ))   
+                fullpath = swf_path
             fullpath = self.convert2swf(swf_path, os.path.join( outputdir , relate_path ))
 
             return fullpath
@@ -121,6 +124,9 @@ class DocConverter:
         
     def getOdfFilepath(self, fullpath):
         return  os.path.join(self.getBookdOutputDir(fullpath), 'odf/transfered.odt')
+        
+    def getPngFilepath(self, fullpath):
+        return  os.path.join(self.getBookdOutputDir(fullpath), 'png/transfered_0000.png')
 
     def getSwfFilepath(self, fullpath):
         return  os.path.join(self.getBookdOutputDir(fullpath), 'swf/transfered.swf')
@@ -217,7 +223,61 @@ class DocConverter:
         self.splitPdf(fullpath)
                       
         return swffile
+    
+    def convert2Png(self,fullpath,todir):
+        pdf_path = os.path.join(os.path.dirname(self.getPdfFilepath(fullpath)), "transfered.pdf")
+        if not os.path.isfile( pdf_path ):
+            logging.error("pdf file is not exist:%s", pdf_path)   
+            return ""     
+        logging.info("convert %s to png", fullpath)
+        path = os.path.basename( fullpath)
+        fs = os.path.splitext(path)
+        filename = fs[0]
+        sufix = fs[1][1:].lower().strip()
+            
+        swffile = self.getPngFilepath(fullpath)
+
+        if not os.path.isdir( os.path.dirname(swffile) ) :
+            try:
+                os.makedirs(os.path.dirname(swffile))
+            except Exception,e:
+                self.printError()  
         
+        if sufix == "odt":                          
+            if os.path.isfile( swffile ):
+                logging.info("Good. File already exists:%s", swffile)
+            else:
+                shutil.copyfile(fullpath, swffile )    
+        elif os.path.isfile(swffile):
+            logging.info("Good. File already exists:%s", swffile)
+        else:
+            #now convert to PNG
+            pageNum = self.getPdfPageNum(fullpath)
+            swffile = self.getPngFilepath(fullpath)
+            outputfile = os.path.join(os.path.dirname(swffile), 'transfered_%04d.png' %(pageNum-1))
+            if os.path.isfile(outputfile):
+                logging.info("Good. File already exists:%s", outputfile)
+                return
+                        
+            os.chdir(os.path.dirname(swffile))
+            cmdpath = self.PNGCONVERT
+            try:
+                if pageNum <= 50:
+                    ret, logs = self.execmd( '"%s" -density 150 "%s" "transfered_%%04d.png"' % (cmdpath,pdf_path) )
+                else:
+                    ret, logs = self.execmd( '"%s" -density 96 "%s" "transfered_%%04d.png"' % (cmdpath,pdf_path) )                    
+            except Exception,e:
+                self.printError()
+                return ""
+            finally:
+                pass
+                            
+            if ret:
+                logging.info( "swffile:%s",  swffile)
+            else:
+                return ""
+        return swffile           
+         
     def convert2Odf(self,fullpath,todir):
         pdf_path = os.path.join(os.path.dirname(self.getPdfFilepath(fullpath)), "transfered.pdf")
         if not os.path.isfile( pdf_path ):

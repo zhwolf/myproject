@@ -1,0 +1,163 @@
+{% extends "normal.html" %}
+
+{% block header %}
+{% endblock %}
+  
+{% block container %}
+  
+        <div class="container" id="container">
+            
+
+        <ol class="breadcrumb  visible-lg visible-md">
+          <li><a href="/">首页</a></li>
+          <li><a>{{ file.name }}</a></li>
+        </ol>   
+                    
+            <div id="desktopTest" name="desktopTest" class="visible-lg visible-md"></div>
+            <div id="controlbar" class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+                <div class="row">
+                        <div class="col-md-11 col-xs-11">
+                        
+                            <div class="btn-group btn-group-justified btn-group-lg">
+                                <a type="button" class="btn btn-primary"  onclick="window.history.go(-1)">
+                                  <span class="glyphicon glyphicon-home"></span>
+                               </a>                        
+                                                            
+                                <a type="button" class="btn btn-primary" href="#" onclick="goPrevious();return false;">
+                                  <span class="glyphicon glyphicon-arrow-left"></span>
+                               </a>                        
+                                <a class="btn btn-primary" href="#" role="button" onclick="goNext();return false;">
+                                  <span class="glyphicon glyphicon-arrow-right"></span>
+                               </a>                        
+                            
+                                <a class="btn btn-primary" href="#" role="button" onclick="zoomIn();return false;">
+                                  <span class="glyphicon glyphicon-zoom-in"></span>
+                               </a>                        
+                            
+                                <a class="btn btn-primary" href="#" role="button" onclick="zoomOut();return false;">
+                                  <span class="glyphicon glyphicon-zoom-out"></span>
+                               </a>                        
+                            </div>       
+                        </div>    
+                        
+                        <div class="col-md-1 col-xs-1">
+                            <strong><span class="text-info"><span id="page_num" class="text-info"></span> / <span id="page_count" class="text-info"></span></span></strong>
+                               
+                                <a id="loading">
+                                  <img src="/static/image/loading.gif">
+                               </a>                        
+                        </div>           
+   
+              </div>        
+                   
+           </div>            
+            
+           <div id = "canvasContainer" class="container">
+                <img name='images1' src='' border='0'  class="center-block">
+            </div>
+
+           
+           
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+  
+
+      
+  <script type="text/javascript">
+    var m_totalPage = 0,
+        m_pageUrl = "",
+        m_baseurl = "",
+        m_pageNum = 1;
+        
+    function zoomOut()
+    {            
+      images1.height /= 1.2;            
+      images1.width /= 1.2;           
+    }             
+        
+    function zoomIn(){            
+         images1.height *= 1.2;
+         images1.width *= 1.2;
+    } 
+    
+    //
+    // Go to previous page
+    //
+    function goPrevious() {
+      if (m_pageNum <= 1)
+        return;
+      m_pageNum--;
+      getpage(m_pageNum);
+    }
+
+    //
+    // Go to next page
+    //
+    function goNext() {
+      if (m_pageNum >= m_totalPage)
+        return;
+      m_pageNum++;
+      getpage(m_pageNum);
+    }      
+    
+    function renderPage(pageNumber)
+    {
+        images1.src =  m_pageUrl;   
+        $("#loading").hide()
+        document.getElementById('page_num').textContent = m_pageNum;
+        document.getElementById('page_count').textContent = m_totalPage; 
+        /*
+        imgw = images1.width;
+        conw = document.getElementById("container").offsetWidth;
+        alert(images1.left + ":" + imgw + "/" + conw);
+        if (imgw > conw)
+        {
+            images1.left -= (imgw - conw)/2;
+        }
+        */
+    }
+    
+    function getpage(page)
+    {
+        $("#loading").show();  
+        $.ajax({      
+                cache:false,
+                type: "GET",      
+                url: m_baseurl + page + "/",      
+                dataType:   "json",      
+                success: function(json){      
+                      m_totalPage = json.total;
+                      m_pageUrl = json.url;
+                      renderPage(m_pageNum);
+                }       
+            });
+    }    
+    
+    function loadpage(bookid)
+    {
+
+        m_baseurl = '/docview/showhtml/' + bookid + "/";
+        m_pageNum = 1;
+        getpage(m_pageNum);
+    }    
+    
+    $(function() {
+        $("#loading").hide();
+        
+        if ($('#desktopTest').is(':hidden')) {
+        }
+        else{
+            m_scale = 1;            
+            $( "#scalebtn" ).text( Math.round(m_scale * 100) +'%'); 
+        }
+        
+        loadpage('{{ file.bookid }}');
+        images1.width = document.getElementById("container").offsetWidth;
+    });    
+
+  </script>  
+  
+{% endblock %}

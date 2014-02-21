@@ -127,9 +127,6 @@ TEMPLATE_STRING_IF_INVALID=''
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
 BOOK_ABSPATH = "books/root"
 BOOK_BASE= os.path.join(BASE_DIR, BOOK_ABSPATH)
 
@@ -139,6 +136,10 @@ BOOK_OUTPUT_BASE= os.path.join(BASE_DIR, BOOK_OUTPUT_ABSPATH)
 BOOK_TEMP_ABSPATH = "books/temp"
 BOOK_TEMP_BASE= os.path.join(BASE_DIR, BOOK_TEMP_ABSPATH)
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    BOOK_OUTPUT_BASE,
+)
 
 
 
