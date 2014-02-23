@@ -103,12 +103,19 @@
       getpage(m_pageNum);
     }      
     
+    function imgshown(){
+    	$("#loading").hide(); 
+    }
+    
     function renderPage(pageNumber)
     {
         images1.src =  m_pageUrl;   
-        $("#loading").hide()
+        
         document.getElementById('page_num').textContent = m_pageNum;
         document.getElementById('page_count').textContent = m_totalPage; 
+        images1.onload = imgshown;
+        images1.onError = imgshown;
+        images1.onAbort = imgshown;
         /*
         imgw = images1.width;
         conw = document.getElementById("container").offsetWidth;

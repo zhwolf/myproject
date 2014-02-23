@@ -264,8 +264,10 @@ class DocConverter:
             try:
                 if pageNum <= 50:
                     ret, logs = self.execmd( '"%s" -density 150 "%s" "transfered_%%04d.png"' % (cmdpath,pdf_path) )
+                elif pageNum <= 120:
+                    ret, logs = self.execmd( '"%s" -density 96 "%s" "transfered_%%04d.png"' % (cmdpath,pdf_path) )
                 else:
-                    ret, logs = self.execmd( '"%s" -density 96 "%s" "transfered_%%04d.png"' % (cmdpath,pdf_path) )                    
+                    ret, logs = self.execmd( '"%s" "%s" "transfered_%%04d.png"' % (cmdpath,pdf_path) )                    
             except Exception,e:
                 self.printError()
                 return ""
