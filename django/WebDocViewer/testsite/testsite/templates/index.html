@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block header %}
-    <link href="/static/js/Metro-UI-CSS/css/modern.css" rel="stylesheet">
-    <link href="/static/js/Metro-UI-CSS/css/modern-responsive.css" rel="stylesheet">
+    <link href="/static/js/tiles/tiles.css" rel="stylesheet">
+    <link href="/static/js/tiles/modern-responsive.css" rel="stylesheet">
 
-    <link href="/static/js/Metro-UI-CSS/css/theme-dark.css" rel="stylesheet">
+    <link href="/static/js/tiles/theme-dark.css" rel="stylesheet">
 
 <style>
 .tile.icon  > .tile-content  > i {
@@ -20,13 +20,17 @@
 
 {% block container %}
 
+<!--
 <div class="page secondary fixed-header">
     <div class="page-region">
         <div class="page-region-content tiles">
-
-            <div class="row tiles">
-            <div class="tile-group tile-drag span12">
-                <a href="#"  class=" tile double double-vertical image-slider outline-color-green" data-role="tile-slider" data-param-period="5000" data-param-direction="left">
+-->
+    <div class="container">
+    
+            <div class="row  center-block">
+            <div id="tiles" class="tile-group tile-drag col-md-12 col-xs-12">
+            
+                <a href="#"  class=" tile triple double-vertical image-slider outline-color-green" data-role="tile-slider" data-param-period="5000" data-param-direction="left">
                     <div class="tile-content">
                         <img src="/static/image/guanggao_test1.jpg" alt="">
                     </div>
@@ -61,6 +65,8 @@
                     </div>
                 </a>
                 
+                <div class="clearfix hidden-xs"></div>
+                
                 <a href="{% url 'doc_classview' '小说' %}"  class="tile icon outline-color-green double-vertical">
                     <div class="tile-content">
                          <i class="icon-book"></i>
@@ -71,7 +77,7 @@
                 </a>
 
 
-                <a href="{% url 'doc_classview' '金融' %}"  class="tile bg-color-green icon outline-color-green double-vertical">
+                <a href="{% url 'doc_classview' '金融' %}"  class="tile bg-color-green icon outline-color-green double">
                     <div class="tile-content">
                          <i class="icon-stats-up"></i>
                     </div>
@@ -98,7 +104,7 @@
                     </div>
                 </a>
                 
-                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-blueDark outline-color-green icon double-vertical">
+                <a href="{% url 'doc_classview' 'IT' %}"  class="tile bg-color-blueDark outline-color-green icon double">
                     <div class="tile-content">
                          <i class="icon-calculate"></i>
                     </div>
@@ -107,7 +113,9 @@
                     </div>
                 </a>
                 
-                <a href="{% url 'doc_search' %}"  class="tile bg-color-greenDark outline-color-green icon double-vertical">
+                <div class="clearfix hidden-xs"></div>
+                
+                <a href="{% url 'doc_search' %}"  class="tile bg-color-greenDark outline-color-green icon">
                     <div class="tile-content">
                          <i class="icon-search"></i>
                     </div>
@@ -135,19 +143,25 @@
                     </div>
                 </a>
 
-
             </div>
         </div>
-
+    </div>
+<!--
         </div>
     </div>
 </div>
+-->
 
 {% endblock %}
 
 
 {% block footer %}
-    <script src="/static/js/Metro-UI-CSS/js/tile-slider.js"></script>
-    <script src="/static/js/Metro-UI-CSS/js/tile-drag.js"></script>
-
+    <script src="/static/js/tiles/tile-slider.js"></script>
+    <script src="/static/js/tiles/tile-drag.js"></script>
+<script>    
+    $(function() {
+        if ($(window).height() > $("#tiles").height())
+	        $("#tiles").css({ position:'absolute',  top: ($(window).height() - $("#tiles").height())/2 });  
+	});
+</script>  	
 {% endblock %}

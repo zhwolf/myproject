@@ -1,6 +1,16 @@
 {% extends "normal.html" %}
 
 {% block header %}
+<style>
+body { padding-bottom: 100px; }
+
+.btn-group-lgex > .btn {
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+</style>
 {% endblock %}
   
 {% block container %}
@@ -14,11 +24,18 @@
         </ol>   
                     
             <div id="desktopTest" name="desktopTest" class="visible-lg visible-md"></div>
-            <div id="controlbar" class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+            
+           <div id = "canvasContainer" class="container">
+                <img name='images1' src='' border='0'  class="center-block">
+            </div>
+
+
+            <div id="controlbar" class="navbar navbar-inverse  navbar-fixed-bottom" role="navigation">
+            <div class="container">
                 <div class="row">
-                        <div class="col-md-11 col-xs-11">
+                        <div class="col-md-10 col-xs-10">
                         
-                            <div class="btn-group btn-group-justified btn-group-lg">
+                            <div class=" btn-group-justified btn-group-lgex btn-group-fill-height">
                                 <a type="button" class="btn btn-primary"  onclick="window.history.go(-1)">
                                   <span class="glyphicon glyphicon-home"></span>
                                </a>                        
@@ -40,7 +57,7 @@
                             </div>       
                         </div>    
                         
-                        <div class="col-md-1 col-xs-1">
+                        <div class="col-md-2 col-xs-2">
                             <strong><span class="text-info"><span id="page_num" class="text-info"></span> / <span id="page_count" class="text-info"></span></span></strong>
                                
                                 <a id="loading">
@@ -48,14 +65,10 @@
                                </a>                        
                         </div>           
    
-              </div>        
+              </div>  
+              </div>      
                    
            </div>            
-            
-           <div id = "canvasContainer" class="container">
-                <img name='images1' src='' border='0'  class="center-block">
-            </div>
-
            
            
         </div>
