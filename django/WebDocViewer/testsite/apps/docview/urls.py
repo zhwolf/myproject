@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^showpdf/+(?P<bookid>.*?)/+(?P<page>\d+)/$', views.getpdf, name='doc_showpdf' ),
     url(r'^getpdfpage/+(?P<bookid>.*?)/+(?P<page>\d+)/$', views.getpdfpage, name='doc_getpdfpage' ),
     url(r'^showhtml/+(?P<bookid>.*?)/+(?P<page>\d+)/$', views.gethtml, name='doc_showhtml' ),
+    url(r'^gethtmlpage/+(?P<bookid>.*?)/+(?P<page>\d+)/$', views.gethtmlpage, name='doc_gethtmlpage' ),
 
     url(r'^view/+(?P<bookid>.*?)/*$', views.view, name='doc_view' ),
     url(r'^directview/+(?P<path>.*)/$', views.directview, name='doc_directview' ),

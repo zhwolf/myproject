@@ -309,9 +309,20 @@ def gethtml(request,bookid, page):
         request.session['history'] = viewed[-20:]      
 
     result = {}
-    result['url'] = "/static/" + data.path + "/png/" + 'transfered_%04d.png' %(page-1)
+    result['url'] = "/docview/gethtmlpage/%s/%s/" %(bookid, page)
     result['total'] = data.pagenum
-    return HttpResponse(json.dumps(result))       
+    return HttpResponse(json.dumps(result))  
+    
+def gethtmlpage(request,bookid, page):
+    page = int(page)
+    data = getbook(bookid)
+    if data == None :      
+        return render_to_response('info.html', { 'title' : u'错误', 'error': u'数据库错误，请联系管理员' } , context_instance=RequestContext(request) )    
+    converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)
+    fullpath = os.path.join(settings.BOOK_BASE, data.path).strip()
+    fullpath = converter.getPngFilepath(fullpath)    
+    fullpath = os.path.join(os.path.dirname(fullpath), 'transfered_%04d.png' %(page-1))
+    return bigFileView(request, fullpath )   
         
 def getswffile(request,path):
     converter = DocConverter(settings.BOOK_BASE, settings.BOOK_OUTPUT_BASE,settings.BASE_DIR, printError)

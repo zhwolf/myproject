@@ -36,7 +36,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -138,7 +138,6 @@ BOOK_TEMP_BASE= os.path.join(BASE_DIR, BOOK_TEMP_ABSPATH)
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    BOOK_OUTPUT_BASE,
 )
 
 

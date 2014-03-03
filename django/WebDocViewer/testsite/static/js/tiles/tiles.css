@@ -1386,8 +1386,8 @@ li .icon-large:before {
   display: block;
   float: left;
   background-color: #525252;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   cursor: pointer;
   box-shadow: inset 0px 0px 1px #FFFFCC;
   text-decoration: none;
@@ -1520,22 +1520,22 @@ li .icon-large:before {
   height: 100%;
 }
 .tile.double {
-  width: 310px;
+  width: 250px;
 }
 .tile.triple {
-  width: 470px;
+  width: 380px;
 }
 .tile.quadro {
-  width: 630px;
+  width: 510px;
 }
 .tile.double-vertical {
-  height: 310px;
+  height: 250px;
 }
 .tile.triple-vertical {
-  height: 470px;
+  height: 380px;
 }
 .tile.quadro-vertical {
-  height: 630px;
+  height: 510px;
 }
 .tile .brand,
 .tile .tile-status {
