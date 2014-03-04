@@ -3,15 +3,6 @@
 {% block header %}
 <style>
 body { padding-bottom: 100px; }
-
-@media (max-width: 768px) {
-    .btn-group-lg > .btn {
-      padding: 10px 16px;
-      font-size: 29px;
-      line-height: 1.33;
-      border-radius: 6px;
-    }
-}
 </style>
 {% endblock %}
   
@@ -35,9 +26,13 @@ body { padding-bottom: 100px; }
             <div id="controlbar" class="navbar navbar-inverse  navbar-fixed-bottom" role="navigation">
             <div class="container">
                 <div class="row">
+                        <div class="col-md-1 col-xs-1">
+                            <span class="text-info"><span id="page_num" class="text-info"></span> / <span id="page_count" class="text-info"></span></span>
+                        </div>    
+                        
                         <div class="col-md-10 col-xs-10">
                         
-                            <div class=" btn-group-justified btn-group-lg btn-group-fill-height">
+                            <div class=" btn-group-justified btn-group-lg">
                                 <a type="button" class="btn btn-primary"  onclick="window.history.go(-1)">
                                   <span class="glyphicon glyphicon-home"></span>
                                </a>                        
@@ -56,18 +51,15 @@ body { padding-bottom: 100px; }
                                 <a class="btn btn-primary" href="#" role="button" onclick="zoomOut();return false;">
                                   <span class="glyphicon glyphicon-zoom-out"></span>
                                </a>                        
-                            </div>       
+                            </div>        
                         </div>    
                         
-                        <div class="col-md-2 col-xs-2">
-                            <strong><span class="text-info"><span id="page_num" class="text-info"></span> / <span id="page_count" class="text-info"></span></span></strong>
-                               
+                        <div class="col-md-1 col-xs-1">
                                 <a id="loading">
                                   <img src="/static/image/loading.gif">
                                </a>                        
                         </div>           
-   
-              </div>  
+                  </div>  
               </div>      
                    
            </div>            
