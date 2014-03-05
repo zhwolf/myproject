@@ -7,6 +7,9 @@
     <link href="/static/js/tiles/theme-dark.css" rel="stylesheet">
 
 <style>
+.container{
+    padding-top: 50px;
+}
 .tile.icon  > .tile-content  > i {
   font-size: 64px;
   position: absolute;
@@ -15,6 +18,52 @@
   margin-left: -32px;
   margin-top: -32px;
 }
+@media screen and (max-device-width: 650px)  {
+    .container {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .tile {
+      width: 60px;
+      height: 60px;
+      margin: 0 5px 5px 0;
+    }
+    
+    .tile.double {
+      width: 125px;
+    }
+    .tile.triple {
+      width: 190px;
+    }
+    .tile.quadro {
+      width: 255px;
+    }
+    .tile.double-vertical {
+      height: 125px;
+    }
+    .tile.triple-vertical {
+      height: 190px;
+    }
+    .tile.quadro-vertical {
+      height: 255px;
+    }  
+    
+    .tile.icon  > .tile-content  > i {
+      font-size: 24px;   
+      margin-left: -12px;
+      margin-top: -22px;         
+    }
+
+    .tile .brand .name {
+      margin-bottom: 1px;        
+      
+    h3,
+    .h3 {
+      font-size: 18px;       
+}
+
+
 </style>    
 {% endblock %}
 
@@ -64,8 +113,9 @@
                         <span class="name"><h3>管理.面试</h3></span>
                     </div>
                 </a>
-                
+                <!--
                 <div class="clearfix hidden-xs"></div>
+                -->
                 
                 <a href="{% url 'doc_classview' '小说' %}"  class="tile icon outline-color-green double-vertical">
                     <div class="tile-content">
@@ -112,8 +162,9 @@
                         <span class="name"><h3>IT.编程</h3></span>
                     </div>
                 </a>
-                
+                <!--
                 <div class="clearfix hidden-xs"></div>
+                -->
                 
                 <a href="{% url 'doc_search' %}"  class="tile bg-color-greenDark outline-color-green icon">
                     <div class="tile-content">
@@ -160,8 +211,9 @@
     <script src="/static/js/tiles/tile-drag.js"></script>
 <script>    
     $(function() {
-        if ($(window).height() > $("#tiles").height())
-	        $("#tiles").css({ position:'absolute',  top: ($(window).height() - $("#tiles").height())/2 });  
+        //alert(window.screen.width + "/" + window.screen.height);
+        //if ($(window).height() > $("#tiles").height())
+	    //    $("#tiles").css({ position:'absolute',  top: ($(window).height() - $("#tiles").height())/2 });  
 	});
 </script>  	
 {% endblock %}
