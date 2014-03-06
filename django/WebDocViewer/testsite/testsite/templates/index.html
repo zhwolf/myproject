@@ -18,7 +18,55 @@
   margin-left: -32px;
   margin-top: -32px;
 }
+
 @media screen and (max-device-width: 650px)  {
+    .container {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .tile {
+      width: 75px;
+      height: 75px;
+      margin: 0 5px 5px 0;
+    }
+    
+    .tile.double {
+      width: 155px;
+    }
+    .tile.triple {
+      width: 235px;
+    }
+    .tile.quadro {
+      width: 315px;
+    }
+    .tile.double-vertical {
+      height: 155px;
+    }
+    .tile.triple-vertical {
+      height: 235px;
+    }
+    .tile.quadro-vertical {
+      height: 315px;
+    }  
+    
+    .tile.icon  > .tile-content  > i {
+      font-size: 24px;   
+      margin-left: -11px;
+      margin-top: -20px;         
+    }
+
+    .tile .brand .name {
+      margin-bottom: 1px;     
+    }   
+      
+    h3,
+    .h3 {
+      font-size: 19px;         
+    }  
+}
+
+@media screen and (max-device-width: 470px)  {
     .container {
       padding-right: 5px;
       padding-left: 5px;
@@ -56,12 +104,15 @@
     }
 
     .tile .brand .name {
-      margin-bottom: 1px;        
+      margin-bottom: 1px;      
+    }  
       
     h3,
     .h3 {
-      font-size: 18px;       
+      font-size: 18px;     
+    }  
 }
+
 
 
 </style>    
@@ -74,8 +125,7 @@
     <div class="page-region">
         <div class="page-region-content tiles">
 -->
-    <div class="container">
-
+    <div class="container ">
             <div id="tiles" class="tile-group tile-drag center-block">
             
                 <a href="#"  class=" tile triple double-vertical image-slider outline-color-green" data-role="tile-slider" data-param-period="5000" data-param-direction="left">
