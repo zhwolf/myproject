@@ -9,7 +9,10 @@
 <style>
 .container{
     padding-top: 50px;
+      padding-right: 10px;
+      padding-left: 10px;    
 }
+
 .tile.icon  > .tile-content  > i {
   font-size: 64px;
   position: absolute;
@@ -19,37 +22,9 @@
   margin-top: -32px;
 }
 
-@media screen and (max-device-width: 650px)  {
-    .container {
-      padding-right: 5px;
-      padding-left: 5px;
-    }
 
-    .tile {
-      width: 75px;
-      height: 75px;
-      margin: 0 5px 5px 0;
-    }
-    
-    .tile.double {
-      width: 155px;
-    }
-    .tile.triple {
-      width: 235px;
-    }
-    .tile.quadro {
-      width: 315px;
-    }
-    .tile.double-vertical {
-      height: 155px;
-    }
-    .tile.triple-vertical {
-      height: 235px;
-    }
-    .tile.quadro-vertical {
-      height: 315px;
-    }  
-    
+@media screen and (max-device-width: 650px)  {
+ 
     .tile.icon  > .tile-content  > i {
       font-size: 24px;   
       margin-left: -11px;
@@ -67,36 +42,7 @@
 }
 
 @media screen and (max-device-width: 470px)  {
-    .container {
-      padding-right: 5px;
-      padding-left: 5px;
-    }
-
-    .tile {
-      width: 60px;
-      height: 60px;
-      margin: 0 5px 5px 0;
-    }
-    
-    .tile.double {
-      width: 125px;
-    }
-    .tile.triple {
-      width: 190px;
-    }
-    .tile.quadro {
-      width: 255px;
-    }
-    .tile.double-vertical {
-      height: 125px;
-    }
-    .tile.triple-vertical {
-      height: 190px;
-    }
-    .tile.quadro-vertical {
-      height: 255px;
-    }  
-    
+  
     .tile.icon  > .tile-content  > i {
       font-size: 24px;   
       margin-left: -12px;
@@ -113,20 +59,17 @@
     }  
 }
 
-
+tiles{
+  .center-block();
+}
 
 </style>    
 {% endblock %}
 
 {% block container %}
 
-<!--
-<div class="page secondary fixed-header">
-    <div class="page-region">
-        <div class="page-region-content tiles">
--->
     <div class="container ">
-            <div id="tiles" class="tile-group tile-drag center-block">
+            <div id="tiles" class="tile-group tile-drag">
             
                 <a href="#"  class=" tile triple double-vertical image-slider outline-color-green" data-role="tile-slider" data-param-period="5000" data-param-direction="left">
                     <div class="tile-content">
@@ -162,9 +105,9 @@
                         <span class="name"><h3>管理.面试</h3></span>
                     </div>
                 </a>
-                <!--
-                <div class="clearfix hidden-xs"></div>
-                -->
+<!--                
+                <div class="clearfix visible-xs"></div>
+-->                
                 
                 <a href="{% url 'doc_classview' '小说' %}"  class="tile icon outline-color-green double-vertical">
                     <div class="tile-content">
@@ -211,9 +154,9 @@
                         <span class="name"><h3>IT.编程</h3></span>
                     </div>
                 </a>
-                <!--
-                <div class="clearfix hidden-xs"></div>
-                -->
+<!--            
+                <div class="clearfix visible-xs"></div>
+-->                
                 
                 <a href="{% url 'doc_search' %}"  class="tile bg-color-greenDark outline-color-green icon">
                     <div class="tile-content">
@@ -257,6 +200,48 @@
         //alert(window.screen.width + "/" + window.screen.height);
         //if ($(window).height() > $("#tiles").height())
 	    //    $("#tiles").css({ position:'absolute',  top: ($(window).height() - $("#tiles").height())/2 });  
+	    var swidth = window.screen.width;
+	    if (swidth < 769)
+	    {
+	        var smargin = 5;
+	        var margin_s = "0 5px 5px 0";
+	        if (swidth > 550)
+	        {
+	            smargin = 10;
+	            margin_s = "0 10px 10px 0";
+	        }
+	        var tilewidth = Math.floor(((window.screen.width-50)  - smargin * 4) /5);
+	        $(".tile").css({
+                "width": tilewidth +  'px',
+                "height": tilewidth +  'px',
+                "margin": margin_s
+                });
+                
+	        $(".tile.double").css({
+                "width": (2 *tilewidth + smargin) +  'px'
+                });
+
+	        $(".tile.triple").css({
+                "width": (3 *tilewidth + 2 * smargin) +  'px'
+                });
+
+	        $(".tile.quadro").css({
+                "width": (4 *tilewidth + 3 * smargin) +  'px'
+                });                
+
+	        $(".tile.double-vertical").css({
+                "height": (2 *tilewidth + smargin) +  'px'
+                });
+
+	        $(".tile.triple-vertical").css({
+                "height": (3 *tilewidth + 2 * smargin) +  'px'
+                });
+
+	        $(".tile.quadro-vertical").css({
+                "height": (4 *tilewidth + 3 * smargin) +  'px'
+                });                
+	    }
+	    
 	});
 </script>  	
 {% endblock %}
