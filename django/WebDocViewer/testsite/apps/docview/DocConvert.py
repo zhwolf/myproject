@@ -15,6 +15,9 @@ import shutil
 from pdfminer.pdfpage import PDFPage
 DEFAULT_ENCODE =  sys.stdin.encoding if sys.stdin.encoding else locale.getdefaultlocale()[1] if locale.getdefaultlocale()[1]  else sys.getdefaultencoding()
 
+import re
+rex = re.compile("Pages:\s*(?P<page>\d+)")
+
 
 pdf_lock = threading.Lock() 
 
@@ -44,6 +47,7 @@ class DocConverter:
         self.PDF2TXT = os.path.join(self.toolbasedir, "tools/unoconv/pdf2txt.py")
         self.SPLITPDF = os.path.join(self.toolbasedir, "tools/pdftk/pdftk.exe")
         self.PNGCONVERT= os.path.join(self.toolbasedir, "tools/ImageMagick/convert.exe")
+        self.PDFINFO = os.path.join(self.toolbasedir, "tools/ImageMagick/pdfinfo.exe")
 
     def getswf(self, fullpath,basedir=None, outputdir=None, convertPdf= False):
         if None or not fullpath:
@@ -220,7 +224,7 @@ class DocConverter:
         #now convert to text
         self.convert2txt( swffile, todir)
         
-        self.splitPdf(fullpath)
+        #self.splitPdf(fullpath)
                       
         return swffile
     
@@ -370,15 +374,14 @@ class DocConverter:
             return ""        
             
     def getPdfPageNum(self,fullpath):
-        fp = file(self.getPdfFilepath(fullpath), 'rb')
-        i = 0
-        for page in     PDFPage.get_pages(fp):
-            i +=1
-        fp.close()        
-        logging.debug("page num:%s", i)
-        if i >= 5000:
-            i = 1
-        return i
+        ret, output = self.execmd(u'"%s" "%s" |find "Pages"' %(self.PDFINFO, fullpath))
+        if ret:
+            s = output[0]
+            c=rex.match(s)
+            if c:
+                page = int(c.groupdict()['page'])
+                return page
+        return 1                
     
     def splitPdf(self,fullpath, step=10):
         filename = self.getPdfFilepath(fullpath)
