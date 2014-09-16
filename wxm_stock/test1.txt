@@ -1,0 +1,1849 @@
+
+<!--[if !IE]> This has NOT been served from cache <![endif]-->
+<!--[if !IE]> Request served from apache server: S264630NJ2XSF08 <![endif]-->
+<!--[if !IE]> token: e708e892-404e-49bd-a9cf-5e3ec537373e <![endif]-->
+<!--[if !IE]> App Server /S264630NJ2XSF52/ <![endif]-->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script language="javascript">
+        if (location.href.indexOf('/commentsChild?') == -1){
+                document.write("<scr"+"ipt type='text/javascript' src='//nexus.ensighten.com/reuters/Bootstrap.js'></scr"+"ipt>");
+        }
+</script>
+
+<title>Fiyta Holdings Ltd (000026.SZ)  Financial Statement | Reuters.com</title>
+		<meta id="MetaDescription" name="description" content="Connect to the most current information on stocks and bonds on Reuters.com. What you need to know now about NYSE, Dow Jones, S&P, and Nasdaq at Reuters.com"></meta>
+		<meta id="MetaKeywords" name="keywords" content="NYSE, Nasdaq, S&P, trading, US market, Asian market, Dow Jones, FTSE, DJIA, DAX, stocks, bonds, shares">
+
+
+<meta name="parsely-page" content='{"type": "sectionpage","tags": "[NYSE, Nasdaq, S&P, trading, US market, Asian market, Dow Jones, FTSE, DJIA, DAX, stocks, bonds, shares]", "title": "", "link": "", "image_url": "", "post_id": "", "pub_date": "", "section": "", "author": "" }' >
+			<link rel="shortcut icon" href="http://s3.reutersmedia.net/resources/images/favicon.ico" />
+  <link rel="icon" href="http://s3.reutersmedia.net/resources/images/favicon.ico"  />
+	<link href="http://s3.reutersmedia.net/resources_v2/css/rcom-main.css" rel="stylesheet" />
+<script src="http://s3.reutersmedia.net/resources_v2/js/libraries/yui_2_7_0/yahoo/yahoo-min.js" type="text/javascript"></script>
+	<script src="http://s4.reutersmedia.net/resources_v2/js/libraries/yui_2_7_0/event/event-min.js" type="text/javascript"></script>
+	<script src="http://s3.reutersmedia.net/resources_v2/js/libraries/yui_2_7_0/dom/dom-min.js" type="text/javascript"></script>
+	<script src="http://s4.reutersmedia.net/resources_v2/js/libraries/yui_2_7_0/yahoo-dom-event/yahoo-dom-event.js" type="text/javascript"></script>
+	<script src="http://s3.reutersmedia.net/resources_v2/js/libraries/yui_2_7_0/animation/animation-min.js" type="text/javascript"></script>
+	<script src="http://s3.reutersmedia.net/resources_v2/js/libraries/yui_2_7_0/connection/connection-min.js" type="text/javascript"></script>
+	<script src="http://s2.reutersmedia.net/resources_v2/js/libraries/yui_2_7_0/cookie/cookie-min.js" type="text/javascript"></script>
+<script src="http://s3.reutersmedia.net/resources_v2/js/libraries/jquery-1.6.1.min.js" type="text/javascript"></script>
+<script src="http://s3.reutersmedia.net/resources_v2/js/rcom-main.js"></script>
+	<script src="http://s4.reutersmedia.net/resources_v2/js/rcom-agent.js"></script>
+	<script src="http://s4.reutersmedia.net/resources_v2/js/extensions.js"></script>
+	<script src="http://s4.reutersmedia.net/resources_v2/js/rcom-ads.js"></script>
+	<script src="http://s4.reutersmedia.net/resources_v2/js/rcom-wt-mlt.js"></script>
+	<script src="http://s2.reutersmedia.net/resources_v2/js/rcom-pid.js"></script>
+	<script src="http://s3.reutersmedia.net/resources_v2/js/rcom-geoIP.js"></script>
+<script type="text/javascript" src="http://s4.reutersmedia.net/resources_v2/js/rcom-tns.js"></script>
+<link href="/resources_v2/css/rcom-companyOverview.css" rel="stylesheet" />
+<link href="/resources_v2/css/rcom-section.css" rel="stylesheet" />
+<script language="javascript" src="/resources_v2/js/rcom-section.js"></script>
+
+<style type="text/css">
+.walledCallout {
+	background: #FFFFE1 url("/resources_v2/images/icon_lock.gif") 10px center no-repeat;
+	padding: 18px 8px 18px 33px;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	margin: 10px 0 5px 0;
+	font-size: 12px;
+	font-weight: bold;
+}
+</style>
+
+<script language="javascript">
+
+Reuters.utils.showFinancialsCallout = function() {
+	var t = '';
+	var edition = 'us';
+	if (Reuters.info.edition != "BETAUS") {
+		edition = Reuters.info.edition.toLowerCase();
+	}
+	if (Reuters.utils.isLoggedIn() == false) {
+		t = '<a href="https://commerce.' + edition + '.reuters.com/login/pages/login/portfolioLogin.do?go=' + encodeURIComponent(location.href.replace("incomeStatement", "incomeStatement/detail")) + '">Click here for full Financial Statement history</a>';
+		t += ' (<a href="https://commerce.' + edition + '.reuters.com/registration/pages/registration/begin.do?registrationLoginUrl=/login/pages/login/login.do?go=' + encodeURIComponent(location.href.replace("incomeStatement", "incomeStatement/detail")) + '">Registration</a> or  <a href="https://commerce.' + edition + '.reuters.com/login/pages/login/portfolioLogin.do?go=' + encodeURIComponent(location.href.replace("incomeStatement", "incomeStatement/detail")) + '">Login</a> required)';
+	} else {
+		t = '<a href="' + location.href.replace("incomeStatement", "incomeStatement/detail") + '">Click here for full Financial Statement history</a>';
+	}
+	var d1 = document.createElement("div");
+	d1.className = 'walledCallout';
+	d1.innerHTML = t;
+	var d2 = document.createElement("div");
+	d2.className = 'walledCallout';
+	d2.innerHTML = t;
+	var tbls = document.getElementsByTagName("table");
+	for (i=0; i<tbls.length; i++) {
+		if (tbls[i].className.search("financials") != -1) {
+			tbls[i].parentNode.insertBefore(d1, tbls[i]);
+			tbls[i].parentNode.appendChild(d2);
+			break;
+		}
+	}
+}
+
+Reuters.utils.addLoadEvent(Reuters.utils.showFinancialsCallout);
+
+</script><script type="text/javascript" type="text/javascript" src="http://s2.reutersmedia.net/resources_v2/js/refresh.js" ></script>
+	<noscript><meta http-equiv="refresh" content="720;url=/home"></noscript>
+
+
+</head>
+<body>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W9SLGS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>if (location.href.indexOf('/commentsChild?') == -1){ (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})
+(window,document,'script','dataLayer','GTM-W9SLGS'); }</script>
+<!-- End Google Tag Manager -->
+
+<script>
+var revop_wtfpc = YAHOO.util.Cookie.get("WT_FPC"); // read webtrends cookie
+if (revop_wtfpc==null) {
+	var u = ";U=NC;";
+	}
+else
+	{
+	var u = ";U="+revop_wtfpc+";";
+	}
+</script> <!-- see if snrd cookie was set by trigger page -->
+<script>
+var srnd = YAHOO.util.Cookie.get("srnd_keyword");
+var srnd_sequence = YAHOO.util.Cookie.get("srnd_sequence");
+if (srnd!=null && srnd!="")
+  {
+         var srnd="srnd="+srnd+";srnd_sequence="+srnd_sequence+";";
+  }
+
+</script>
+
+
+<link href="http://s4.reutersmedia.net/resources_v2/css/rcom-masthead-nav-new.css" rel="stylesheet" />
+<script src="/assets/info" type="text/javascript"></script>
+<script type="text/javascript">
+var currentUsedEdition = 'BETAUS';
+</script>
+
+<div id="header">
+<a name="top" id="top" style="position: absolute;overflow:hidden;">&nbsp;</a>
+	<div id="marketsHeader"></div>
+    <div id="market-cont"><div id="md-toggle"></div></div>
+	<div id="masthead">
+		<div class="mast-strip">
+		<div id="logo"><a id="logoLink" href="/" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'logo','label':''});" ><img src="http://s3.reutersmedia.net/resources_v2/images/masthead-logo.gif" alt="Reuters" border="0" /></a></div>
+
+	<div id="editionsTop" class="panel editions">
+			<ul id="editionSwitchTop" class="editionSwitch">
+				<li>
+					<div class="currentEditionTitle">Edition:</div>
+					<div class="currentEdition">U.S.</div>
+					<div class="editionArrow"></div>
+					<ul>
+                    	<li><a href="http://af.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});" >Africa</a></li>
+						<li><a href="http://ara.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});" >Arabic</a></li>
+						<li><a href="http://ar.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});" >Argentina</a></li>
+						<li><a href="http://br.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});" >Brazil</a></li>
+						<li><a href="http://ca.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});" >Canada</a></li>
+						<li><a href="http://cn.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">China</a></li>
+						<li><a href="http://fr.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">France</a></li>
+						<li><a href="http://de.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">Germany</a></li>
+<li><a href="http://in.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">India</a></li>
+<li><a href="http://it.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">Italy</a></li>
+						<li><a href="http://jp.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">Japan</a></li>
+						<li><a href="http://lta.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">Latin America</a></li>
+						<li><a href="http://mx.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">Mexico</a></li>
+				    <li><a href="http://ru.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">Russia</a></li>
+						<li><a href="http://es.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">Spain</a></li>
+<li><a href="http://uk.reuters.com" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'edition switcher','label':$(this).attr('href')});">United Kingdom</a></li>
+</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="search" class="panel">
+		<div id="searchbox">
+			<form id="searchForm" name="searchbox" method="get" action="/search" autocomplete="off">
+				<input id="searchfield" name="blob" type="text" value="Search News & Quotes" size="30"
+					onfocus="var strSearchValue = document.forms['searchbox'].blob.value;if(strSearchValue.trim() == 'Search News & Quotes'){document.forms['searchbox'].blob.value = '';}"
+					onblur="var strSearchValue = document.forms['searchbox'].blob.value;if(strSearchValue.trim() == ''){document.forms['searchbox'].blob.value = 'Search News & Quotes';}"
+					onkeypress="if(event.keyCode == 13) {document.forms['searchbox'].submit();return false;}" maxlength="128"
+				/>
+				<input type="submit" id="searchbuttonNav" onclick="return Reuters.utils.submitSearch();" value="" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'search','label': document.forms['searchbox'].blob.value});" >
+			</form>
+		</div>
+	</div>
+		<div id="utilities" class="panel"></div>
+	</div>
+	</div>
+
+	<div id="dd-navigation">
+    	<div id="nav-strip">
+            <ul>
+                <li class="nav-item no-subnav" id="nav-item_1"><a href="/home" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Home</span></a>
+                    </li>
+                <li class="nav-item" id="nav-item_2"><a href="/finance" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Business</span></a>
+                    <div class="subnav " id="subnav_2">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/finance" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Business Home</a></li>
+                            <li class=""><a href="/finance/economy" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Economy</a></li>
+                            <li class=""><a href="http://newsandinsight.thomsonreuters.com/Legal/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Legal</a></li>
+                            <li class=""><a href="/finance/deals" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Deals</a></li>
+                            <li class=""><a href="/news/video?videoChannel=5" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Business Video</a></li>
+                            <li class=""><a href="/subjects/aerospace-and-defense" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Aerospace & Defense</a></li>
+                            <li class=""><a href="/subjects/banks" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Financial Institutions </a></li>
+                            <li class=""><a href="/subjects/autos" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Autos</a></li>
+                            <li class="lastChild "><a href="/finance/summits" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Reuters Summits</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item active" id="nav-item_3"><a href="/finance/markets" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Markets</span></a>
+                    <div class="subnav double" id="subnav_3">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/finance/markets" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Markets Home</a></li>
+                            <li class=""><a href="/finance/markets/us" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >U.S. Markets</a></li>
+                            <li class=""><a href="/finance/markets/europe" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >European Markets</a></li>
+                            <li class=""><a href="/finance/markets/asia" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Asian Markets</a></li>
+                            <li class=""><a href="/finance/global-market-data" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Global Market Data</a></li>
+                            <li class=""><a href="/finance/markets/indices" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Indices</a></li>
+                            <li class=""><a href="/finance/stocks" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Stocks</a></li>
+                            <li class="lastChild "><a href="/finance/bonds" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Bonds</a></li>
+                            </ul><ul class="two"><li class=""><a href="/finance/currencies" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Currencies</a></li>
+                            <li class=""><a href="/finance/commodities" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Comm & Energy</a></li>
+                            <li class=""><a href="/finance/futures" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Futures</a></li>
+                            <li class=""><a href="/finance/funds" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Funds</a></li>
+                            <li class=""><a href="http://www.pehub.com/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >peHUB</a></li>
+                            <li class=""><a href="/finance/EarningsUS" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Earnings</a></li>
+                            <li class="lastChild "><a href="/finance/markets/dividends" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Dividends</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_4"><a href="/news/world" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">World</span></a>
+                    <div class="subnav double" id="subnav_4">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/news/world" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >World Home</a></li>
+                            <li class=""><a href="/news/us" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >U.S.</a></li>
+                            <li class=""><a href="/subjects/specialReports" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Special Reports</a></li>
+                            <li class=""><a href="http://www.reuters.com/investigates" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Reuters Investigates</a></li>
+                            <li class=""><a href="/subjects/euro-zone" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Euro Zone</a></li>
+                            <li class=""><a href="/subjects/middle-east" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Middle East</a></li>
+                            <li class="lastChild "><a href="/places/china" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >China</a></li>
+                            </ul><ul class="two"><li class=""><a href="/places/japan" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Japan</a></li>
+                            <li class=""><a href="/places/mexico" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Mexico</a></li>
+                            <li class=""><a href="/places/brazil" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Brazil</a></li>
+                            <li class=""><a href="/places/africa" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Africa</a></li>
+                            <li class=""><a href="/places/russia" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Russia</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/india" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >India Insight</a></li>
+                            <li class="lastChild "><a href="/news/video?videoChannel=117760" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >World Video</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_5"><a href="/politics" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Politics</span></a>
+                    <div class="subnav " id="subnav_5">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/politics" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Politics Home</a></li>
+                            <li class=""><a href="/subjects/supreme-court" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Supreme Court</a></li>
+                            <li class="lastChild "><a href="/news/video?videoChannel=1003" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Politics Video</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_6"><a href="/news/technology" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Tech</span></a>
+                    <div class="subnav " id="subnav_6">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/news/technology" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Technology Home</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/mediafile" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >MediaFile</a></li>
+                            <li class=""><a href="/news/science" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Science</a></li>
+                            <li class=""><a href="/news/video?videoChannel=6" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Tech Video</a></li>
+                            <li class="lastChild "><a href="/bizfinance/technology/Top100Innovators" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Top 100 Global Innovators</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_7"><a href="http://blogs.reuters.com/us/" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Opinion</span></a>
+                    <div class="subnav double" id="subnav_7">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="http://blogs.reuters.com/us/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Opinion Home</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/ian-bremmer/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Ian Bremmer</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/stories-id-like-to-see/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Steven Brill</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/hugo-dixon/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Hugo Dixon</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/alison-frankel/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Alison Frankel</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/jamesrgaines/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Jim Gaines</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/edward-hadas/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Edward Hadas</a></li>
+                            <li class="lastChild "><a href="http://blogs.reuters.com/anatole-kaletsky" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Anatole Kaletsky</a></li>
+                            </ul><ul class="two"><li class=""><a href="http://blogs.reuters.com/mark-leonard" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Mark Leonard</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/john-lloyd" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >John Lloyd</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/david-rohde" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >David Rohde</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/reihan-salam/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Reihan Salam</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/jackshafer" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Jack Shafer</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/nicholas-wapshott/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Nicholas Wapshott</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/great-debate" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >The Great Debate</a></li>
+                            <li class="lastChild "><a href="http://blogs.reuters.com/data-dive/ " target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Data Dive</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_8"><a href="http://blogs.reuters.com/breakingviews/" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Breakingviews</span></a>
+                    <div class="subnav " id="subnav_8">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="http://blogs.reuters.com/breakingviews/category/equities/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Equities</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/breakingviews/category/credit" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Credit</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/breakingviews/category/private-equity/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Private Equity</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/breakingviews/category/m-a/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >M&A</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/breakingviews/category/macro-markets/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Macro & Markets</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/breakingviews/category/politics/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Politics</a></li>
+                            <li class="lastChild "><a href="/video/breakingviews" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Breakingviews Video</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_9"><a href="/finance/personal-finance" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Money</span></a>
+                    <div class="subnav double" id="subnav_9">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/finance/personal-finance" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Money Home</a></li>
+                            <li class=""><a href="/subjects/us-lipper-awards" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Lipper Awards</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/globalinvesting" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Global Investing</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/unstructuredfinance/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Unstructured Finance</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/linda-stern/ " target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Linda Stern</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/mark-miller/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Mark Miller</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/john-wasik/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >John Wasik</a></li>
+                            <li class="lastChild "><a href="http://blogs.reuters.com/jim-saft/" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >James Saft</a></li>
+                            </ul><ul class="two"><li class=""><a href="https://commerce.us.reuters.com/purchase/default.do" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Analyst Research</a></li>
+                            <li class=""><a href="http://alerts.us.reuters.com/US/company.asp" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Alerts</a></li>
+                            <li class=""><a href="http://portfolio.us.reuters.com/US/watchlist/create.asp" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Watchlist</a></li>
+                            <li class=""><a href="http://portfolio.us.reuters.com/US/public/index.asp" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Portfolio</a></li>
+                            <li class=""><a href="http://stockscreener.us.reuters.com/Stock/US/Index?quickscreen=gaarp" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Stock Screener</a></li>
+                            <li class=""><a href="http://funds.us.reuters.com/US/screener/screener.asp" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Fund Screener</a></li>
+                            <li class="lastChild "><a href="/news/video?videoChannel=303" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Personal Finance Video</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_10"><a href="/news/lifestyle" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Life</span></a>
+                    <div class="subnav " id="subnav_10">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/news/health" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Health</a></li>
+                            <li class=""><a href="/news/sports" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Sports</a></li>
+                            <li class=""><a href="http://brazil-soccer.reuters.com" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >World Cup</a></li>
+                            <li class=""><a href="/news/entertainment/arts" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Arts</a></li>
+                            <li class=""><a href="/news/entertainment" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Entertainment</a></li>
+                            <li class=""><a href="/news/oddlyEnough" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Oddly Enough</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/faithworld" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Faithworld</a></li>
+                            <li class="lastChild "><a href="/news/video?videoChannel=1004" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Lifestyle Video</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item" id="nav-item_11"><a href="/news/pictures" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Pictures</span></a>
+                    <div class="subnav " id="subnav_11">
+                       
+                        <div class="subnav-inner">
+                        <ul class="one">
+                       
+                            <li class=""><a href="/news/pictures" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Pictures Home</a></li>
+                            <li class=""><a href="http://blogs.reuters.com/photo" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Reuters Photographers</a></li>
+                            <li class="lastChild "><a href="http://blogs.reuters.com/fullfocus" target="_top" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sub-sections','label':$(this).attr('href')});" >Full Focus</a></li>
+                            </ul>
+                      
+                       </div>
+                       
+                       </div>
+
+                       </li>
+                <li class="nav-item no-subnav" id="nav-item_12"><a href="/video" onmousedown="dataLayer.push({'event':'click-event','category':'navigation','action':'sections','label':$(this).attr('href')});" ><span class="primary-link">Video</span></a>
+                    </li>
+                </ul>
+       	</div>
+    </div>
+</div>
+<script src="http://s2.reutersmedia.net/resources_v2/js/libraries/jquery.bgiframe.js" type="text/javascript"></script>
+<script src="http://s4.reutersmedia.net/resources_v2/js/rcom-nav.js" type="text/javascript"></script>
+
+<div id="content"><div class="section gridlined8">
+	<div class="sectionContent">
+<div id="sectionHeader"><style type="text/css">.quoteBox div div.value {font-size:16px;}</style><div id="sectionTitle">
+		<h1><span class="prefix">Income Statements:</span> Fiyta Holdings Ltd (000026.SZ)</h1>
+		</div>
+
+<script language="javascript">Reuters.tns.currentCompany = '000026.SZ';</script>
+<div id="sectionHeaderTopics"><div id="headerTopics">
+
+<div class="sectionRelatedTopics">
+
+
+
+	<ul><h3>Related Topics: </h3> 
+
+	<li><a href="/finance/stocks">Stocks</a></li><li><a href="http://stockscreener.us.reuters.com/Stock/US/Index?quickscreen=gaarp">Stock Screener</a></li><li><a href="/sectors/industries/overview?industryCode=84">Apparel & Accessories</a></li></ul>
+
+</div>
+
+
+
+	</div>
+
+</div><div>
+<script type="text/javascript">
+    TR.insertBussUnit ("http:\/\/ad.doubleclick.net\/N4735792\/adj\/us.reuters;type=investingchannel;sz=940x90");
+</script>
+<div class="linebreak"></div>
+</div><div class="linebreak"></div>
+	
+
+<div class="linebreak"></div>
+	<div id="companyOverviewTabSection">
+<div id="companyOverviewTabs">
+	<ul>
+		<li><a href="/finance/stocks/overview?symbol=000026.SZ">Overview</a></li>
+		<li><a href="/finance/stocks/companyNews?symbol=000026.SZ">News</a></li>
+		<li><a href="/finance/stocks/000026.SZ/key-developments">Key Developments</a></li>
+		<li><a href="/finance/stocks/companyOfficers?symbol=000026.SZ">People</a></li>
+		<li><a href="/finance/stocks/chart?symbol=000026.SZ">Charts</a></li>
+		<li class="current"><a href="/finance/stocks/financialHighlights?symbol=000026.SZ">Financials</a></li>
+		<li><a href="/finance/stocks/analyst?symbol=000026.SZ">Analysts</a></li>
+		<li><a href="/finance/stocks/analystResearch?symbol=000026.SZ">Research</a></li><li><a href="/finance/stocks/social-pulse?symbol=000026.SZ">Pulse</a></li></ul>
+</div>
+</div>
+
+<div class="module">
+		
+		<div class="moduleBody">
+		<div id="headerQuoteContainer">
+
+		<div class="sectionQuote nasdaqChange">
+
+			<div class="sectionQuoteDetail">
+
+				<span class="nasdaqChangeHeader">000026.SZ on Shenzhen Stock Exchange</span>
+
+				<br class="clear"><br class="clear">
+
+				<span style="font-size: 23px;">
+
+				9.47</span><span>CNY</span><br />
+
+				<span class="nasdaqChangeTime">16 Sep 2014</span>
+
+			</div>
+
+		</div>
+
+		<div class="sectionQuote priceChange">
+
+			<div class="sectionQuoteDetail">
+
+				<span class="priceDetail">Price Change	(% chg)</span>
+
+				<br class="clear"><br class="clear">
+
+				<span class="valueContent"><span class="neg">
+
+					￥-0.11</span>
+
+				<span class="valueContentPercent"><span class="neg">(-1.15%)</span></span>
+
+				</div>
+
+		</div>
+
+		<div class="sectionQuote">
+
+			<div class="sectionQuoteDetailTop">
+
+				<span>Prev Close</span>
+
+				<br class="clear">
+
+				<span>￥9.58</span>
+
+			</div>
+
+			<div class="sectionQuoteDetail">
+
+				<span>Open</span>
+
+				<br class="clear">
+
+				<span>￥9.57</span>
+
+			</div>
+
+		</div>
+
+		<div class="sectionQuote">
+
+			<div class="sectionQuoteDetailTop">
+
+				<span>Day's High</span>
+
+				<br class="clear">
+
+				<span class="sectionQuoteDetailHigh">￥9.96</span>
+
+			</div>
+
+			<div class="sectionQuoteDetail">
+
+				<span>Day's Low</span>
+
+				<br class="clear">
+
+				<span class="sectionQuoteDetailLow">￥9.42</span>
+
+			</div>
+
+		</div>
+
+		<div class="sectionQuote">
+
+			<div class="sectionQuoteDetailTop">
+
+				<span>Volume</span>
+
+				<br class="clear">
+
+				<span>10,589,563</span>
+
+			</div>
+
+			<div class="sectionQuoteDetail">
+
+				<span>Avg. Vol</span>
+
+				<br class="clear">
+
+				<span>5,077,519</span>
+
+			</div>
+
+		</div>
+
+		<div class="sectionQuote">
+
+			<div class="sectionQuoteDetailTop">
+
+				<span>52-wk High</span>
+
+				<br class="clear">
+
+				<span class="sectionQuoteDetailHigh">￥9.96</span>
+
+			</div>
+
+			<div class="sectionQuoteDetail">
+
+				<span>52-wk Low</span>
+
+				<br class="clear">
+
+				<span class="sectionQuoteDetailLow">￥6.53</span>
+
+			</div>
+
+		</div>
+
+		<br class="clear">
+
+
+
+	  </div>
+
+</div>
+		</div>
+		</div><div class="sectionColumns">
+
+<div class="column1 gridPanel grid8">
+<link href="http://s2.reutersmedia.net/resources_v2/css/rcom-stockSearch.css" rel="stylesheet" />
+
+
+
+<div class="module investingControlsContainer">
+
+<div class="moduleBody investingControls">
+
+    <script language="javascript" type="text/javascript">
+
+    function OnClickGo(inputs, symbol) {
+
+  	  try {
+
+			if(inputs.length) {
+
+	  	        for(var i = 0;i < inputs.length;i++) {
+
+	  	          if(inputs[i].checked) {
+
+		        	var url = inputs[i].value;
+
+		            url = url.replace("[ric]", symbol);
+
+		            document.location.href = url;
+
+		            break;
+
+		          }
+
+		        }
+
+			} else {
+
+				var url = inputs.value;
+
+				url = url.replace("[ric]", symbol);
+
+				document.location.href = url;
+
+			}
+
+	      }catch(e){}
+
+    }
+
+    function OnStockSearchSubmit(sId) {
+
+      var stockSearch = 'stockSearch_'+sId;
+
+      var stockSearchSymbol = 'stockSearchSymbol_'+sId;
+
+      var stockSearchType = 'stockSearchType_'+sId;
+
+      try {
+
+        var symbol = document.getElementById(stockSearchSymbol).value;
+
+        if(symbol === "" || symbol === "Enter company name or Symbol") {
+
+			return false;
+
+        } else {
+
+        	eval('OnClickGo(document.forms["'+stockSearch+'"].'+stockSearchType+', encodeURIComponent(symbol))');
+
+        }
+
+      }catch(e){}
+
+    }
+
+    </script>
+
+
+
+<form name="stockSearch_342" >
+
+	<div class="stockSearchContainer">
+
+		<div class="searchInput">
+
+				<input type="hidden" name="stockSearchType_342" value="/finance/stocks/lookup?searchType=any&search=[ric]" checked="checked" />
+
+				<span class="uppercase bold label">Search Stocks</span>
+
+		</div>
+
+		<div class="searchInput2">
+
+			<div class="searchbox">
+
+	    		<input type="text" class="searchfield" id="stockSearchSymbol_342" name="stockSearchSymbol" value="Enter company name or Symbol" />
+
+	    		<input type="image""class="searchbutton" src="/resources_v2/images/btn_header_go.gif" id="btnStockSearchSubmit_342"/>
+
+	    	</div>
+
+    	</div>
+
+	</div>
+
+
+
+</form>
+
+</div>
+
+</div>
+
+
+
+<script language="javascript" type="text/javascript">
+
+
+
+			function searchSubmit_342() {
+
+			OnStockSearchSubmit('342');
+
+			return false;
+
+		}
+
+		Reuters.utils.enableSearchBox('stockSearchSymbol_342', 'Enter company name or Symbol', searchSubmit_342);
+
+		document.getElementById('btnStockSearchSubmit_342').onclick = searchSubmit_342;
+
+</script><div class="module">
+		
+		<div class="moduleBody">
+		<style type="text/css">
+
+DIV.modTitle { clear:both;font-weight:bold;font-size:11px; }
+
+DIV.modTitle SPAN.finFields { font-weight:normal; }
+
+DIV.modTitle SPAN.toggle { font-weight:normal;cursor:pointer;cursor:hand; }
+
+DIV.modTitle DIV.left { float:left; }
+
+DIV.modTitle DIV.right { float:right; }
+
+
+
+BR.crystal { clear:both;line-height:1px; }
+
+
+
+TABLE.financials { font-size:11px; }
+
+TABLE.financials TH { font-weight:bold;font-size:10px;text-align:right;vertical-align:top; }
+
+TABLE.financials TH.rh { font-weight:normal;text-align:left;vertical-align:bottom; }
+
+TABLE.financials TH .units { font-weight:normal; }
+
+TABLE.financials TH .period { font-weight:normal;color:red; }
+
+TABLE.financials TD.plus {  }
+
+TABLE.financials TD.minus { color:#aa0000; }
+
+TABLE.financials TR.total,
+
+TABLE.financials TR.total td { background:#d2dded;font-weight:bold; }
+
+TABLE.financials TR.total TD.rh { background:#d2dded; }
+
+</style>
+
+
+
+<div class="modTitle">
+
+    <div class="left" title="A68F0: Differentiates, Direct">
+
+        Annual&#160;Income Statement</div>
+
+    <div class="right">
+
+        <form name="frmStatement" method="get">
+
+            View:
+
+            <span class="finFields">
+
+				    <input type="radio" name="perType" onclick="frmStatement.submit();" checked="checked" value="ANN" />Annual<input type="radio" name="perType" onclick="frmStatement.submit();"  value="INT" />Interim<input type="hidden" name="symbol" value="000026.SZ" />
+
+            </span>
+
+        </form>
+
+    </div>
+
+    <br class="crystal"/>
+
+</div>
+
+
+
+<table class="dataTable financials" cellspacing="1" cellpadding="0" width="100%">
+
+      <tr>
+
+        <th class="rh">
+
+            <span class="units">
+
+            In Millions of Renminbi<br/>
+
+            (except for per share items)<br/>
+
+            </span>
+
+        </th>
+
+        <th class="data">
+
+            2013<br/>
+
+            2013-12-31<br/>
+
+            <span class="period">
+
+            
+
+            Period&#160;Length<br/>
+
+            12&#160;Months</span>
+
+          </th>
+
+          </tr>
+
+
+
+      <tr class="sum stripe ">
+
+            <td class="rh">Revenue</td>
+
+            <td class="data plus">3,103.5</td>
+
+              </tr>
+
+          <tr class="sum  ">
+
+            <td class="rh">Other Revenue, Total</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Total Revenue</td>
+
+            <td class="data plus">3,103.5</td>
+
+              </tr>
+
+          <tr class="sum  ">
+
+            <td class="rh">Cost of Revenue, Total</td>
+
+            <td class="data plus">1,997.4</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Gross Profit</td>
+
+            <td class="data plus">1,106.1</td>
+
+              </tr>
+
+          <tr class="sum  ">
+
+            <td class="rh">Selling/General/Admin. Expenses, Total</td>
+
+            <td class="data plus">734.0</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Research & Development</td>
+
+            <td class="data plus">28.6</td>
+
+              </tr>
+
+          <tr class="sum  ">
+
+            <td class="rh">Depreciation/Amortization</td>
+
+            <td class="data plus">7.6</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Interest Expense, Net - Operating</td>
+
+            <td class="data plus">88.5</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Interest/Investment Income - Operating</td>
+
+            <td class="data minus">(3.9)</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Interest Expense(Income) - Net Operating</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="sum  ">
+
+            <td class="rh">Unusual Expense (Income)</td>
+
+            <td class="data plus">0.0</td>
+
+              </tr>
+
+          <tr class="sum stripe ">
+
+            <td class="rh">Other Operating Expenses, Total</td>
+
+            <td class="data plus">103.6</td>
+
+              </tr>
+
+          <tr class="both  total">
+
+            <td class="rh">Total Operating Expense</td>
+
+            <td class="data plus">2,955.9</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Operating Income</td>
+
+            <td class="data plus">147.6</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Interest Expense, Net Non-Operating</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Interest/Invest Income -  Non-Operating</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Interest Income(Exp), Net Non-Operating</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Gain (Loss) on Sale of Assets</td>
+
+            <td class="data plus">0.4</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Other, Net</td>
+
+            <td class="data plus">3.5</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Net Income Before Taxes</td>
+
+            <td class="data plus">151.5</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Provision for Income Taxes</td>
+
+            <td class="data plus">21.4</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Net Income After Taxes</td>
+
+            <td class="data plus">130.1</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Minority Interest</td>
+
+            <td class="data plus">0.0</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Equity In Affiliates</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">U.S. GAAP Adjustment</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Net Income Before Extra. Items</td>
+
+            <td class="data plus">130.1</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Accounting Change</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Discontinued Operations</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Extraordinary Item</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Tax on Extraordinary Items</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  total">
+
+            <td class="rh">Net Income</td>
+
+            <td class="data plus">130.1</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Preferred Dividends</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">General Partners' Distributions</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Miscellaneous Earnings Adjustment</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Pro Forma Adjustment</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Interest Adjustment - Primary EPS</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  total">
+
+            <td class="rh">Income Available to Com Excl ExtraOrd</td>
+
+            <td class="data plus">130.1</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Income Available to Com Incl ExtraOrd</td>
+
+            <td class="data plus">130.1</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Basic Weighted Average Shares</td>
+
+            <td class="data plus">392.77</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Basic EPS Excluding Extraordinary Items</td>
+
+            <td class="data plus">0.331</td>
+
+              </tr>
+
+          <tr class="both  total">
+
+            <td class="rh">Basic EPS Including Extraordinary Items</td>
+
+            <td class="data plus">0.331</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Dilution Adjustment</td>
+
+            <td class="data plus">--</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Diluted Weighted Average Shares</td>
+
+            <td class="data plus">392.77</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Diluted EPS Excluding ExtraOrd Items</td>
+
+            <td class="data plus">0.331</td>
+
+              </tr>
+
+          <tr class="both  total">
+
+            <td class="rh">Diluted EPS Including ExtraOrd Items</td>
+
+            <td class="data plus">0.331</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">DPS - Common Stock Primary Issue</td>
+
+            <td class="data plus">0.100</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Gross Dividends - Common Stock</td>
+
+            <td class="data plus">39.3</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Total Special Items</td>
+
+            <td class="data minus">(0.4)</td>
+
+              </tr>
+
+          <tr class="both  total">
+
+            <td class="rh">Normalized Income Before Taxes</td>
+
+            <td class="data plus">151.1</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Effect of Special Items on Income Taxes</td>
+
+            <td class="data minus">(0.1)</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Inc Tax Ex Impact of Sp Items</td>
+
+            <td class="data plus">21.3</td>
+
+              </tr>
+
+          <tr class="both stripe total">
+
+            <td class="rh">Normalized Income After Taxes</td>
+
+            <td class="data plus">129.8</td>
+
+              </tr>
+
+          <tr class="both  total">
+
+            <td class="rh">Normalized Inc. Avail to Com.</td>
+
+            <td class="data plus">129.8</td>
+
+              </tr>
+
+          <tr class="both stripe ">
+
+            <td class="rh">Basic Normalized EPS</td>
+
+            <td class="data plus">0.330</td>
+
+              </tr>
+
+          <tr class="both  ">
+
+            <td class="rh">Diluted Normalized EPS</td>
+
+            <td class="data plus">0.330</td>
+
+              </tr>
+
+          </table>
+
+
+
+    </div>
+		</div>
+		</div>
+
+<div class="column2 gridPanel grid4">
+
+
+
+
+<div class="ad" id="mpu">
+
+		<script language="javascript" type="text/javascript">
+
+		  var adsrc = 'us.reuters/bizfinance/markets/stocks;' + 'type=mpu;sz=300x250;tile=2;' + '';
+		  adsrc = TR.createDFPUrl(adsrc); 
+		  if ( typeof(AD_TRACKER) != 'undefined' ) {
+		     adsrc = AD_TRACKER.processAdSrcType(adsrc);
+		  }
+
+		  
+		  if ((typeof (hideAllAds) == 'undefined' || hideAllAds == false) && (typeof (AD_TRACKER) == 'undefined' || AD_TRACKER.isAdHidden('mpu') == false) &&
+		      (typeof (hideAd_10034393) == 'undefined' || hideAd_10034393 == false)) {
+              if (typeof (TR) !== "undefined") {
+                 TR.writeDFPURL("http://ad.doubleclick.net/N4735792/adj/" + adsrc);
+              }
+		  }
+
+		  </script>
+
+		<noscript>
+		    <a href="http://ad.doubleclick.net/N4735792/jump/us.reuters/bizfinance/markets/stocks;type=mpu;sz=300x250;tile=2;ord=4695?" target="_blank">
+		      <img src="http://ad.doubleclick.net/N4735792/ad/us.reuters/bizfinance/markets/stocks;type=mpu;sz=300x250;tile=2;ord=4695?" width="300" height="250" border="0" alt="">
+		    </a>
+		</noscript>
+
+		</div>
+
+		<div class="module">
+		
+		<div class="moduleHeader">
+				<h3>
+					<a href="/finance/stocks/companyNews?symbol=000026.SZ">
+					Fiyta Holdings Ltd News</a>
+					</h3>
+			</div>
+		<div class="moduleBody">
+		<div class="moreLink">
+				<a href="/finance/stocks/companyNews?symbol=000026.SZ">&#187; More 000026.SZ News</a></div></div>
+		</div>
+		</div>
+
+<div class="column3">
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="section">
+	<div class="sectionContent">
+<div class="sectionColumns">
+
+<div class="gridPanel grid12">
+<div id="footerTopicTarget"></div><div id="footerTopics">
+
+<div class="sectionRelatedTopics">
+
+
+
+	<ul><h3>Related Topics: </h3> 
+
+	<li><a href="/finance/stocks">Stocks</a></li><li><a href="http://stockscreener.us.reuters.com/Stock/US/Index?quickscreen=gaarp">Stock Screener</a></li><li><a href="/sectors/industries/overview?industryCode=84">Apparel & Accessories</a></li></ul>
+
+</div>
+
+
+
+	</div>
+
+<link href="http://s2.reutersmedia.net/resources_v2/css/rcom-stockSearch.css" rel="stylesheet" />
+
+
+
+<div class="module investingControlsContainer">
+
+<div class="moduleBody investingControls">
+
+    <script language="javascript" type="text/javascript">
+
+    function OnClickGo(inputs, symbol) {
+
+  	  try {
+
+			if(inputs.length) {
+
+	  	        for(var i = 0;i < inputs.length;i++) {
+
+	  	          if(inputs[i].checked) {
+
+		        	var url = inputs[i].value;
+
+		            url = url.replace("[ric]", symbol);
+
+		            document.location.href = url;
+
+		            break;
+
+		          }
+
+		        }
+
+			} else {
+
+				var url = inputs.value;
+
+				url = url.replace("[ric]", symbol);
+
+				document.location.href = url;
+
+			}
+
+	      }catch(e){}
+
+    }
+
+    function OnStockSearchSubmit(sId) {
+
+      var stockSearch = 'stockSearch_'+sId;
+
+      var stockSearchSymbol = 'stockSearchSymbol_'+sId;
+
+      var stockSearchType = 'stockSearchType_'+sId;
+
+      try {
+
+        var symbol = document.getElementById(stockSearchSymbol).value;
+
+        if(symbol === "" || symbol === "Enter company name or Symbol") {
+
+			return false;
+
+        } else {
+
+        	eval('OnClickGo(document.forms["'+stockSearch+'"].'+stockSearchType+', encodeURIComponent(symbol))');
+
+        }
+
+      }catch(e){}
+
+    }
+
+    </script>
+
+
+
+<form name="stockSearch_993" >
+
+	<div class="stockSearchContainer">
+
+		<div class="searchInput">
+
+				<input type="hidden" name="stockSearchType_993" value="/finance/stocks/lookup?searchType=any&search=[ric]" checked="checked" />
+
+				<span class="uppercase bold label">Search Stocks</span>
+
+		</div>
+
+		<div class="searchInput2">
+
+			<div class="searchbox">
+
+	    		<input type="text" class="searchfield" id="stockSearchSymbol_993" name="stockSearchSymbol" value="Enter company name or Symbol" />
+
+	    		<input type="image""class="searchbutton" src="/resources_v2/images/btn_header_go.gif" id="btnStockSearchSubmit_993"/>
+
+	    	</div>
+
+    	</div>
+
+	</div>
+
+
+
+</form>
+
+</div>
+
+</div>
+
+
+
+<script language="javascript" type="text/javascript">
+
+
+
+			function searchSubmit_993() {
+
+			OnStockSearchSubmit('993');
+
+			return false;
+
+		}
+
+		Reuters.utils.enableSearchBox('stockSearchSymbol_993', 'Enter company name or Symbol', searchSubmit_993);
+
+		document.getElementById('btnStockSearchSubmit_993').onclick = searchSubmit_993;
+
+</script></div>
+
+</div>
+
+</div>
+</div>
+<div class="section bleeding" id="footerHead">
+	<div class="sectionContent">
+<div id="footerHeader"><div class="columnLeft"><div class="logo"><div id="footerLogo"><a href="/">&nbsp;</a></div></div></div><div class="columnLeft">	<div id="editionsFooter" class="panel editions">
+			<ul id="editionSwitchFooter" class="editionSwitch">
+				<li>
+					<div class="currentEditionTitle">Edition:</div>
+					<div class="currentEdition">U.S.</div>
+					<div class="editionArrow"></div>
+					<ul>
+						<li><a href="http://ara.reuters.com">Arabic</a></li>
+						<li><a href="http://ar.reuters.com">Argentina</a></li>
+						<li><a href="http://br.reuters.com">Brazil</a></li>
+						<li><a href="http://ca.reuters.com">Canada</a></li>
+						<li><a href="http://cn.reuters.com">China</a></li>
+						<li><a href="http://fr.reuters.com">France</a></li>
+						<li><a href="http://de.reuters.com">Germany</a></li>
+						<li><a href="http://in.reuters.com">India</a></li>
+						<li><a href="http://it.reuters.com">Italy</a></li>
+						<li><a href="http://jp.reuters.com">Japan</a></li>
+						<li><a href="http://lta.reuters.com">Latin America</a></li>
+						<li><a href="http://mx.reuters.com">Mexico</a></li>
+					    <li><a href="http://ru.reuters.com">Russia</a></li>
+						<li><a href="http://es.reuters.com">Spain</a></li>
+						<li><a href="http://uk.reuters.com">United Kingdom</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+<script type="text/javascript">
+if(Reuters.info.edition == "BETAUS") {
+	$("#editionSwitchFooter .currentEdition").text('U.S.');
+} else {
+	$("#editionSwitchFooter .currentEdition").text(Reuters.info.edition);
+}
+</script></div><div class="columnRight"><div id="topLink"><a href="#top"><p>Back to top</p></a></div></div></div><div class="sectionColumns">
+
+<div class="column1">
+</div>
+
+<div class="column2">
+</div>
+
+<div class="column3">
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="section bleeding" id="footer">
+	<div class="sectionContent">
+<div class="sectionColumns">
+
+<div class="gridPanel grid12">
+<div class="columnLeft"><div class="gridPanel grid12">
+<span class="footerparent">Reuters.com</span>
+<ul>
+	<li class="h-links"><a href="http://www.reuters.com/finance">Business</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/finance/markets">Markets</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/news/world">World</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/news/politics">Politics</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/news/technology">Technology</a></li>
+	<li class="h-links"><a href="http://blogs.reuters.com/us/">Opinion</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/finance/personal-finance">Money</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/news/pictures">Pictures</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/news/video">Videos</a></li>
+	<li class="h-linkend"><a href="http://www.reuters.com/assets/siteindex">Site Index</a></li>
+</ul>
+
+
+
+</div></div><div class="columnLeft"><div class="gridPanel grid12"><span class="footerparent">More from Reuters</span>
+<ul>
+    <li class="h-links"><a href="http://thomsonreuters.com/news-services/">Reuters News Agency</a></li>
+    <li class="h-links"><a href="http://thomsonreuters.com/site/reuters-brand-attribution-guidelines/">Brand Attribution Guidelines</a></li>
+    <li class="h-linkend"><a href="http://thomsonreuters.com/site/delivery-options/">Delivery Options</a></li>
+</ul></div></div><div class="columnLeft"><div class="gridPanel grid12"><span class="footerparent">Support & Contact</span>
+<ul>
+	<li class="h-links"><a href="http://reuters.zendesk.com">Support</a></li>
+	<li class="h-linkend"><a href="http://reuters.zendesk.com/anonymous_requests/new">Corrections</a></li>
+</ul>
+</div></div><div class="columnLeft"><div id="footer-utilities" class="gridPanel grid12"></div></div><div class="columnLeft"><div class="gridPanel grid12">
+<span class="footerparent">Connect with Reuters</span>
+<ul>
+<li id="foot-twitter"><a href="http://www.twitter.com/reuters">Twitter</a>&nbsp;&nbsp;</li>
+<li id="foot-facebook"><a href="http://www.facebook.com/Reuters">Facebook</a>&nbsp;&nbsp;</li>
+<li id="foot-linkedin"><a href="http://www.linkedin.com/today/reuters.com">LinkedIn</a>&nbsp;&nbsp;</li>
+<li id="foot-rssfeed"><a href="http://www.reuters.com/tools/rss">RSS</a>&nbsp;&nbsp;</li>
+<li id="foot-podcasts"><a href="http://www.reuters.com/tools/podcasts">Podcast</a>&nbsp;&nbsp;</li>
+<li id="foot-newsletters"><a href="https://commerce.us.reuters.com/profile/pages/newsletter/begin.do">Newsletters</a>&nbsp;&nbsp;</li>
+<li id="foot-mobile"><a href="http://www.reuters.com/tools/mobile">Mobile</a></li>
+</ul>
+</div></div><div class="columnLeft"><div class="gridPanel grid12"><span class="footerparent">About</span>
+<ul>
+	<li class="h-links"><a href="http://www.reuters.com/privacy-policy">Privacy Policy</a></li>
+	<li class="h-links"><a href="http://www.reuters.com/terms-of-use">Terms of Use</a></li>
+	 <li class="h-links"><a href="http://sales.reuters.com/" target="_blank">Advertise With Us</a></li>
+         <li class="h-links" id="evidon-footer"><a id="_bapw-link" href="#" target="_blank"><img id="_bapw-icon" border="0" src="https://cdn.betrad.com/pub/icon1.png" /><span id="evidon-text">AdChoices</span></a></li>
+	<li class="h-linkend" id="footer-endrow"><a href="http://thomsonreuters.com/copyright/">Copyright</a></li>
+</ul>
+<script>/**/(function(){var g=285,i=1237,a=false,h=document,j=h.getElementById("_bapw-link"),e=(h.location.protocol=="https:"),f=(e?"https":"http")+"://",c=f+(e?"a248.e.akamai.net/betterad.download.akamai.com/91609":"cdn.betrad.com")+"/pub/";function b(k){var d=new Image();d.src=f+"l.betrad.com/pub/p.gif?pid="+g+"&ocid="+i+"&i"+k+"=1&r="+Math.random()}h.getElementById("_bapw-icon").src=c+"icon1.png";j.onmouseover=function(){if(/#$/.test(j.href)){j.href="http://info.evidon.com/pub_info/"+g+"?v=1"}};j.onclick=function(){var k=window._bap_p_overrides;function d(n,q){var o=h.getElementsByTagName("head")[0]||h.documentElement,m=a,l=h.createElement("script");function p(){l.onload=l.onreadystatechange=null;o.removeChild(l);q()}l.src=n;l.onreadystatechange=function(){if(!m&&(this.readyState=="loaded"||this.readyState=="complete")){m=true;p()}};l.onload=p;o.insertBefore(l,o.firstChild)}if(k&&k.hasOwnProperty(g)){if(k[g].new_window){b("c");return true}}this.onclick="return "+a;d(f+"ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js",function(){d(c+"pub2.js",function(){BAPW.i(j,{pid:g,ocid:i})})});return a};b("i")}());/**/</script>
+</div></div><div id="tr-intro" class="gridPanel grid12"><div id="tr-description"><img src="http://s4.reutersmedia.net/resources_v2/images/tr-source-txt.gif" border="0" /></div></div><div class="linebreak"></div>
+	<div id="tr-logo" class="gridPanel grid12"><a href="http://www.thomsonreuters.com/"><div id="tr-footer">&nbsp;</div></a></div><div class="linebreak"></div>
+	<div id="tr-info" class="gridPanel grid12"><div class="tr-products">
+<div id="tr-eikon">
+<div class="tr-header1"><a href="http://thomsonreuters.com/products_services/financial/eikon/" onclick="dcsMultiTrack('DCS.dcssip','thomsonreuterseikon.com','DCS.dcsuri','/','WT.ti','Offsite: thomsonreuterseikon.com','WT.dl','24','WT.z_offsite','http://thomsonreuterseikon.com/');"></a></div>
+<div class="tr-descr">Our Flagship financial information platform incorporating Reuters Insider</div>
+</div>
+
+<div id="tr-elektron">
+<div class="tr-header1"><a href="http://thomsonreuters.com/products_services/financial/financial_products/a-z/elektron/" onclick="dcsMultiTrack('DCS.dcssip','www.pehub.com','DCS.dcsuri','/','WT.ti','Offsite: www.pehub.com','WT.dl','24','WT.z_offsite','http://www.pehub.com/');"OnClick="dcsMultiTrack('DCS.dcssip','thomsonreuters.com','DCS.dcsuri','/','WT.ti','Offsite: thomsonreuters.com','WT.dl','24','WT.z_offsite','http://thomsonreuters.com/');"></a></div>
+<div class="tr-descr">An ultra-low latency infrastructure for electronic trading and data distribution</div>
+</div>
+
+<div id="tr-accelus">
+<div class="tr-header1"><a href="http://www.accelus.thomsonreuters.com/" onclick="dcsMultiTrack('DCS.dcssip','www.accelus.thomsonreuters.com','DCS.dcsuri','/','WT.ti','Offsite: www.accelus.thomsonreuters.com','WT.dl','24','WT.z_offsite','http://www.accelus.thomsonreuters.com/');"></a></div>
+<div class="tr-descr">A connected approach to governance, risk and compliance</div>
+</div>
+
+<div id="tr-westlaw">
+<div class="tr-header3"><a href="http://west.thomson.com/westlawnext/default.aspx" onclick="dcsMultiTrack('DCS.dcssip','west.thomson.com','DCS.dcsuri','/westlawnext/default.aspx','WT.ti','Offsite: west.thomson.com','WT.dl','24','WT.z_offsite','http://west.thomson.com/westlawnext/default.aspx');"></a></div>
+<div class="tr-descr">Our next generation legal research platform</div>
+</div>
+
+<div id="tr-onesource">
+<div class="tr-header1"><a href="http://onesource.thomsonreuters.com/" onclick="dcsMultiTrack('DCS.dcssip','onesource.thomsonreuters.com','DCS.dcsuri','/','WT.ti','Offsite: onesource.thomsonreuters.com','WT.dl','24','WT.z_offsite','http://onesource.thomsonreuters.com/');"></a></div>
+<div class="tr-descr">Our global tax workstation</div>
+</div>
+
+<div id="tr-linklist">
+<ul>
+<li class="tr-descr"><a href="http://thomsonreuters.com/">Thomsonreuters.com</a></li>
+<li class="tr-descr"><a href="http://thomsonreuters.com/about/">About Thomson Reuters</a></li>
+<li class="tr-descr"><a href="http://ir.thomsonreuters.com">Investor Relations</a></li>
+<li class="tr-descr"><a href="http://careers.thomsonreuters.com/">Careers</a></li>
+<li class="tr-descr"><a href="http://thomsonreuters.com/about/contact_us/">Contact Us</a></li>
+</ul>
+</div>
+
+</div></div><div class="linebreak"></div>
+	</div>
+
+</div>
+
+<div id="disclaimer"><p><a href="http://www.thomsonreuters.com">Thomson Reuters</a> is the world's largest international multimedia news agency, providing <a href="http://www.reuters.com/finance/markets/us">investing news</a>, <a href="http://www.reuters.com/news/world">world news</a>, <a href="http://www.reuters.com/finance">business news</a>, <a href="http://www.reuters.com/news/technology">technology news</a>, headline news, <a href="http://www.reuters.com/finance/smallBusiness">small business news</a>, news alerts, <a href="http://www.reuters.com/finance/personal-finance">personal finance</a>, <a href="http://www.reuters.com/finance/stocks">stock market</a>, and <a href="http://funds.us.reuters.com/US/overview.asp">mutual funds information</a> available on Reuters.com, <a href="http://www.reuters.com/news/video">video</a>, <a href="http://www.reuters.com/tools/mobile">mobile</a>, and interactive television platforms. Thomson Reuters journalists are subject to an <a href="http://handbook.reuters.com">Editorial Handbook</a> which requires fair presentation and disclosure of relevant interests.</p>
+
+<p>NYSE and AMEX quotes delayed by at least 20 minutes. Nasdaq delayed by at least 15 minutes. For a complete <a href="http://www.reuters.com/info/disclaimer" target="_blank">list of exchanges and delays, please click here</a>.</p></div><div id="Footer1"></div><img src="http://www.bizographics.com/collect/?fmt=gif&url=reuters.com&pid=501" width="1" height="1" border="0" alt="">
+<div class="linebreak"></div>
+	</div>
+</div>
+
+
+</div>
+
+
+<SCRIPT TYPE="text/javascript">
+document.write("<SCR"+"IPT TYPE='text/javascript' SRC='" + "http" + (window.location.protocol.indexOf('https:')==0?'s':'') + "://js.revsci.net/gateway/gw.js?csid=I07714' CHARSET='ISO-8859-1'"+"><\/SCR"+"IPT>");
+</SCRIPT>
+
+<script type="text/javascript">
+<!--
+      I07714.DM_cat("us.reuters > bizfinance > markets > stocks");
+      I07714.DM_tag();
+//-->
+</SCRIPT><!-- Begin comScore Tag -->
+<noscript>
+    <img src="http://b.scorecardresearch.com/p?c1=2&c2=6035630&cv=2.0&cj=1" />
+</noscript>
+<!-- End comScore Tag --><META name="DCSext.rChannel" content="Finance">
+
+<META name="DCSext.rCountry" content="BETAUS">
+
+<META name="WT.cg_n" content="Finance - Stocks">
+
+<META name="WT.cg_s" content="Financial Statements">
+
+<META name="DCSext.DartZone" content="us.reuters/bizfinance/markets/stocks">
+
+    <script type="text/javascript">
+
+var loginCookieValue =  YAHOO.util.Cookie.get("login");
+
+if(loginCookieValue != null && loginCookieValue != ''){
+
+
+
+	loginMeta = document.createElement('META');
+
+	loginMeta.name = 'WT.z_li';
+
+
+
+	var customerId = YAHOO.util.Cookie.get("customerId");
+
+	var socialLoginProvider = YAHOO.util.Cookie.get("socialLoginProvider");
+
+	if(customerId != null && customerId != '' && socialLoginProvider != null && socialLoginProvider != ''){
+
+		socialLoginProvider = socialLoginProvider.toLowerCase();
+
+		if(socialLoginProvider == 'google'){
+
+			loginMeta.content = "2";
+
+		} else if(socialLoginProvider == 'facebook'){
+
+			loginMeta.content = "3";
+
+		} else if(socialLoginProvider == 'linkedin'){
+
+			loginMeta.content = "4";
+
+		} else if(socialLoginProvider=='aol'){
+
+			loginMeta.content = "5";
+
+		} else if(socialLoginProvider=='twitter'){
+
+			loginMeta.content = "6";
+
+		} else if(socialLoginProvider=='myspace'){
+
+			loginMeta.content = "7";
+
+		} else if(socialLoginProvider=='yahoo'){
+
+			loginMeta.content = "8";
+
+		}
+
+	} else {
+
+		loginMeta.content = "1";
+
+	}
+
+
+
+	document.getElementsByTagName('head')[0].appendChild(loginMeta);
+
+   }
+
+
+
+var registeredCookieValue =  YAHOO.util.Cookie.get("ruus");
+
+
+
+if(registeredCookieValue != null && registeredCookieValue != 'undefined' && registeredCookieValue != ''){
+
+	registeredMeta = document.createElement('META');
+
+	registeredMeta.name = "WT.z_registered";
+
+	registeredMeta.content = encodeURIComponent(registeredCookieValue);
+
+	document.getElementsByTagName('head')[0].appendChild(registeredMeta);
+
+}
+
+
+
+</script>
+
+<META name="DCSext.ContentChannel"  content="Stocks - Financial Statements">
+
+
+
+		<META name="DCSext.ContentType"  content="Finance Topic">
+
+    <!-- START OF SmartSource Data Collector TAG -->
+
+<!-- Copyright (c) 1996-2009 WebTrends Inc.  All rights reserved. -->
+
+<!-- Version: 8.6.0 -->
+
+<!-- Tag Builder Version: 2.1.0  -->
+
+<!-- Created: 2/9/2009 17:21:12 -->
+
+
+
+<script src="http://s4.reutersmedia.net/resources_v2/js/webtrends.js" type="text/javascript"></script>
+
+   <script type="text/javascript">
+
+var _tag=new WebTrends();
+
+_tag.dcsGetId();
+
+</script>
+
+<script type="text/javascript">
+
+setModuleImpressionTracking();
+
+_tag.dcsCollect();
+
+</script>
+
+<noscript>
+
+<div><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="http://statse.webtrendslive.com/dcsncwimc10000kzgoor3wv9x_3f2v/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.0"/></div>
+
+</noscript>
+
+<!-- END OF SmartSource Data Collector TAG -->
+
+
+
+<style>
+
+#bannerStrip .ad div#creative_58097094_0 object.c131, #bannerStrip .ad div#creative_58097126_0 object.c131{left: 0px !important;}
+
+</style>
+
+<!--[if IE ]>
+<style>
+.GoogleActiveViewClass{margin-left:131px !important;}
+
+</style>
+<![endif]--><div class="linebreak"></div>
+	
+
+</body>
+
+</html>
+
+

@@ -4,6 +4,10 @@
 #http://qinxuye.me/article/ways-to-continual-sync-browser-and-server/
 import os
 import random, time
+import logging
+import Queue
+import re,urllib2
+from BeautifulSoup import BeautifulSoup
 # import Jinja2
 from jinja2 import Environment, FileSystemLoader,TemplateNotFound
 
@@ -109,6 +113,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         for i in xrange(10):
             num = random.randint(1, 100)
             self.write_message(str(num))
+            time.sleep(2)
 
     def on_message(self, message):
         logging.info("getting message %s", message)
@@ -116,6 +121,39 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
     def check_origin(self, origin):
         return True
+
+class StockStatus(tornado.websocket.WebSocketHandler):
+    def open(self):
+        pass
+
+    def on_message(self, message):
+        logging.info("getting message %s", message)
+        self.write_message("You say:" + message)
+
+    def check_origin(self, origin):
+        return True
+
+    def getStatus(self, stocks):
+        def worker():
+            while not q.empty():
+                item = q.get()
+
+
+                q.task_done()
+            logging.INFO("Thread quit for queue is empty")
+
+        q = Queue.Queue()
+        for item in stocks:
+            q.put(item)
+
+        for i in range(num_worker_threads):
+             t = Thread(target=worker)
+             t.daemon = True
+             t.start()
+
+        q.join()       # block until all tasks are done
+
+
 
 # Assign handler to the server root  (127.0.0.1:PORT/)
 application = tornado.web.Application(
@@ -126,6 +164,7 @@ application = tornado.web.Application(
     ("/history/*", history),
     ("/LongPolling/*", LongPolling),
     ("/websocket/*", WebSocketHandler),
+    ("/stock/status*", StockStatus),
     ],
      **settings)
 

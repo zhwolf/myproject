@@ -1,0 +1,2353 @@
+
+<!--[if !IE]> This has NOT been served from cache <![endif]-->
+<!--[if !IE]> Request served from apache server: S264630NJ2XSF19 <![endif]-->
+<!--[if !IE]> token: d77c16d8-0ee8-44c8-8b10-3063b83cd73f <![endif]-->
+<!--[if !IE]> BEGIN standardShell <![endif]-->
+<!--[if !IE]> BEGIN baseHeader <![endif]-->
+<!--[if !IE]> App Server /S264630NJ2XSF57/ <![endif]-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <script type="text/javascript" src="//nexus.ensighten.com/reuters/Bootstrap.js"></script>
+
+  <title>
+    财务指标 | 股票 | 路透中文网</title>
+
+    <meta id="MetaDescription" name="description" content="路透中文网为您提供股市报导、分析、与评论全方位的资讯。" />
+    <meta id="MetaKeywords" name="keywords" content="股票, 投资, 股票报价, 头条新闻, 股市, 基金, 股市报导, 新股上市, 摘牌, 停牌, 基金, 基金管理, 券商观点, 券商研究, IPO" />
+
+    <meta http-equiv="Content-Language" content="zh-CN"/>
+	<link href="http://s3.reutersmedia.net/resources/css/rcom-main.css" rel="stylesheet" />
+		<!--[if IE 7.0]><link href="/resources/css/rcom-patch-ie7.css" rel="stylesheet" /><![endif]-->
+    <style type="text/css" media="all">
+    
+    		@import "/resources/css/rcom-investing.css";
+      </style>
+  <link rel="shortcut icon" href="http://static.reuters.com/resources/media/rcom/favicon.ico" />
+  <link rel="icon" href="http://static.reuters.com/resources/media/rcom/favicon.ico" />
+	<script language="JavaScript" type="text/javascript" src="http://s4.reutersmedia.net/resources/js/dart.js"></script>
+	<script language="JavaScript" type="text/javascript" src="http://s3.reutersmedia.net/resources/js/main.js"></script>
+	<script language='JavaScript' type="text/javascript" src="http://s4.reutersmedia.net/resources/js/topbar.js"></script>
+	<script language='JavaScript' type="text/javascript" src="http://s4.reutersmedia.net/resources/js/searchbox.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://s2.reutersmedia.net/resources/js/adFrequencyCapping.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/resources/js/external/yahoo/yahoo.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/resources/js/external/yahoo/connection.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/resources/js/newutils.js"></script>
+    <script language="JavaScript" type="text/javascript" >
+document.write("<script src='http://s2.reutersmedia.net/resources/js/pid.js'></scr" + "ipt>"); 
+</script></head>
+<body>
+<!--[if !IE]> END baseHeader <![endif]-->
+<link href="/resources/css/rcom-master-cn.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/resources/js/addBlankTarget.js"></script>
+
+<script type="text/javascript">
+
+if (typeof addLoadEvent == 'function') {
+
+  addLoadEvent(addBlankTarget);
+
+}
+
+</script>
+
+
+
+<script language="javascript">var strLocalization="CN";</script>
+
+<script language="javascript">
+
+<!--//
+
+function getKeyCode(e)
+
+{
+
+    var key = (window.event) ? event.keyCode : e.keyCode;
+
+    return key;
+
+}
+
+
+
+var attachSearchFormEvents = function (alertMessage) {
+
+
+
+    var searchTextBox = document.getElementById( "searchbox" );
+
+    var searchTextBoxDefaultValue = searchTextBox.value;
+
+    var searchButton = document.getElementById( "_ctl25" );
+
+    
+
+    searchTextBox.onclick = function () {
+
+        if ( this.value == searchTextBoxDefaultValue ) this.value = "";
+
+    }
+
+    
+
+    searchTextBox.onblur = function () {
+
+        if ( this.value == "" ) this.value = searchTextBoxDefaultValue;
+
+    }
+
+        
+
+    
+
+    searchButton.onclick = function () {
+
+        if ( searchTextBox.value == searchTextBoxDefaultValue ) {
+
+            searchTextBox.value="";
+
+        }
+
+            doSearchIntegration('searchbox', 'http://search.cn.reuters.com/query/', '');
+
+            return false;
+
+    }
+
+}
+
+//-->
+
+</script>
+
+<div class="grid" id="grid">
+
+
+
+  <div class="header" id="header">
+
+    <div class="headerWrap">
+
+			<div class="logo"><a href="/" id="headerLogoLink"><img src="/resources/images/logo_reuters_media_cn.gif" border="0" alt="Reuters CN" /></a></div>
+
+
+
+            	<script language="JavaScript" type="text/javascript" >
+document.write("<script src='http://s3.reutersmedia.net/resources/js/linkback.js'></scr" + "ipt>");
+</script>
+
+
+
+
+</div>
+
+  </div><!-- header -->
+
+
+
+  <div class="searchbar"><div class="searchbarWrap">
+
+    <form name="frmDefault" method="post" action="/" language="javascript" onsubmit="return DoSubmitCheck();" id="frmDefault">
+
+    <input type="hidden" name="DoSubmit" value="false" />
+
+
+
+    <!-- ### Searchbar -->
+
+    <div class="toolbarTicker">
+
+        <iframe src="/assets/ticker" id="ticker" height="19" width="523" marginwidth="0" scrolling="no" frameborder="0" marginheight="0"></iframe>
+
+    </div>
+
+    <div class="toolbarSearch" id="headerSearchBox">        
+
+        <div class="toolbarNews">
+
+		    <input name="searchbox" id="searchbox" type="text" value="新闻/股票" size="27" onfocus="clearSearch('新闻/股票');" title="请输入要搜索的股票，新闻" onkeypress="if(getKeyCode(event) == 13) {doSearchIntegration('searchbox', 'http://search.cn.reuters.com/query/', '');return false;}" style="color:#999999;"/>&nbsp;
+
+           <input src="/resources/images/btn_SearchCN.gif" name="_ctl25" id="_ctl25" type="image" class="button" />            
+
+        </div>
+
+			<div class="toolbarDivider" id="toolbarDivider"></div>
+
+			<div class="toolbarUtilities">
+
+				<div id="loggedOutNavs" style="display: none;">
+
+            <script>
+
+		          function gotoCommerceLogin() {
+
+                  var login_url = "https://commerce.cn.reuters.com/login?go=" +  parent.document.location.href;
+
+                  parent.location.href=login_url;
+
+          		}
+
+		          function gotoCommerceRegister() {
+
+                  var login_url = "https://commerce.cn.reuters.com/registration?go=" +  parent.document.location.href;
+
+                  parent.location.href=login_url;
+
+          		}
+
+          		document.writeln('<a target="_top" onclick="javascript:gotoCommerceLogin();return false;" href="https://commerce.cn.reuters.com/login">会员登录</a> <a target="_top" onclick="javascript:gotoCommerceRegister();return false;" href="https://commerce.cn.reuters.com/registration">注册</a>');
+
+           </script>
+
+
+
+        </div>
+
+				<div id="loggedInNavs" style="display: none;">
+
+					<a target="_top" href="https://commerce.cn.reuters.com/profile" target="_top">个人资料</a>&nbsp;
+
+           <script>
+
+          		function gotoCommerceLogout() {
+
+                  var logout_url = "https://commerce.cn.reuters.com/login/pages/login/logout.do?go=" +  parent.document.location.href;
+
+                  parent.location.href=logout_url;
+
+          		}
+
+          		document.writeln('<a target="_top" onclick="javascript:gotoCommerceLogout();return false;" href="https://commerce.cn.reuters.com/login/pages/login/logout.do">退出</a>');
+
+           </script>
+
+           <script language="javascript" type="text/javascript">updateSearchFormWithQuery();</script>
+
+        </div>
+
+			</div>
+
+    </div> 
+
+    </form>
+
+  </div>
+
+  </div>
+
+<script language="javascript">
+
+attachSearchFormEvents();
+
+</script> 
+
+  
+
+  
+
+  
+
+  
+
+<!--[if !IE]> BEGIN Content <![endif]-->
+<div id="prebanner" class="NONE" style="margin-bottom:0px;"></div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=550862 -->
+
+		<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <style>
+img {border:0;}
+#grid { margin:0 auto; display:block; float:none; min-height: 1200px; }
+.contentSitemap {float:none;}
+
+
+h1 {padding-bottom:3px;}
+h3 {padding-bottom:3px;}
+.moduleHeaderInline h3 {padding-bottom:3px;}
+.moduleHeader h3 {padding:3px 0 3px 0px;}
+
+.breadcrumbs {padding-bottom:3px;}
+
+.listFooter {margin:3px 8px 0;}
+
+.leftrail .ad {margin:0 auto;}
+
+.navOn a,
+.navOff a {padding:3px 5px 3px 7px;}
+
+.subnavOn a,
+.subnavOff a {padding:3px 5px 3px 10px;}
+
+.subnav2On a,
+.subnav2Off a {padding:2px 5px 3px 20px;}
+
+
+.subnav3On a,
+.subnav3Off a {padding:3px 0px 3px 16px;margin:0px 0px 0px 13px}
+
+.module ol li {margin: 0 6px 0.7em 1.6em;}
+
+.bottomBanner {text-align: center;}
+
+</style></div>
+  </div>
+
+
+
+
+
+<!-- END:: Shared Module id=550862 -->
+
+</div>
+  </div>
+
+
+
+<div id="poelb1" class="linebreak"></div>
+
+<div class="bannerad" id="banner">
+	<div class="ad225x90">
+	<div>
+
+	</div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=570050 -->
+
+		<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <script type="text/javascript">
+function e(p,ele) {return p.getElementsByTagName(ele)};
+function el(id) {return document.getElementById(id)};
+function t(o,e,f) {o.addEventListener?o.addEventListener(e,f,false):o.attachEvent('on'+e,f)};
+var ss = {};
+ss.slider = function() {
+var arg, move = function() {};
+move.prototype.init = function(opt) {
+arg = this.set(opt);
+var wrap = el(opt.gallery),
+ctl = el(opt.control),
+obj = this.obj = e(wrap,'ul')[0],
+$this = this;
+this.u = e(obj,'li');
+this.cu = e(ctl,'li');
+this.uW = this.u[0].offsetWidth;
+this.uH = this.u[0].offsetHeight;
+this.len = this.u.length;
+this.old = this.cur = arg.index;
+wrap.style.cssText = 'width:' + this.uW + 'px;' + 'height:' + this.uH + 'px;' + 'overflow: hidden;';
+obj.style.cssText = 'height:' + this.uH + 'px;' + 'width:' + (arg.dir ? this.uW + 'px;' : this.len * this.uW + 'px;') + (arg.dir ? 'top:' + -1 * this.cur * this.uH + 'px;' : 'left:' + -1 * this.cur * this.uW + 'px;');
+this.cu[this.cur].className = 'current';
+this.event(arg.type);
+setTimeout(function() {$this.auto()},arg.interval);
+};
+move.prototype.set = function(opt) {
+org = {
+gallery: 'gal-wrap',
+control: "gal-panel",
+dir: false,
+index: 0,
+speed: 16,
+interval: 3000,
+type: 'click'
+};
+for(var p in opt) {
+org[p] = opt[p]
+}
+return org;
+};
+move.prototype.timeMgr = function() {
+var $this = this;
+this.m = setTimeout(function() {$this.auto(); $this.indexMgr()},arg.interval);
+};
+move.prototype.auto = function() {
+var $this = this;
+if(this.a != undefined) clearInterval(this.a);
+this.a = setInterval(function() {$this.pos()},arg.speed);
+};
+
+move.prototype.pos = function() {
+var dir = arg.dir ? parseInt(this.obj.style.top) : parseInt(this.obj.style.left),
+area = arg.dir ? this.uH : this.uW,
+dis = (area * this.cur + dir) * .1,
+step = dis >= 0 ? Math.ceil(dis) : Math.floor(dis);
+arg.dir ? this.obj.style.top = dir - step + 'px' : this.obj.style.left = dir - step + 'px';
+this.stop(dir,area);
+};
+move.prototype.stop = function(dir,area) {
+if(Math.abs(dir) == area * this.cur) {
+clearInterval(this.a);
+this.cur == this.len - 1 ? this.cur = 0 : this.cur++;
+this.timeMgr();
+}
+};
+move.prototype.indexMgr = function() {
+this.cu[this.cur].className = 'current';
+if(this.old != this.cur) {
+this.cu[this.old].className = '';
+this.old = this.cur;
+}
+};
+move.prototype.event = function(e) {
+for(var i = 0; i < this.cu.length; i++) {
+var $this = this;
+t(this.cu[i],e,num(i,$this));
+}
+function num(n,$this) {
+return function() {
+clearInterval($this.a);
+clearTimeout($this.m);
+$this.cu[n].className = 'current';
+if($this.old != n) {
+$this.cu[$this.old].className = '';
+$this.old = $this.cur = n;
+}
+$this.c = 0;
+$this.auto();
+}
+}
+};
+return move;
+}();
+</script>
+<style type="text/css">
+* {padding:0; margin:0;}
+
+#gal-wrap {
+position: relative;
+}
+#gallery {
+position: absolute;
+}
+#gallery li {
+list-style: none;
+float: left;
+width: 225px;
+height: 90px;
+margin:0;
+}
+#gallery p {
+text-align: center;
+margin:0;
+}
+#gal-panel {
+height: 100%;
+overflow: hidden;
+display:none;
+}
+#gal-panel li {
+float: left;
+margin-right: 6px;
+list-style: none;
+cursor: pointer;
+}
+#gal-panel li.current {
+font-weight: bold;
+color: red;
+}
+</style>
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <div id="gal-wrap">
+<ul id="gallery">
+
+
+<li><p>
+<a target="_blank" href="http://cn.reuters.com/news/globalcoverage/specialcoverage/readerssurveyinvestigation"><img src="http://static.reuters.com/resources/assets/?d=20140901&t=2&i=hj225x90&w=&q=" /></a>
+</p></li>
+
+
+<li><p>
+<a target="_blank" href="http://cn.reuters.com/LonelyPlanet"><img src="http://static.reuters.com/resources/assets/?d=20140812&t=2&i=LP-1&w=&q=" /></a>
+</p></li>
+
+<!--<li><p>
+<a target="_blank" href="http://thomsonreuters.cn/news-ideas/white-papers/rmb-roadmap"><img src="http://static.reuters.com/resources/assets/?d=20140725&t=2&i=RMB-4&w=&q=" /></a>
+</p></li>
+<li><p>
+<a target="_blank" href="http://cn.reuters.com/ChineseNationalGrandTheatre"><img src="http://static.reuters.com/resources/assets/?d=20140826&t=2&i=djy&w=&q=" /></a>
+</p></li>-->
+
+<li><p>
+<a target="_blank" href="http://cn.reuters.com/ChineseNationalGrandTheatre"><img src="http://static.reuters.com/resources/assets/?d=20140826&t=2&i=555&w=&q=" /></a>
+</p></li>
+
+
+
+
+
+
+
+
+</ul>
+</div>
+
+<div id="gal-panel">
+<ul id="gallery-panel">
+<li>1</li>
+<li>2</li>
+<li>3</li>
+
+</ul>
+</div>
+
+<script type="text/javascript">
+var tt = new ss.slider();
+tt.init({
+gallery: 'gal-wrap',
+control: "gal-panel",
+dir: false,
+index: 0,
+speed: 40,
+interval: 3000,
+type: 'mouseover'
+});
+</script>
+
+</div>
+  </div>
+
+
+
+
+
+<!-- END:: Shared Module id=570050 -->
+
+</div>
+  </div>
+
+
+
+</div>
+	<div class="ad728x90">
+	<!-- vbcCond: 0 module.vbcCond: 0 -->
+
+<script>
+	//var kruxvars = (typeof(kseg)=='undefined'?'':kseg) + (typeof(kuid)=='undefined'?'':kuid);
+  var adsrc_3183021 = 'china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=Banner;sz=728x90;tile=1;ord=' + (typeof(tmstmp)!='undefined'?tmstmp:12345) + '?';
+  if ( typeof(AD_TRACKER) != 'undefined' && AD_TRACKER.globalAdSrcType != null ) {
+      adsrc_3183021 = adsrc_3183021.replace('?', AD_TRACKER.globalAdSrcType + '?');
+  }
+ </script>
+<div class="ad" style="width:728px; height:90px;" id="advert_3183021" onload="renderMask3183021()">
+		<!-- channelName:  -->
+
+<!-- moduleId: 3183021 -->
+
+<div>
+
+	<div id="advert_3183021T" style="width 100%; height: 100%">
+     <!--  advertisement will be loaded by div advert_3183021L in the page bottom -->
+   </div>
+          
+   </div>
+
+
+
+</div>
+
+</div>
+</div>
+
+<div id="poelb2" class="linebreak"></div>
+<div id="crumbsBand" class="NONE" style="margin-bottom:0px;">
+
+
+
+<!---->
+
+
+
+<div class="breadcrumbs">
+
+  <div class="pagestamp">2014年 9月 16日 星期二 21:08<span id="additionalPagestamp"></span></div>
+
+  <span class="label" id="breadcrumbsLabel">您在这里:</span>
+
+  <span class="pathing" id="pathing">
+
+    <a href="/home">主页</a>
+
+    
+
+      &gt;
+
+      <a href="/investing">投资</a> 
+
+      
+
+      &gt;
+
+      <a href="/investing/quotes">股票</a> 
+
+      
+
+      &gt;
+
+      <a href="/investing/quotes/search?symbol=0001.HK">个股</a> 
+
+      
+
+      &gt;
+
+      财务指标</span>
+
+</div>
+
+<div class="linebreak"></div>
+
+</div>
+
+
+
+<div id="maincontent">
+
+
+
+<div class="leftrail">
+    <span id="VerticalMenu1_VerticalMenu1">
+
+<div class="navigation"><div class="navOff"><a href="/home"
+                target="_top">主页</a></div>
+        <div class="navOff"><a href="/news"
+                target="_top">资讯 </a></div>
+        <div class="navOn"><a href="/investing"
+                target="_top">投资</a></div>
+        <div class="subnavOff"><a href="/investing/markets"
+                        target="_top">市场 </a></div>
+                <div class="subnavOff"><a href="/investing/currencies"
+                        target="_top">外汇</a></div>
+                <div class="subnavOff"><a href="/investing/commodities"
+                        target="_top">期货</a></div>
+                <div class="subnavOn"><a href="/investing/quotes"
+                        target="_top">股票</a></div>
+                <div class="subNav2"><div class="subnav2On"><a
+                                href="/investing/quotes/search?symbol=0001.HK" target="_top">个股</a>
+                            </div>
+                        <div class="subNav3"><div class="subnav3Off"><a
+                                href="/investing/quotes/quote?symbol=0001.HK" target="_top">行情报价</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/chart?symbol=0001.HK" target="_top">走势图</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/profile?symbol=0001.HK" target="_top">公司概况</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/companyOfficers?symbol=0001.HK" target="_top">公司高管</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/keyDevelopments?symbol=0001.HK" target="_top">最新动态</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/companyNews?symbol=0001.HK" target="_top">公司新闻</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/pressReleases?symbol=0001.HK" target="_top">公司公告</a>
+                            </div>
+                         <div class="subnav3On"><a
+                                href="/investing/quotes/companyRatios?symbol=0001.HK" target="_top">财务指标</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/performance?symbol=0001.HK" target="_top">市场表现</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/estimates?symbol=0001.HK" target="_top">成长预测</a>
+                            </div>
+                         <div class="subnav3Off"><a
+                                href="/investing/quotes/recommendations?symbol=0001.HK" target="_top">操作建议</a>
+                            </div>
+                         </div>
+                    <div class="subnav2Off"><a
+                                href="/investing/deals" target="_top">股权交易</a>
+                            </div>
+                        </div>
+            <div class="subnavOff"><a href="/investing/industry"
+                        target="_top">产业</a></div>
+                <div class="subnavOff"><a href="/investing/funds"
+                        target="_top">基金</a></div>
+                <div class="subnavOff"><a href="/investing/bonds"
+                        target="_top">债券</a></div>
+                <div class="subnavOff"><a href="http://www.efinancialcareers.cn/?utm_source=APAC_CN_CNS&utm_medium=PD_DA_PART_REUTERS&utm_campaign=PART_NAVLINK_ROS"
+                        target="_top">职业</a></div>
+                </div>
+</span>
+<!-- channelName:  -->
+
+<!-- moduleId: 3183025 -->
+
+<div>
+
+	<!-- vbcCond: 0 module.vbcCond: 0 -->
+
+<script>
+	//var kruxvars = (typeof(kseg)=='undefined'?'':kseg) + (typeof(kuid)=='undefined'?'':kuid);
+  var adsrc_3183025 = 'china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=SkyScraper;sz=120x600;tile=2;ord=' + (typeof(tmstmp)!='undefined'?tmstmp:12345) + '?';
+  if ( typeof(AD_TRACKER) != 'undefined' && AD_TRACKER.globalAdSrcType != null ) {
+      adsrc_3183025 = adsrc_3183025.replace('?', AD_TRACKER.globalAdSrcType + '?');
+  }
+ </script>
+<div class="ad" style="width:120px; height:600px;" id="advert_3183025" onload="renderMask3183025()">
+		<div id="advert_3183025T" style="width 100%; height: 100%">
+          <!--  advertisement will be loaded by div advert_3183025L in the page bottom -->
+          </div>
+          </div>
+
+</div>
+
+
+
+
+
+<link href="/resources/css/rcom-tertiary.css" rel="stylesheet" />
+<div class="Tnavigation">
+	<div class="TnavOff">更多路透产品</div>
+	<div class="TsubnavOff"><a target="_top" href="https://commerce.cn.reuters.com/profile/pages/newsletter/begin.do" target="_blank">路透邮件订阅</a></div>
+
+<div class="TsubnavOff"><a target="_top" href="http://cn.reuters.com/tools/mobile">路透掌上通Apps</a></div>
+
+<div class="TsubnavOff"><a target="_top" href="http://cn.reuters.com/news/globalcoverage/specialcoverage/chinanewspackage" target="_blank">路透中文新闻电子期刊</a></div>
+
+<div class="TsubnavOff"><a target="_top" href="http://glossary.reuters.com.cn/">路透金融词典</a></div>
+<!--
+<div class="TsubnavOff"><a target="_blank" href="http://download.cn.reuters.com/ebook/index.html">路透投资指南电子书</a></div>
+-->
+<div class="TsubnavOff"><a target="_blank" href="http://download.cn.reuters.com/ebook/index.html">路透一周财经新闻荟萃</a></div>
+
+<div class="TsubnavOff"><a target="_blank" href="http://cn.reuters.com/article/rmcommunity">汤森路透金融圈</a><span style="color: #dc0a0a; font-weight: 700;font-size:8px;"> New</span></div>
+
+<div class="TsubnavOff"><a target="_blank" href="http://cn.reuters.com/assets/foundation">汤森路透基金会</a><span style="color: #dc0a0a; font-weight: 700;font-size:8px;"> New</span></div>
+	
+<div class="TsubnavOff"><a target="_top" href="/tools/widgets">路透widget插件</a></div>
+
+<div class="TsubnavOff"><a target="_top" href="/tools/rss">RSS</a><a target="_top" href="/tools/rss"><img src="/resources/images/iconFeed.gif" alt="RSS Feed" border="0" /></a></div>
+
+</div>
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=95444 -->
+
+		<div><div class="ad"><script type="text/javascript" src="http://ad.doubleclick.net/N4735792/adj/china.reuters.com/;type=homepage_premium_box;sz=155x240;ord=[timestamp]?"></script></div></div>
+
+<!-- END:: Shared Module id=95444 -->
+
+</div>
+  </div>
+
+
+
+</div><!--[if !IE]> leftrail <![endif]--><div class="content">
+
+    <!--[if !IE]> ### IE5 fix: Do not remove spacer GIF! ### <![endif]-->
+
+    <img src="http://s4.reutersmedia.net/resources/images/spacer.gif" height="1" width="1" alt="" class="spacerHack" border="0" />
+
+    <!--[if !IE]> ### Cross-Channel Content <![endif]-->
+
+    <div class="contentBand" id="topContent">
+
+      <h1>Cheung Kong Holdings Ltd 重要财务数据</h1>
+
+	<div class="titlesponsor">
+
+		</div>
+
+</div>
+
+    <!--[if !IE]> ######################## BEGIN: Section  ######################## <![endif]-->
+
+<div class="contentBand" >
+
+	<div class="primaryContent">
+
+		<style type="text/css">.quoteBox div div.value {font-size:16px;}</style><h5 class="quoteHeader">長江實業（集團）有限公司 (香港证券交易所)</h5>
+  <div class="label">
+  <strong>板块:</strong> Financials ·
+		<strong>板块:</strong> Real Estate Development & Operations ·
+    </div>
+  <div id="quote" class="quoteBox">
+		<div id="priceQuote">
+			<div class="title">15:59 BJT</div><div class="value">
+ 						  <span class="valueContent">137.70</span><span class="currencyCode">HKD</span>
+            </div>
+        </div>
+		<div id="priceChange">
+        	<div class="title">涨跌</div>
+            <div class="value">
+				<span class="valueContent"><span class="neg">-0.50</span></span>
+				</div>
+		</div>
+		<div id="percentChange">
+			<div class="title">涨跌(%)</div>
+            <div class="value">
+				<span class="valueContent"><span class="neg">-0.36%</span></span>
+				</div>
+		</div>
+    <div id="analystRec" style="margin:0">
+			<div class="title"><a href="/investing/quotes/recommendations?symbol=0001.HK">分析师操作建议</a></div>
+			<div class="arGauge" style="margin:3px 0 0">
+	<div title="1.6">
+        <img alt="" src="/resources/images/arrowRec.gif" class="arGaugeArrow" style="left:122px;"/>
+        <img alt="" src="/resources/images/recBarLt2_cn.gif" width="151" />
+	</div>
+</div>
+
+</div>
+    </div>
+<div class="linebreak">&nbsp;</div>
+<form name="researchForm" method="GET" action="/investing/quotes">
+		<div id="SearchBarWide" class="modStart">
+			<b>股票分析: &nbsp;</b>
+			<input type="hidden" value="symbol" name="searchType"/>
+  		<input type="text" class="titleSearch" style="width: 50px;" maxlength="30" value="0001.HK" name="search"/>
+			<input type="image" border="0" alt="" src="http://static.reuters.com/resources/images/go_CN.gif"/>
+			<a href="/investing/quotes/search">股票查询</a>
+		</div>
+</form>
+<div class="linebreak">&nbsp;</div>
+
+<!-- market capitalisation begins -->
+      <div class="primaryContent1">
+      <div class="module">
+      <div class="dataTitle">市值</div>
+      <table cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+        <tbody><tr>
+          <td>市值 (&#72;&#75;&#36; 百万)</td>
+          <td class="data">320,093.91</td>
+        </tr>
+        <tr class="stripe">
+          <td>已发行股本</td>
+          <td class="data">2,316.16</td>
+        </tr>
+        <tr>
+          <td>流通股</td>
+          <td class="data">1,309.47</td>
+        </tr>
+      </tbody></table>
+      </div>
+      </div>
+      <!-- market capitalisation ends -->
+      <!-- per share data begins -->
+      <div class="primaryContent2">
+      <div class="module">
+      <div class="dataTitle">每股财务数据 (&#72;&#75;&#36; &nbsp; HKD)</div>
+      <table cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+        <tbody><tr>
+          <td>收益</td>
+          <td class="data">18.65</td>
+        </tr>
+        <tr class="stripe">
+          <td>销售</td>
+          <td class="data">7.35</td>
+        </tr>
+        <tr>
+          <td>帐面价值</td>
+          <td class="data">167.36</td>
+        </tr>
+        <tr class="stripe">
+          <td>现金流</td>
+          <td class="data">13.37</td>
+        </tr>
+        <tr>
+          <td>现金</td>
+          <td class="data">14.92</td>
+        </tr>
+      </tbody></table>
+      </div>
+      </div>
+      <!-- per share data ends -->
+      <div style="clear:both;">&nbsp;</div>
+      <!-- valuation ratios begins -->
+      <div class="primaryContent1">
+      <div class="module">
+      <div class="dataTitle">估值指标</div>
+      <table cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+        <tbody><tr>
+          <td>市盈率</td>
+          <td class="data">7.41</td>
+        </tr>
+        <tr class="stripe">
+          <td>总市值/销售收入</td>
+          <td class="data">18.81</td>
+        </tr>
+        <tr>
+          <td>市帐率 （市价/帐面资产净值）</td>
+          <td class="data">0.87</td>
+        </tr>
+        <tr class="stripe">
+          <td>股价/每股现金</td>
+          <td class="data">8.82</td>
+        </tr>
+      </tbody></table>
+      </div>
+      </div>
+      <!-- valuation ratios ends -->
+      <!-- management effectiveness begins -->
+      <div class="primaryContent2">
+      <div class="module">
+      <div class="dataTitle">管理效率 (%)</div>
+      <table cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+        <tbody><tr>
+          <td>权益收益率</td>
+          <td class="data">9.94</td>
+        </tr>
+        <tr class="stripe">
+          <td>资产报酬率</td>
+          <td class="data">8.61</td>
+        </tr>
+        <tr>
+          <td>投资回报率</td>
+          <td class="data">9.06</td>
+        </tr>
+      </tbody></table>
+      </div>
+      </div>
+      <!-- management effectiveness ends -->
+      <div style="clear:both;">&nbsp;</div>
+      <!-- profitablity ratios begins -->
+      <div class="primaryContent1">
+      <div class="module">
+      <div class="dataTitle">盈利能力比率 (%)</div>
+      <table cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+        <tbody><tr>
+          <td>毛利</td>
+          <td class="data">55.43</td>
+        </tr>
+        <tr class="stripe">
+          <td>营运利润率</td>
+          <td class="data">80.05</td>
+        </tr>
+        <tr>
+          <td>净利率</td>
+          <td class="data">208.63</td>
+        </tr>
+      </tbody></table>
+      </div>
+      </div>
+      <!-- profitablity ratios ends -->
+      <!-- dividend information begins -->
+      <div class="primaryContent2">
+      <div class="module">
+      <div class="dataTitle">分红送配</div>
+      <table cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+        <tbody><tr>
+          <td>股息收益率 (%)</td>
+          <td class="data">2.56</td>
+        </tr>
+        <tr class="stripe">
+          <td>每股股利 (&#72;&#75;&#36; &nbsp; HKD)</td>
+          <td class="data">3.54</td>
+        </tr>
+        <tr>
+          <td>股息支付率</td>
+          <td class="data">22.86</td>
+        </tr>
+      </tbody></table>
+      </div>
+      </div>
+      <!-- dividend information ends -->
+       <div style="clear:both;">&nbsp;</div>
+      <!-- financial strength begins -->
+      <div class="primaryContent1">
+      <div class="module">
+      <div class="dataTitle">财务实力</div>
+      <table cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+        <tbody><tr>
+          <td>速动比率</td>
+          <td class="data">2.42</td>
+        </tr>
+        <tr class="stripe">
+          <td>流动比率</td>
+          <td class="data">7.58</td>
+        </tr>
+        <tr>
+          <td>长期债务率</td>
+          <td class="data">10.67</td>
+        </tr>
+        <tr class="stripe">
+          <td>债务股本比</td>
+          <td class="data">11.33</td>
+        </tr>
+      </tbody></table>
+      </div>
+      </div>
+      <!-- financial strength ends -->
+<div style="clear:both;">&nbsp;</div>
+<div class="module">
+<div class="footnote dataFooter">所有数据基于上一财年统计</div>
+</div>
+<!-- content area ends -->
+</div>
+	<div class="secondaryContent">
+
+		<!-- vbcCond: 0 module.vbcCond: 0 -->
+
+<script>
+	//var kruxvars = (typeof(kseg)=='undefined'?'':kseg) + (typeof(kuid)=='undefined'?'':kuid);
+  var adsrc_3183031 = 'china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=HighImpact;sz=300x250;tile=4;ord=' + (typeof(tmstmp)!='undefined'?tmstmp:12345) + '?';
+  if ( typeof(AD_TRACKER) != 'undefined' && AD_TRACKER.globalAdSrcType != null ) {
+      adsrc_3183031 = adsrc_3183031.replace('?', AD_TRACKER.globalAdSrcType + '?');
+  }
+ </script>
+<div class="ad" style="width:300px; height:250px;" id="advert_3183031" onload="renderMask3183031()">
+		<!-- channelName:  -->
+
+<!-- moduleId: 3183031 -->
+
+<div>
+
+	<div id="advert_3183031T" style="width 100%; height: 100%">
+     <!--  advertisement will be loaded by div advert_3183031L in the page bottom -->
+   </div>
+          
+   </div>
+
+
+
+</div>
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=85626 -->
+
+		<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    </div>
+  </div>
+
+
+
+
+
+<!-- END:: Shared Module id=85626 -->
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=84901 -->
+
+		<div><style>
+#marketUpdateTab4 {display:none;}
+</style> </div><div>
+
+	<div class="NONE">
+
+	<div class="module">
+		<div class="moduleHeader">
+                    <h3>
+                    <a href="/investing/markets"> 全球市场动态 </a>
+                    </h3>
+                    </div>
+				<div class="moduleBody">
+		<script language="javascript">
+
+var iframeTargets = [
+
+	"/assets/marketUpdateUnit?view=.SSEC%2C.SZSC1%2C.TRXFLDCNP&sp=1",
+
+	"/assets/marketUpdateUnit?view=.N225%2C.HSI%2C.FTSTI%2C.TRXFLDINP&sp=1",
+
+	"/assets/marketUpdateUnit?view=.DJI%2C.IXIC%2C.SPX%2C.TRXFLDUSP&sp=1",
+
+	"/assets/marketUpdateUnit?view=.FTSE%2C.FCHI%2C.GDAXI%2C.TRXFLDGBP&sp=1",
+
+	"/assets/marketUpdateUnit?view=75&sp=rankings"
+
+];
+
+loadMarketUpdate = function(iIndex, moduleId) {
+
+	for (var i=0; i<5; i++) {
+
+		var mktUpTab = document.getElementById("marketUpdateTab" + i + "_" + moduleId);
+
+		if (mktUpTab != null && mktUpTab != undefined) {
+
+			if (i != iIndex) {
+
+				mktUpTab.className = '';
+
+			} else {
+
+				mktUpTab.className = 'current';
+
+			}
+
+		}
+
+	}
+
+	document.getElementById("marketUpdateIframe_" + moduleId).src = iframeTargets[iIndex];
+
+}
+
+</script>
+
+<link href="/resources/css/rcom-tabs.css" rel="stylesheet" />
+
+
+
+<div id="marketUpdateTabs" class="tabs small inline standalone">
+
+	<ul>
+
+		<li id="marketUpdateTab0_7002935" class="current"><span class="hrefClone" onclick="loadMarketUpdate(0, 7002935)"><img class="flagIcon" src="/resources/images/flagCN.gif" border="0" alt="中国" />中国</span></li>
+
+		<li id="marketUpdateTab1_7002935"><span class="hrefClone" onclick="loadMarketUpdate(1, 7002935)">亚洲</span></li>
+
+		<li id="marketUpdateTab2_7002935"><span class="hrefClone" onclick="loadMarketUpdate(2, 7002935)"><img class="flagIcon" src="/resources/images/flagUS.gif" border="0" alt="美国" />美国</span></li>
+
+		<li id="marketUpdateTab3_7002935"><span class="hrefClone" onclick="loadMarketUpdate(3, 7002935)"><img class="flagIcon" src="/resources/images/flagEU.gif" border="0" alt="欧洲" />欧洲</span></li>
+
+		</ul>
+
+</div>
+
+<div class="linebreak"></div>
+
+
+
+<iframe id="marketUpdateIframe_7002935" src="" width="302" height="100" marginwidth="0" scrolling="no" frameborder="0" marginheight="0"></iframe>
+
+<script language="javascript">loadMarketUpdate(0, 7002935);</script>
+
+</div>
+		</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- END:: Shared Module id=84901 -->
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=84898 -->
+
+		<div>
+
+	<div class="NONE">
+
+	<div class="module" style="margin-bottom: 0;">
+		<div class="moduleHeader sponsored">
+                    <h3>
+                        <a href="/investing/currencies">外汇</a>
+                        </h3>
+					<div class="sponsorTag">
+						<!-- channelName:  -->
+
+<!-- moduleId: 3181799 -->
+
+<div>
+
+	<!-- vbcCond:  module.vbcCond:  -->
+
+<script>
+	//var kruxvars = (typeof(kseg)=='undefined'?'':kseg) + (typeof(kuid)=='undefined'?'':kuid);
+  var adsrc_3181799 = 'china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=currencies;sz=1x1;taga=aaaaaaaaa;ord=' + (typeof(tmstmp)!='undefined'?tmstmp:12345) + '?';
+  if ( typeof(AD_TRACKER) != 'undefined' && AD_TRACKER.globalAdSrcType != null ) {
+      adsrc_3181799 = adsrc_3181799.replace('?', AD_TRACKER.globalAdSrcType + '?');
+  }
+ </script>
+<div class="ad" id="advert_3181799" onload="renderMask3181799()">
+		 <script language="javascript" type="text/javascript">
+                   
+          if ((typeof (hideAllAds) == 'undefined' || hideAllAds == false) && (typeof (AD_TRACKER) == 'undefined' || !AD_TRACKER.isAdHidden('')) && 
+              (typeof (hideAd_3181799) == 'undefined' || hideAd_3181799 == false)) {
+                if (typeof (TR) !== "undefined") {
+		            var furl = TR.createDFPUrl(adsrc_3181799);
+		            TR.writeDFPURL("http://ad.cn.doubleclick.net/N4735792/adj/" + furl);
+                }
+                if ((!document.images && navigator.userAgent.indexOf("Mozilla/2.") >= 0) || navigator.userAgent.indexOf("WebTV") >= 0) {
+                    document.write('<a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=currencies;sz=1x1;taga=aaaaaaaaa;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" target="_blank">');
+                    document.write('<img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=currencies;sz=1x1;taga=aaaaaaaaa;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" width="1" height="1"  border=0 alt=""></a>');
+                }
+          }         
+        </script>
+        
+        <noscript>
+              <a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;type=currencies;sz=1x1;taga=aaaaaaaaa;ord=3018?" target="_blank">
+              <img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;type=currencies;sz=1x1;taga=aaaaaaaaa;ord=3018?" width="1" height="1" border="0" alt="">
+            </a>
+        </noscript>        
+                
+        </div>
+
+</div>
+
+
+
+</div></div>
+				<div class="moduleBody" style="margin-bottom: 0;">
+		<div class="headlineMed">
+
+			<a href="/article/currenciesNews/idCNL3S0RH44V20140916"  >中国经济：十三五基建向中西部倾斜，地方可以股权融资等吸引社会资本--总理</a>
+<span class="inlineLinks">
+
+				</span>
+
+		</div>
+
+	<div class="headlineMed">
+
+			<a href="/article/currenciesNews/idCNL3S0RH3IE20140916"  >更新版 1-日本经济：日圆汇价稳定对企业至关重要--央行总裁</a>
+<span class="inlineLinks">
+
+				</span>
+
+		</div>
+
+	</div>
+		</div>
+
+</div>
+
+</div>
+
+
+
+<div>
+
+	<div class="NONE">
+
+	<div class="module">
+		<table cellspacing="0" cellpadding="0" width="100%" class="dataTable dataTableMD">
+
+<tbody class="dataSmall">
+
+		
+
+		<tr>
+
+		<th class="left">热门汇率</th>
+
+				<th class="data"></th>
+
+		</tr>
+
+    <tr class="">
+
+		<td><a href="/investing/currencies">美元(USD)</a></td>
+
+				<td class="data">
+
+					6.1459</td>
+
+			</tr>
+
+		<tr class="stripe">
+
+		<td><a href="/investing/currencies">欧元(EUR)</a></td>
+
+				<td class="data">
+
+					7.9608</td>
+
+			</tr>
+
+		<tr class="">
+
+		<td><a href="/investing/currencies">日元(JPY)</a></td>
+
+				<td class="data">
+
+					5.7395</td>
+
+			</tr>
+
+		</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- END:: Shared Module id=84898 -->
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=84899 -->
+
+		<!--[if !IE]> ### Currencies <![endif]-->
+<script language="javascript">
+	function ConvertCurrency(redirectPath, amt, from, to)
+	{
+		if(calculate()) {
+			var amtCtrl = document.getElementById(amt);
+			var amtCtrlValue = amtCtrl.value;
+			var invalidChars = amtCtrlValue.match(/\,/g);
+			if (invalidChars != null) {
+				var updatedAmtCtrl = amtCtrlValue.replace(/,/g, "");
+			} else {
+				var updatedAmtCtrl = amtCtrlValue;
+			}
+			var fromCtrl = document.getElementById(from);
+			var toCtrl = document.getElementById(to);
+			redirectPath = redirectPath.replace("[amt]", updatedAmtCtrl);
+			redirectPath = redirectPath.replace("[from]", fromCtrl.options[fromCtrl.selectedIndex].value);
+			redirectPath = redirectPath.replace("[to]", toCtrl.options[toCtrl.selectedIndex].value);
+			window.location.href = redirectPath;
+		}
+	}
+
+function validateAmount() {
+	var valid = false;
+	//var srcAmtElem = document.getElementById("srcAmt");
+	var srcAmtElem = document.getElementById("CurrenciesConversion_ConversionAmount");
+	var amount = srcAmtElem.value;
+	if (amount != null && amount.length>0) {
+		var dotCount = 0;
+		var newAmount = '';
+		var amountChars = amount.match(/\d|\.|\,/g);
+		if (amountChars != null) {
+			for (var i=0; i < amountChars.length; i++) {
+				if (amountChars[i] == '.') dotCount++;
+				if ( dotCount > 1 ) break;
+				newAmount = newAmount + amountChars[i];
+			}
+			if (newAmount == amount && dotCount<2) { 
+				valid = true;
+			}
+		}
+	}
+	return valid;
+}
+
+function calculate() {
+	var frm = document.getElementById("currConv");
+	//var srcAmtElem = document.getElementById("srcAmt");
+	var srcAmtElem = document.getElementById("CurrenciesConversion_ConversionAmount");
+	var destAmtElem = document.getElementById("destAmt");
+	var srcCurrCodeElem = document.getElementById("CurrenciesConversion_FromCurrencies");
+	var srcCurrCode = srcCurrCodeElem.options[srcCurrCodeElem.selectedIndex].value;
+	var destCurrCodeElem = document.getElementById("CurrenciesConversion_ToCurrencies");		
+	var destCurrCode = destCurrCodeElem.options[destCurrCodeElem.selectedIndex].value;
+	var currDupErrorMsg = document.getElementById("currencyConv_DuplicateError");
+	var currInvErrorMsg = document.getElementById("currencyConv_InvalidError");
+	var normalInputBox = "1px solid #7f9db9";
+	var errorInputBox = "1px solid #DC0A0A";
+	if (srcCurrCode == destCurrCode) {
+		currDupErrorMsg.style.display = "block";
+		srcCurrCodeElem.style.border = errorInputBox;
+		destCurrCodeElem.style.border = errorInputBox;
+		if (validateAmount()) {
+			currInvErrorMsg.style.display = "none";
+			srcAmtElem.style.border = normalInputBox;
+			destAmtElem.style.border = normalInputBox;			
+		} else {
+			currInvErrorMsg.style.display = "block";
+			srcAmtElem.style.border = errorInputBox;
+			destAmtElem.style.border = errorInputBox;			
+		}
+		return false;
+	} else {
+		currDupErrorMsg.style.display = "none";
+		srcCurrCodeElem.style.border = normalInputBox;
+		destCurrCodeElem.style.border = normalInputBox;
+		if (validateAmount()) {
+			//frm.submit();
+			return true;
+			currInvErrorMsg.style.display = "none";
+			srcAmtElem.style.border = normalInputBox;
+			destAmtElem.style.border = normalInputBox;
+		} else {
+			currInvErrorMsg.style.display = "block";
+			srcAmtElem.style.border = errorInputBox;
+			destAmtElem.style.border = errorInputBox;
+			srcAmtElem.focus();
+			return false;
+		}
+	}
+}
+
+</script>
+
+<div>
+
+	<div class="NONE">
+
+	<div class="module">
+		<div class="moduleHeader">
+                    <h3>
+                    在线外汇换算</h3>
+                    </div>
+				<div class="moduleBody">
+		<div id="currencyConv_DuplicateError" style="display: none;">* 您输入的两个货币是相同的, 请重新输入</div>
+<div id="currencyConv_InvalidError" style="display: none;">* 您的输入不是一个有效的数字</div>
+<table width="100%" cellpadding="1" cellspacing="0" border="0" class="simpleControls">
+			<tr>
+				<td>
+					<input name="CurrenciesConversion:ConversionAmount" type="text" value="1.00" id="CurrenciesConversion_ConversionAmount" style="width:40px;" />
+				</td>
+
+				<td><span id="CurrenciesConversion_labelTo" class="label">由</span>
+					<select name="CurrenciesConversion:FromCurrencies" id="CurrenciesConversion_FromCurrencies" style="width:85px;">
+        
+        <option selected="selected" value="CNY">人民币元(CNY)</option>
+	<option value="JPY">日元(JPY)</option>
+	<option value="USD">美元(USD)</option>
+
+	<option value="EUR">欧元(EUR)</option>
+	<option value="CAD">加元(CAD)</option>
+	<option value="GBP">英镑(GBP)</option>
+	<option value="AUD">澳元(AUD)</option>
+	<option value=""></option>
+	<option value="AED">阿联酋迪拉姆(AED)</option>
+
+	<option value="ALL">阿尔巴尼亚列克(ALL)</option>
+	<option value="AOA">安哥拉宽扎(AOA)</option>
+	<option value="ARS">阿根廷比索(ARS)</option>
+	<option value="AUD">澳元(AUD)</option>
+	<option value="AZM">阿塞拜彊马特納(AZM)</option>
+	<option value="BDT">孟加拉塔卡(BDT)</option>
+
+	<option value="BGN">保加利亚列弗(BGN)</option>
+	<option value="BHD">巴林第纳尔(BHD)</option>
+	<option value="BND">文莱元(BND)</option>
+	<option value="BOB">玻利维亚诺(BOB)</option>
+	<option value="BRL">巴西雷亚尔(BRL)</option>
+	<option value="BYR">白俄罗斯卢布(BYR)</option>
+
+	<option value="CAD">加元(CAD)</option>
+	<option value="CDF">刚果法郎(CDF)</option>
+	<option value="CHF">瑞郎(CHF)</option>
+	<option value="CLP">智利比索(CLP)</option>
+	<option value="CNY">人民币元(CNY)</option>
+	<option value="COP">哥伦比亚比索(COP)</option>
+
+	<option value="CRC">哥斯达黎加科朗(CRC)</option>
+	<option value="CZK">捷克克朗(CZK)</option>
+	<option value="DKK">丹麦克朗(DKK)</option>
+	<option value="EGP">埃及镑(EGP)</option>
+	<option value="EUR">欧元(EUR)</option>
+	<option value="FJD">斐济元(FJD)</option>
+
+	<option value="GBP">英镑(GBP)</option>
+	<option value="HKD">港币(HKD)</option>
+	<option value="HUF">匈牙利福林(HUF)</option>
+	<option value="IDR">印度尼西亚盾(IDR)</option>
+	<option value="ILS">以色列谢克尔(ILS)</option>
+	<option value="INR">印度卢比(INR)</option>
+
+	<option value="ISK">冰岛克朗(ISK)</option>
+	<option value="JPY">日元(JPY)</option>
+	<option value="KRW">韩元(KRW)</option>
+	<option value="KWD">科威特第纳尔(KWD)</option>
+	<option value="LTL">立陶宛立特(LTL)</option>
+	<option value="MTL">马耳他里拉(MTL)</option>
+
+	<option value="MXN">墨西哥比索(MXN)</option>
+	<option value="MYR">马元(MYR)</option>
+	<option value="NOK">挪威克朗(NOK)</option>
+	<option value="NZD">新西兰元(NZD)</option>
+	<option value="PHP">菲律宾比索(PHP)</option>
+	<option value="PKR">巴基斯坦卢比(PKR)</option>
+
+	<option value="RUB">俄罗斯卢布(新)(RUB)</option>
+	<option value="SAR">沙特里亚尔(SAR)</option>
+	<option value="SEK">瑞典克朗(SEK)</option>
+	<option value="SGD">新元(SGD)</option>
+	<option value="THB">泰铢(THB)</option>
+	<option value="TWD">台币(TWD)</option>
+
+	<option value="USD">美元(USD)</option>
+	<option value="ZAR">南非兰特(ZAR)</option>
+</select>
+				</td>
+				<td><span id="CurrenciesConversion_labelTo" class="label">兑</span>
+					<select name="CurrenciesConversion:ToCurrencies" id="CurrenciesConversion_ToCurrencies" style="width:85px;">      
+        <option value="CNY">人民币元(CNY)</option>
+
+	<option value="JPY">日元(JPY)</option>
+	<option selected="selected" value="USD">美元(USD)</option>
+	<option value="EUR">欧元(EUR)</option>
+	<option value="CAD">加元(CAD)</option>
+	<option value="GBP">英镑(GBP)</option>
+	<option value="AUD">澳元(AUD)</option>
+
+	<option value=""></option>
+	<option value="AED">阿联酋迪拉姆(AED)</option>
+	<option value="ALL">阿尔巴尼亚列克(ALL)</option>
+	<option value="AOA">安哥拉宽扎(AOA)</option>
+	<option value="ARS">阿根廷比索(ARS)</option>
+	<option value="AUD">澳元(AUD)</option>
+
+	<option value="AZM">阿塞拜彊马特納(AZM)</option>
+	<option value="BDT">孟加拉塔卡(BDT)</option>
+	<option value="BGN">保加利亚列弗(BGN)</option>
+	<option value="BHD">巴林第纳尔(BHD)</option>
+	<option value="BND">文莱元(BND)</option>
+	<option value="BOB">玻利维亚诺(BOB)</option>
+
+	<option value="BRL">巴西雷亚尔(BRL)</option>
+	<option value="BYR">白俄罗斯卢布(BYR)</option>
+	<option value="CAD">加元(CAD)</option>
+	<option value="CDF">刚果法郎(CDF)</option>
+	<option value="CHF">瑞郎(CHF)</option>
+	<option value="CLP">智利比索(CLP)</option>
+
+	<option value="CNY">人民币元(CNY)</option>
+	<option value="COP">哥伦比亚比索(COP)</option>
+	<option value="CRC">哥斯达黎加科朗(CRC)</option>
+	<option value="CZK">捷克克朗(CZK)</option>
+	<option value="DKK">丹麦克朗(DKK)</option>
+	<option value="EGP">埃及镑(EGP)</option>
+
+	<option value="EUR">欧元(EUR)</option>
+	<option value="FJD">斐济元(FJD)</option>
+	<option value="GBP">英镑(GBP)</option>
+	<option value="HKD">港币(HKD)</option>
+	<option value="HUF">匈牙利福林(HUF)</option>
+	<option value="IDR">印度尼西亚盾(IDR)</option>
+
+	<option value="ILS">以色列谢克尔(ILS)</option>
+	<option value="INR">印度卢比(INR)</option>
+	<option value="ISK">冰岛克朗(ISK)</option>
+	<option value="JPY">日元(JPY)</option>
+	<option value="KRW">韩元(KRW)</option>
+	<option value="KWD">科威特第纳尔(KWD)</option>
+
+	<option value="LTL">立陶宛立特(LTL)</option>
+	<option value="MTL">马耳他里拉(MTL)</option>
+	<option value="MXN">墨西哥比索(MXN)</option>
+	<option value="MYR">马元(MYR)</option>
+	<option value="NOK">挪威克朗(NOK)</option>
+	<option value="NZD">新西兰元(NZD)</option>
+
+	<option value="PHP">菲律宾比索(PHP)</option>
+	<option value="PKR">巴基斯坦卢比(PKR)</option>
+	<option value="RUB">俄罗斯卢布(新)(RUB)</option>
+	<option value="SAR">沙特里亚尔(SAR)</option>
+	<option value="SEK">瑞典克朗(SEK)</option>
+	<option value="SGD">新元(SGD)</option>
+
+	<option value="THB">泰铢(THB)</option>
+	<option value="TWD">台币(TWD)</option>
+	<option value="USD">美元(USD)</option>
+	<option value="ZAR">南非兰特(ZAR)</option>
+
+</select>
+				</td>
+    			<td align="left">
+				    <input name="CurrenciesConversion:Convert" id="CurrenciesConversion_Convert" type="button" value="兑换" onclick="javascript:ConvertCurrency('/investing/currencies?srcAmt=[amt]&amp;srcCurr=[from]&amp;destCurr=[to]','CurrenciesConversion_ConversionAmount','CurrenciesConversion_FromCurrencies','CurrenciesConversion_ToCurrencies');" />
+				</td>
+			</tr>
+		</table>
+</div>
+		</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- END:: Shared Module id=84899 -->
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=84897 -->
+
+		<div>
+
+	<div class="NONE">
+
+	<div class="module" style="margin-bottom: 0;">
+		<div class="moduleHeader">
+                    <h3>
+                    <a href="/investing/commodities">商品期货</a>
+                    </h3>
+                    </div>
+				<div class="moduleBody" style="margin-bottom: 0;">
+		<div class="headlineMed">
+
+			<a href="/article/commoditiesNews/idCNL3S0RH43B20140916"  >国际油市：OPEC秘书长预计明年该组织原油日产量将降至约2,950万桶</a>
+<span class="inlineLinks">
+
+				</span>
+
+		</div>
+
+	<div class="headlineMed">
+
+			<a href="/article/commoditiesNews/idCNL3S0RH41O20140916"  >全球贵金属：9月15日SPDR黄金和iShares白银持仓保持不变</a>
+<span class="inlineLinks">
+
+				</span>
+
+		</div>
+
+	</div>
+		</div>
+
+</div>
+
+</div>
+
+
+
+<div>
+
+	<div class="NONE">
+
+	<div class="module">
+		<table cellspacing="1" cellpadding="0" width="100%" class="dataTable">
+
+    <tr class="dataSlick">
+
+		<th>代码</th>
+
+		<th class='data'>最新价</th>
+
+		<th class='data'>涨跌值</th>
+
+	</tr>
+
+    <tbody class="dataSmall">
+
+		<tr class="stripe">
+
+			<td>布伦特原油</td>
+
+            <td class="data">$97.89</td>
+
+			<td class="data">$0.01</td>
+
+            </tr>
+
+		<tr class="">
+
+			<td>100盎司黄金</td>
+
+            <td class="data">$1,232.80</td>
+
+			<td class="data">$3.70</td>
+
+            </tr>
+
+		</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- END:: Shared Module id=84897 -->
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=578100 -->
+
+		<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <div style=" border: dotted 1px #ccc; padding:18px 0 3px 0; -moz-border-radius: 5px;  -webkit-border-radius: 5px;   border-radius:5px; height:130px; margin:25px 0 10px 0;position: relative;">
+
+<span style="left: 5px;top: -8px;display: block;position: absolute;padding: 0 5px;background: #fff;float:left; font-weight:bold;">最新金融职位招聘</span>
+
+<a href="http://www.efinancialcareers.cn/?utm_source=APAC_CN_CNS&utm_medium=PD_DA_PART_REUTERS&utm_campaign=PART_FEED_LOGO" target="_blank"  style="right: 7px;top: -19px;display: block;position: absolute;padding: 0 5px;background: #fff;"><img src="http://static.reuters.com/resources/media/editorial/20140620/Zoom_HZ_PS_RGB_100.png" style="border:0;"></a>
+
+<div style="width: 292px;overflow: hidden;margin:-1px auto;">
+<iframe style="margin:-1px;" marginwidth="0" marginheight="0" framespacing="0" frameborder="0" scrolling="no" 
+  width="300" height="130" src="http://efc.infocode.com.cn/efc/1118.php " ></iframe>
+</div>
+
+</div>
+</div>
+  <div class="linebreak"></div>
+  </div>
+
+
+
+
+
+<!-- END:: Shared Module id=578100 -->
+
+</div>
+  <div class="linebreak"></div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=84902 -->
+
+		<script src="/resources/js/tabsStub.js"></script>
+
+<script>
+
+	
+
+		document.write('<style type="text/css">.tabs { margin-bottom:4px;}</style>');
+
+	</script>
+
+
+
+<div class="linebreak"></div>
+
+<div id="mostPopular">
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <div class="tabs small">
+
+				<h3>热门文章点击排行</h3>
+
+				<ul>					
+
+					<li id="mostPopular_0" class="current"><span class="hrefClone">资讯</span></li>
+
+					<li id="mostPopular_1" class=""><span class="hrefClone">投资</span></li>
+
+					</ul>
+
+				<script>
+
+					
+
+						RTR_Tabs.addTabGroup("mostPopular", "", "standard", "", "", "");
+
+						RTR_Tabs.addTab("mostPopular_0", "mpNews");
+
+					
+
+						RTR_Tabs.addTab("mostPopular_1", "mpInvesting");
+
+					
+
+						RTR_Tabs.init("mostPopular");
+
+					</script>
+
+			</div>
+
+			</div>
+  </div>
+
+
+
+<div id="mpNews">
+
+	<div class="NONE">
+
+	<div class="module">
+		<ol>
+
+		<div class="inlineThumbnail">
+
+						<a href="/article/wtNews/idCNKBS0G004B20140731"  ><img
+
+        		src="http://s1.reutersmedia.net/resources/r/?m=02&d=20140731&t=2&i=952647508&w=98&fh=&fw=&ll=&pl=&r=LYNXMPEA6U010"
+
+        		border="0" alt="Photo"
+
+        		 /></a></div>
+
+				<li>
+
+			<h5><a href="/article/wtNews/idCNKBS0G004B20140731"  >独家：中国当局调查周永康获得前中共领导人支持--消息人士</a><span class="inlineLinks"></span>
+
+				</h5></li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HA00F20140915"  >焦点：中国8月工业增速骤降 经济政策再次走到“十字路口”</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HB0MV20140916"  >中国怀着复杂的心情关注苏格兰公投</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HA0QL20140915"  >综述：中石化火速抛出资产重组方案 惟估值偏低导致股价受压</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HA0WF20140915"  >揭秘谢世煌：马云在阿里巴巴的低调辅佐者</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HB0DF20140916"  >上海自贸区深化改革试水进展缓慢 前景蒙阴</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HA0VP20140915"  >中国经济下行压力凸显 全面降准或降息可能性进一步提高--中金</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HA2G820140915"  >焦点：阿里巴巴提高IPO参考价区间 投资人买需强劲</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HB05S20140916"  >印度料摇身变成铁矿石进口大国 可望缓解全球供应过度</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtNews/idCNKBS0HB0A520140916"  >焦点：“大船”入华 淡水河谷与中远走向双赢</a><span class="inlineLinks"></span>
+
+				</li>
+
+		</ol>
+
+		<div class="listFooter">
+
+			<div class="dividerH"></div>
+
+			<div class="rssLink label"><a href="http://cn.reuters.com/news/rankings">资讯热门文章点击排行</a></div>
+
+		</div>
+
+		</div>
+
+</div>
+
+</div>
+
+
+
+<div id="mpInvesting" class="hidden">
+
+	<div class="NONE">
+
+	<div class="module">
+		<ol>
+
+		<li>
+
+			<h5><a href="/article/wtInvesting/idCNL3S0QX2A420140828"  >《高滨专栏》中国央妈怀抱里的大类资产配置</a><span class="inlineLinks"></span>
+
+				</h5></li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RG55W20140915"  >国际油市：布兰特原油几无变动，此前跌至26个月低点</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RG4N620140915"  >金属期市：期镍跌至三个月低位，因供应问题和担心中国经济增长</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RG4SP20140915"  >芝加哥期市：CBOT大豆期货收涨，受助于豆油期货涨势和低吸买盘</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RG5SG20140916"  >企业并购：德国ZF同意以135亿美元收购TRW，为自驾车市场做好准备</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RG2Z520140915"  >《中国债市每日综述》经济数据糟糕推动现券走暖，但多头仍略显犹疑</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RG4VO20140915"  >美国债市：公债上涨，因经济数据不佳吸引了低吸买盘</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RG52720140915"  >全球金市：金价因中国工业数据疲弱带动上涨，关注美联储会议</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNSB208354320121105"  >孙政才和胡春华将获重用--消息人士</a><span class="inlineLinks"></span>
+
+				</li>
+
+		<li>
+
+			<a href="/article/wtInvesting/idCNL3S0RH1Q120140916"  >《全球汇市》美联储会议前美元涨势暂歇，澳元从低位反弹</a><span class="inlineLinks"></span>
+
+				</li>
+
+		</ol>
+
+		<div class="listFooter">
+
+			<div class="dividerH"></div>
+
+			<div class="rssLink label"><a href="http://cn.reuters.com/investing/rankings">投资热门文章点击排行</a></div>
+
+		</div>
+
+		</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- END:: Shared Module id=84902 -->
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=169522 -->
+
+		
+
+<!-- END:: Shared Module id=169522 -->
+
+</div>
+  </div>
+
+
+
+<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=84885 -->
+
+		
+
+<!-- END:: Shared Module id=84885 -->
+
+</div>
+  </div>
+
+
+
+</div>
+
+
+</div>
+
+<!--[if !IE]> ######################## END: Section  ######################## <![endif]-->
+<!--[if !IE]> ######################## BEGIN: Section  ######################## <![endif]-->
+
+<div class="contentBand" >
+
+	<div>
+
+	<div class="NONE" style="margin-bottom: 0px;">
+    <!-- BEGIN:: Shared Module id=84870 -->
+
+		<div><style>.bottomBanner{margin:40px 0}</style></div><!-- vbcCond: 0 module.vbcCond: 0 -->
+
+<script>
+	//var kruxvars = (typeof(kseg)=='undefined'?'':kseg) + (typeof(kuid)=='undefined'?'':kuid);
+  var adsrc_3181732 = 'china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=Banner2;sz=728x90;ord=' + (typeof(tmstmp)!='undefined'?tmstmp:12345) + '?';
+  if ( typeof(AD_TRACKER) != 'undefined' && AD_TRACKER.globalAdSrcType != null ) {
+      adsrc_3181732 = adsrc_3181732.replace('?', AD_TRACKER.globalAdSrcType + '?');
+  }
+ </script>
+<div class="bottomBanner" id="advert_3181732" onload="renderMask3181732()">
+		<!-- channelName:  -->
+
+<!-- moduleId: 3181732 -->
+
+<div>
+
+	<iframe name="advert_3181732" id="advert_3181732_iframe" marginwidth="0" marginheight="0" framespacing="0" frameborder="0" scrolling="no" width="728" height="90" src="" style="width:728px; height:90px; overflow: hidden;">
+      <script language="javascript">
+        if ((!document.images && navigator.userAgent.indexOf("Mozilla/2.") >= 0) || navigator.userAgent.indexOf("WebTV") >= 0) {
+          document.write('<a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=Banner2;sz=728x90;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" target="_blank">');
+          document.write('<img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=Banner2;sz=728x90;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" width="728" height="90"  border=0 alt=""></a>');
+        }
+      </script>
+      <noscript>
+         <a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;type=Banner2;sz=728x90;ord=3018?" target="_blank">
+          <img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;type=Banner2;sz=728x90;ord=3018?" width="728" height="90" border="0" alt="">
+         </a>
+      </noscript>
+    </iframe>
+    <script>
+      document.getElementById("advert_3181732_iframe").src = 'http://ad.cn.doubleclick.net/N4735792/adi/' + adsrc_3181732;
+    </script>
+</div>
+
+
+
+</div>
+
+
+
+<!-- END:: Shared Module id=84870 -->
+
+</div>
+  </div>
+
+
+
+<div class="primaryContent">
+
+		</div>
+	<div class="secondaryContent">
+
+		</div>
+
+
+</div>
+
+<!--[if !IE]> ######################## END: Section  ######################## <![endif]-->
+</div><!--[if !IE]> content <![endif]-->
+
+
+
+</div>
+
+<!--[if !IE]> END Content <![endif]-->
+<style type="text/css">
+.ad_layer {
+	position: absolute;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+</style>
+<script language="javascript" type="text/javascript">
+  function Point(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  function getObjCoords(o) {
+    var oX =0;
+    var oY = 0;
+    if (o.offsetParent) {
+       while (o) {
+          oX+=o.offsetLeft;
+          oY+=o.offsetTop;
+          o=o.offsetParent;
+       }
+     } else if (o.x) {
+          oX+=o.x;
+          oY+=o.y;
+     }       
+     return new Point(oX, oY);
+   }
+   
+   function moveAdToPos(objId, markerId, offX, offY) {
+      var sEle = document.getElementById(objId);
+      var mEle = document.getElementById(markerId);
+      if(sEle == null || mEle == null)
+         return;
+      /*          
+      if(typeof(offX)=='undefined')
+         offX = 0;
+      if(typeof(offY)=='undefined')
+         offY = 0;
+       
+      mPos =  getObjCoords(mEle);
+      sEle.style.left = (mPos.x+offX)+"px";
+      sEle.style.top   = (mPos.y+offY)+"px";
+      sEle.style.display = "block";
+      sEle.style.visibility = "visible";
+      */
+      mEle.innerHTML = sEle.innerHTML;
+   }
+</script>
+  <div class='ad_layer' style='display:none; visibility: hidden' id='advert_3183021L'>
+       <iframe name="advert_3183021" id="advert_3183021_iframe" marginwidth="0" marginheight="0" framespacing="0" frameborder="0" scrolling="no" width="728" height="90" src="" style="width:728px; height:90px; overflow: hidden;">
+         <script language="javascript">
+           if ((!document.images && navigator.userAgent.indexOf("Mozilla/2.") >= 0) || navigator.userAgent.indexOf("WebTV") >= 0) {
+             document.write('<a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=Banner;sz=728x90;tile=1;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" target="_blank">');
+             document.write('<img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=Banner;sz=728x90;tile=1;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" width="728" height="90"  border=0 alt=""></a>');
+           }
+         </script>
+         <noscript>
+                <a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;type=Banner;sz=728x90;tile=1;ord=3018?" target="_blank">
+                <img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;type=Banner;sz=728x90;tile=1;ord=3018?" width="728" height="90" border="0" alt="">
+          </a>
+         </noscript>
+      </iframe>
+      <script>
+        document.getElementById("advert_3183021_iframe").src = 'http://ad.cn.doubleclick.net/N4735792/adi/' + adsrc_3183021;
+      </script>
+    </div>
+          
+    <script language='javascript' type='text/javascript'>
+       moveAdToPos('advert_3183021L', 'advert_3183021T',0,0);
+    </script><div class='ad_layer' style='display:none; visibility: hidden' id='advert_3183025L'>
+              <script language="javascript" type="text/javascript">
+                 
+
+                 if ((typeof (hideAllAds) == 'undefined' || hideAllAds == false) && (typeof (AD_TRACKER) == 'undefined' || !AD_TRACKER.isAdHidden('')) && 
+                    (typeof (hideAd_3183025) == 'undefined' || hideAd_3183025 == false)) {
+                       if (typeof (TR) !== "undefined") {
+                            var furl = TR.createDFPUrl(adsrc_3183025);
+                            TR.writeDFPURL("http://ad.cn.doubleclick.net/N4735792/adj/" + furl);
+                       }
+                       if ((!document.images && navigator.userAgent.indexOf("Mozilla/2.") >= 0) || navigator.userAgent.indexOf("WebTV") >= 0) {
+                         document.write('<a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=SkyScraper;sz=120x600;tile=2;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" target="_blank">');
+                         document.write('<img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=SkyScraper;sz=120x600;tile=2;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" width="120" height="600"  border=0 alt=""></a>');
+                       }
+                 }         
+              </script>
+        
+              <noscript>
+                <a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;type=SkyScraper;sz=120x600;tile=2;ord=3018?" target="_blank">
+                  <img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;type=SkyScraper;sz=120x600;tile=2;ord=3018?" width="120" height="600" border="0" alt="">
+                </a>
+              </noscript>        
+        
+            </div>
+          
+            <script language='javascript' type='text/javascript'>
+              moveAdToPos('advert_3183025L', 'advert_3183025T',0,0);
+            </script><div class='ad_layer' style='display:none; visibility: hidden' id='advert_3183031L'>
+       <iframe name="advert_3183031" id="advert_3183031_iframe" marginwidth="0" marginheight="0" framespacing="0" frameborder="0" scrolling="no" width="300" height="250" src="" style="width:300px; height:250px; overflow: hidden;">
+         <script language="javascript">
+           if ((!document.images && navigator.userAgent.indexOf("Mozilla/2.") >= 0) || navigator.userAgent.indexOf("WebTV") >= 0) {
+             document.write('<a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=HighImpact;sz=300x250;tile=4;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" target="_blank">');
+             document.write('<img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;' + (typeof(seg)=='undefined'?'':seg) + 'type=HighImpact;sz=300x250;tile=4;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" width="300" height="250"  border=0 alt=""></a>');
+           }
+         </script>
+         <noscript>
+                <a href="http://ad.cn.doubleclick.net/N4735792/jump/china.reuters.com/investing/quotes/companyRatios;type=HighImpact;sz=300x250;tile=4;ord=3018?" target="_blank">
+                <img src="http://ad.cn.doubleclick.net/N4735792/ad/china.reuters.com/investing/quotes/companyRatios;type=HighImpact;sz=300x250;tile=4;ord=3018?" width="300" height="250" border="0" alt="">
+          </a>
+         </noscript>
+      </iframe>
+      <script>
+        document.getElementById("advert_3183031_iframe").src = 'http://ad.cn.doubleclick.net/N4735792/adi/' + adsrc_3183031;
+      </script>
+    </div>
+          
+    <script language='javascript' type='text/javascript'>
+       moveAdToPos('advert_3183031L', 'advert_3183031T',0,0);
+    </script><div><div class="footer" id="Footer1">
+    <p><strong><a target="_top" href="/">cn.reuters.com:</a></strong>&nbsp;
+    <a target="_top" href="http://cn.reuters.com/info/contact">联系我们</a><!--help and contact us--> &nbsp;|&nbsp;
+    <a target="_top" href="http://cn.reuters.com/news/globalcoverage/specialcoverage/followus">关注我们</a><!--follow us--> &nbsp;|&nbsp;
+ <!--   <a target="_top" href="/tools/rss">RSS</a><a target="_top" href="/tools/rss"><img src="/resources/images/iconFeed.gif" alt="RSS Feed" border="0" /></a> &nbsp;|&nbsp;-->
+    <a target="_top" href="http://glossary.cn.reuters.com/">路透金融词典</a><!--glossary--> &nbsp;|&nbsp;
+    <a target="_top" href="/info/sitemap">网站地图</a><!--sitemap-->  &nbsp;|&nbsp;
+    <a target="_top" href="/info/links">友情链接</a><!--sitemap-->  &nbsp;|&nbsp;
+    <a target="_top" href="https://toc.taleo.net/careersection/2/jobdetail.ftl?lang=en&job=CON00007384">热门职位</a><!--sitemap--></p>
+
+    <p><strong><a target="_top" href="http://thomsonreuters.com/">Thomson Reuters Corporate:</a></strong>&nbsp;
+	<a href="javascript:commonPopup('/info/copyright', 540, 525, 1, 'bottomNav')">版权所有</a>&nbsp;|&nbsp;
+	<a href="javascript:commonPopup('/info/disclaimer', 540, 525, 1, 'bottomNav')">声明</a>&nbsp;|&nbsp;
+	<a href="javascript:commonPopup('/info/privacy', 540, 525, 1, 'bottomNav')">隐私保护</a>&nbsp;|&nbsp;
+	<a target="_top" href="http://about.reuters.com/productinfo/cn/">专业产品</a>&nbsp;|&nbsp;
+	<a target="_top" href="https://customers.reuters.com">专业产品支持</a>&nbsp;|&nbsp;
+	<a target="_top" href="http://careers.thomsonreuters.com">工作机会</a>&nbsp;|&nbsp;
+	<a target="_top" href="http://thomsonreuters.com/about">关于我们</a></p>
+
+  	<div class="dividerInlineH">&nbsp;</div>
+
+  	<p><strong>语言选择:</strong>
+  	<span id="editions">
+        <a target="_top" href="http://af.reuters.com">非洲</a> &nbsp;|&nbsp;
+	<a target="_top" href="http://ara.reuters.com">阿拉伯</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://ar.reuters.com">阿根廷</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://br.reuters.com">巴西</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://ca.reuters.com">加拿大</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://cn.reuters.com/">中国</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://fr.reuters.com">法国</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://de.reuters.com">德国</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://in.reuters.com">印度</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://it.reuters.com">意大利</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://jp.reuters.com">日本</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://lta.reuters.com">拉美</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://mx.reuters.com">墨西哥</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://ru.reuters.com">俄罗斯</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://es.reuters.com">西班牙</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://uk.reuters.com">英国</a> &nbsp;|&nbsp;
+  	<a target="_top" href="http://www.reuters.com">美国</a></span></p>
+
+    <div class="dividerInlineH">&nbsp;</div>
+    <p><span class="footnote">“汤森路透”是全球最大的金融信息和数据提供商。</span></p>
+    <p><span class="footnote">NYSE 和AMEX, 报价至少延迟20分钟，Nasdaq报价至少延迟15分钟，其它报价延迟时间请<a href="javascript:commonPopup('/info/disclaimer', 540, 525, 1, 'bottomNav')">点击这里</a>查看</span></p>
+</div></div><script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-24172155-1']);
+_gaq.push(['_setDomainName', '.reuters.com']);
+_gaq.push(['_trackPageview']);
+
+(function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+
+</script>
+
+</div><!--[if !IE]> BEGIN baseFooter <![endif]-->
+<script language="javascript">doLoginMenu(); doWeatherFrame(); if ((typeof AD_TRACKER != 'undefined') && (typeof AD_TRACKER.setDomLoaded == 'function')) AD_TRACKER.setDomLoaded();</script>
+<META name="DCSext.rChannel" content="Investing">
+<META name="DCSext.rCountry" content="CN">
+<META name="WT.cg_n" content="Investing - Quotes">
+<META name="WT.cg_s" content="Ratios">
+<META name="DCSext.DartZone" content="china.reuters.com/investing/quotes/companyRatios">
+
+<META name="DCSext.ContentChannel"  content="Ratios">
+
+    <META name="DCSext.ContentType"  content="Quotes Page">
+
+    <!-- START OF SmartSource Data Collector TAG -->
+
+<!-- Copyright (c) 1996-2009 WebTrends Inc.  All rights reserved. -->
+
+<!-- Version: 8.6.0 -->
+
+<!-- Tag Builder Version: 2.1.0  -->
+
+<!-- Created: 2/9/2009 17:21:12 -->
+
+<script src="/resources/js/webtrends.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var _tag=new WebTrends();
+
+_tag.dcsGetId();
+
+</script>
+
+<script type="text/javascript">
+
+setModuleImpressionTracking();
+
+_tag.dcsCollect();
+
+</script>
+
+<noscript>
+
+<div><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="http://statse.webtrendslive.com/dcsncwimc10000kzgoor3wv9x_3f2v/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.0"/></div>
+
+</noscript>
+
+<!-- END OF SmartSource Data Collector TAG -->
+
+
+
+<script type="text/javascript" src="http://js.revsci.net/gateway/gw.js?csid=I07714" CHARSET="ISO-8859-1"></script>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+      I07714.DM_cat("china.reuters.com > investing > quotes > companyRatios");
+      I07714.DM_tag();
+//-->
+</SCRIPT>
+    
+<!-- Begin comScore Tag -->
+
+<noscript>
+
+    <img src="http://b.scorecardresearch.com/p?c1=2&c2=6035630&cv=2.0&cj=1" />
+
+</noscript>
+
+<!-- End comScore Tag -->
+
+
+
+</body>
+</html>
+<!--[if !IE]> END baseFooter <![endif]-->
+<!--[if !IE]> END standardShell <![endif]-->
+
