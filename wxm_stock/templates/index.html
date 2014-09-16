@@ -2,7 +2,54 @@
 {% block title %}首页{% endblock %}
 
 {% block page %}
-<div>
-我是首页
-</div>
+    <div>
+    我是首页
+    <p></p>
+    </div>
 {% endblock %}
+
+{% block script %}
+    <script>
+        var updater = {
+            poll: function(){
+                $.ajax({url: "/LongPolling", 
+                        type: "POST", 
+                        dataType: "text",
+                        success: updater.onSuccess,
+                        error: updater.onError});
+            },
+            onSuccess: function(data, dataStatus){
+                try{
+                    $("p").append(data+"<br>");
+                }
+                catch(e){
+                    updater.onError();
+                    return;
+                }
+                interval = window.setTimeout(updater.poll, 0);
+            },
+            onError: function(){
+                console.log("Poll error;");
+            }
+        };
+        
+        //updater.poll();
+        
+        var wsUpdater = {
+            socket: null,
+            start: function(){
+                if ("WebSocket" in window) {
+                    wsUpdater.socket = new WebSocket("ws://localhost:8080/websocket");
+                } 
+                else {
+                    wsUpdater.socket = new MozWebSocket("ws://localhost:8080/websocket");
+                }
+                wsUpdater.socket.onmessage = function(event) {
+                    $("p").append(event.data+"<br>");
+                };
+            }
+        };
+        wsUpdater.start();        
+    </script>
+{% endblock %}   
+    
