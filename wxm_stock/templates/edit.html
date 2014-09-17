@@ -2,7 +2,39 @@
 {% block title %}编辑{% endblock %}
 
 {% block page %}
-<div>
-我是edit
-</div>
+
+<p>
+  <a href="/edit/stock//" class="btn btn-primary">新增记录</a>
+</p>
+    <div>
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>代码</th>
+              <th>名称</th>
+              <th>地区</th>
+              <th>行业</th>
+              <th>子行业</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+{% for data in datas %}
+            <tr>
+              <td>{{ data.code }}</td>
+              <td>{{ task.name }}</td>
+              <td>{{ task.zone }}</td>
+              <td>{{ task.industry }}</td>
+              <td>{{ task.subindustry }}</td>
+              <td>
+                    <a href="/taskQuery/ponTask/account/{{ task.id }}/view/"> 修改</a>
+                     |
+                    <a href="/taskQuery/ponTask/edit/{{ task.id }}/"> 删除</a>
+              </td>
+            </tr>
+{% endfor %}
+          </tbody>
+        </table>
+    </div>
+
 {% endblock %}

@@ -17,23 +17,55 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
     {% block head %}
-    {% endblock %}        
+    {% endblock %}
   </head>
   <body>
 
-    <div class="container">
+    <div class="container-fluid">
+      <div class="container">
+          <div class="masthead">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation"><a href="/">首页</a></li>
+              <li role="presentation"><a href="/edit/">修改</a></li>
+              <li role="presentation"><a href="/record/">记录</a></li>
+              <li role="presentation"><a href="/history/">历史</a></li>
+            </ul>
+          </div>
 
-      <div class="masthead">
-        <ul class="nav nav-justified">
-          <li><a href="/">首页</a></li>
-          <li><a href="/edit/">修改</a></li>
-          <li><a href="/record/">记录</a></li>
-          <li><a href="/history/">历史</a></li>
-        </ul>
-      </div>
-
+        <div  class="panel panel-info">
+           <div id="navbar" class="navbar-collapse collapse">
+              <form class="navbar-form navbar-left" role="form">
+                <div class="form-group">
+                  <input type="text" placeholder="股票代码" class="form-control">
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon">地区</span>
+                    <select name="selectAge" id="selectAge" class="form-control">
+                        <option value="1">18-21</option>
+                        <option value="2">18-21</option>
+                    </select>
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon">行业</span>
+                    <select name="selectAge" id="selectAge" class="form-control">
+                        <option value="1">18-21</option>
+                        <option value="2">18-21</option>
+                    </select>
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon">子行业</span>
+                    <select name="selectAge" id="selectAge" class="form-control">
+                        <option value="1">18-21</option>
+                        <option value="2">18-21</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">查询</button>
+              </form>
+           </div><!--/.navbar-collapse -->
+        </div>
+       </div>
     {% block page %}
     {% endblock %}
 
@@ -44,8 +76,8 @@
     <script src="/static/jquery/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    
+
     {% block script %}
-    {% endblock %}    
+    {% endblock %}
   </body>
 </html>

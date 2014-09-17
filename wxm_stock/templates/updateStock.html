@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}修改{% endblock %}
+
+{% block page %}
+
+<p>
+</p>
+    <div class="container">
+        <form class="form-horizontal col-sm-10" role="form" onsubmit=" return doPost();" action="." method="POST">
+          <div class="form-group">
+            <label for="code" class="col-sm-2 control-label">股票代码</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="code" placeholder="股票代码" value="{{ data.code }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" placeholder="名称"  value="{{ data.name }}">
+            </div>
+          </div>
+
+        <div class="form-group">
+            <label for="zone" class="col-sm-2 control-label">地区</label>
+            <div class="col-sm-10">
+                <select name="zone" id="zone" class="form-control">
+                    <option value="1">18-21</option>
+                    <option value="2">18-21</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="industry" class="col-sm-2 control-label">行业</label>
+            <div class="col-sm-10">
+                <select name="industry" id="industry" class="form-control">
+                    <option value="1">18-21</option>
+                    <option value="2">18-21</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label for="subindustry" class="col-sm-2 control-label">子行业</label>
+            <div class="col-sm-10">
+                <select name="subindustry" id="subindustry" class="form-control">
+                    <option value="1">18-21</option>
+                    <option value="2">18-21</option>
+                </select>
+            </div>
+        </div>
+
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="submit" class="btn btn-default" value="保存">
+            </div>
+          </div>
+
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function doPost()
+    {
+        var s = $("input[id='code']").val();
+        if ( s==null || s== ""){
+            alert("未填写股票代码！")
+            return false;
+        }
+        return true;
+    }
+
+</script>
+{% endblock %}

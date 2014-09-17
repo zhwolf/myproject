@@ -11,14 +11,17 @@ web.config.debug = True
 urls = (
     #'/(.*)/', 'redirect',
 #####
-    "//*", "index",
-    "/edit/*", "edit",
-    "/record/*", "record",
-    "/history/*", "history",
+    "^//*", "index",
+    "^/edit/*", "edit",
+    "^/edit/stock/(\d+)/*", "UpdateStock",
+    "^/record/*", "record",
+    "^/history/*", "history",
     )
 
 ### global
 app = web.application(urls, globals())
+db = web.database(dbn = "sqlite",
+                  db = "./stock.dat")
 
 def render_template(template_name, **context):
     extensions = context.pop('extensions', [])
@@ -42,6 +45,33 @@ class index:
 class edit:
     def GET(self):
         return render_template("edit.html")
+
+class UpdateStock:
+    def GET(self, code):
+        data = None
+        try:
+            code = int(code.strip())
+        except:
+            code = 0
+        if code != 0:
+            myvar = dict(code=code)
+            datas = db.select('stocks', myvar, where="id=  $code", limit=1)
+            for data in datas:
+                break
+        return render_template("updateStock.html", data=data)
+
+    def POST(self, code):
+        try:
+            code = int(code.strip())
+        except:
+            code = 0
+        if code != 0:
+            myvar = dict(code=code)
+            datas = db.select('stocks', myvar, where="id=  $code", limit=1)
+            for data in datas:
+                break
+
+        data = web.data() # you can get data use this method
 
 class record:
     def GET(self):
