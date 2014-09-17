@@ -4,7 +4,7 @@
 {% block page %}
 
 <p>
-  <a href="/edit/stock//" class="btn btn-primary">新增记录</a>
+  <a href="/edit/stock//edit/" class="btn btn-primary">新增记录</a>
 </p>
     <div>
         <table class="table table-condensed">
@@ -22,14 +22,14 @@
 {% for data in datas %}
             <tr>
               <td>{{ data.code }}</td>
-              <td>{{ task.name }}</td>
-              <td>{{ task.zone }}</td>
-              <td>{{ task.industry }}</td>
-              <td>{{ task.subindustry }}</td>
+              <td>{{ data.name }}</td>
+              <td>{{ data.zone }}</td>
+              <td>{{ data.industry }}</td>
+              <td>{{ data.subindustry }}</td>
               <td>
-                    <a href="/taskQuery/ponTask/account/{{ task.id }}/view/"> 修改</a>
+                    <a href="/edit/stock/{{ data.code }}/edit/"> 修改</a>
                      |
-                    <a href="/taskQuery/ponTask/edit/{{ task.id }}/"> 删除</a>
+                    <a href="/edit/stock/{{ data.code }}/del/" onClick="doConfirm('确认要删除该数据？')"> 删除</a>
               </td>
             </tr>
 {% endfor %}
