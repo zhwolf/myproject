@@ -79,7 +79,7 @@ class index:
             a = inputs.get('query_subindustry', 'ALL')
             if a !='ALL':
                 wheres['stocks.subindustry'] = a
-        datas = db.where('stocks, report', limit=100, what="report.*",**wheres)
+        datas = db.where('stocks, report', limit=100, what="report.*,ifnull(report.name, stocks.name) as name", order='cast(report.netincome as int) desc' ,**wheres)
 
         return render_template("index.html", datas=datas)
 

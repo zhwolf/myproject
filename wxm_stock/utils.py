@@ -147,6 +147,8 @@ MyGlobals = {
 class Any:
     pass
 
+def to_int(s):
+    return s.replace(',','').strip()
 
 def parseChaiwu(data, code):
     try:
@@ -194,7 +196,7 @@ def parseChaiwu(data, code):
             model =CHAIWU_MODELS[i]
             for j in range(len(model)):
                 key =model[j]
-                value = adata[j].text
+                value = adata[j].text.replace(',','').strip()
                 setattr(data, key , value )
                 #print key, '=', value
         i +=1
@@ -211,13 +213,13 @@ def parseShouru(data, code):
     for td in datas:
         tdtile = td.findPrevious('td').text
         if  tdtile== "Total Revenue":
-            data.TotalRevenue = td.text
+            data.TotalRevenue = td.text.replace(',','').strip()
         elif tdtile== "Gross Profit":
-            data.GrossProfit = td.text
+            data.GrossProfit = td.text.replace(',','').strip()
         elif tdtile== "Operating Income":
-            data.OperatingIncome = td.text
+            data.OperatingIncome = td.text.replace(',','').strip()
         elif tdtile== "Net Income":
-            data.NetIncome = td.text
+            data.NetIncome = td.text.replace(',','').strip()
             break
     #print "data.TotalRevenue", "=",data.TotalRevenue
     #print "data.GrossProfit", "=",data.GrossProfit
