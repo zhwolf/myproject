@@ -6,6 +6,18 @@
 <p>
 </p>
     <div class="container">
+            {% if info %}
+            <div class="col-sm-offset-2">
+                <span class="label label-success  ">{{ info }}</span>
+            </div>
+            {% endif %}
+      
+            {% if error %}
+            <div class="col-sm-offset-2">
+                <span class="label label-danger">{{ error }}</span>    
+            </div>
+            {% endif %}
+                    
         <form class="form-horizontal col-sm-10" role="form" onsubmit=" return doPost();" action="." method="POST">
           <div class="form-group">
             <label for="code" class="col-sm-2 control-label">股票代码</label>
@@ -24,8 +36,9 @@
             <label for="zone" class="col-sm-2 control-label">地区</label>
             <div class="col-sm-10">
                 <select name="zone" id="zone" class="form-control">
-                    <option value="1">18-21</option>
-                    <option value="2">18-21</option>
+                        {% for item in zones %}
+                        <option value="{{ item }}"  {% if data.zone== item %} SELECTED {% endif %} >{{ item }}</option>
+                        {% endfor %}
                 </select>
             </div>
         </div>
@@ -34,8 +47,9 @@
             <label for="industry" class="col-sm-2 control-label">行业</label>
             <div class="col-sm-10">
                 <select name="industry" id="industry" class="form-control">
-                    <option value="1">18-21</option>
-                    <option value="2">18-21</option>
+                        {% for item in industrys %}
+                        <option value="{{ item }}" {% if data.industry== item %} SELECTED {% endif %}>{{ item }}</option>
+                        {% endfor %}
                 </select>
             </div>
         </div>
@@ -44,8 +58,9 @@
             <label for="subindustry" class="col-sm-2 control-label">子行业</label>
             <div class="col-sm-10">
                 <select name="subindustry" id="subindustry" class="form-control">
-                    <option value="1">18-21</option>
-                    <option value="2">18-21</option>
+                        {% for item in subindustrys %}
+                        <option value="{{ item }}" {% if data.subindustry== item %} SELECTED {% endif %}>{{ item }}</option>
+                        {% endfor %}
                 </select>
             </div>
         </div>

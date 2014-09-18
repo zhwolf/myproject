@@ -45,54 +45,63 @@
           </thead>
           <tbody>
 {% for data in datas %}
-            <tr>
+            <tr id="{{ data.code }}" name="{{ data.code }}">
               <td>
-                    <a href="/dataQuery/pondata/account/{{ data.id }}/view/"> record</a>
+                 {% if data.code|getzone == 'HK' %}
+                    <a href="http://quotes.wsj.com/HK/XHKG/{{ data.code|getabvcode }}/financials" target="_blank"> WSJ</a>
                      |
-                    <a href="/dataQuery/pondata/edit/{{ data.id }}/"> FT</a>
+                    <a href="http://markets.ft.com/research/Markets/Tearsheets/Financials?s={{ data.code|getabvcode + ':HKG' }}"  target="_blank"> FT</a>
                      |
-                    <a href="/dataQuery/pondata/edit/{{ data.id }}/"> WSK</a>
+                    <a href="http://stock.finance.sina.com.cn/hkstock/finance/{{ data.code|getabvcode }}.html"  target="_blank"> SINA</a>
+                 {%else%}
+                    <a href="http://quotes.wsj.com/CN/XSHG/{{ data.code|getabvcode }}/financials" target="_blank"> WSJ</a>
                      |
-                    <a href="/dataQuery/pondata/edit/{{ data.id }}/"> SINA</a>
+                    <a href="http://markets.ft.com/research/Markets/Tearsheets/Financials?s={{ data.code|getabvcode + ':SHH' }}"  target="_blank"> FT</a>
                      |
-                    <a href="/dataQuery/pondata/edit/{{ data.id }}/"> reuters</a>
+                    <a href="http://quotes.money.163.com/f10/zycwzb_{{ data.code|getabvcode }},year.html"  target="_blank"> 163</a>
+                 {%endif%}
                      |
-                    <a href="/dataQuery/pondata/edit/{{ data.id }}/"> 刷新</a>
+                    <a href="javascript:void(0)" onclick="doRefreshCode('{{ data.code }}')"> 刷新</a>
+<div class="progress" id="{{ data.code }}" name="{{ data.code }}" style="width: 40px;display:none;">
+  <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+    <span class="sr-only"></span>
+  </div>
+</div>                    
               </td>
-              <td>{{ data.code }}</td>
-              <td>{{ data.name }}</td>
-              <td>{{ data.currency }}</td>
-              <td>{{ data.price }}</td>
-              <td>{{ data.change }}</td>
-              <td>{{ data.shizhi }}</td>
-              <td>{{ data.faxingguben }}</td>
-              <td>{{ data.liutonggu }}</td>
-              <td>{{ data.shouyi }}</td>
-              <td>{{ data.xiaoshou }}</td>
-              <td>{{ data.zhangmian }}</td>
-              <td>{{ data.xianjinliu }}</td>
-              <td>{{ data.xianjin }}</td>
-              <td>{{ data.shiyinglv }}</td>
-              <td>{{ data.zhongshizhi }}</td>
-              <td>{{ data.shizhanglv }}</td>
-              <td>{{ data.gujia }}</td>
-              <td>{{ data.qyshouyilv }}</td>
-              <td>{{ data.baochoulv }}</td>
-              <td>{{ data.huibaolv }}</td>
-              <td>{{ data.maoli }}</td>
-              <td>{{ data.lirunlv }}</td>
-              <td>{{ data.jinglilv }}</td>
-              <td>{{ data.gxshouyilv }}</td>
-              <td>{{ data.guli }}</td>
-              <td>{{ data.zhifulv }}</td>
-              <td>{{ data.sdbilv }}</td>
-              <td>{{ data.ldbilv }}</td>
-              <td>{{ data.zhaiwulv }}</td>
-              <td>{{ data.zwgubenbi }}</td>
-              <td>{{ data.TotalRevenue }}</td>
-              <td>{{ data.GrossProfit }}</td>
-              <td>{{ data.OperatingIncome }}</td>
-              <td>{{ data.NetIncome }}</td>
+              <td class="data">{{ data.code }}</td>
+              <td class="data">{{ data.name }}</td>
+              <td class="data">{{ data.currency }}</td>
+              <td class="data">{{ data.price }}</td>
+              <td class="data">{{ data.change }}</td>
+              <td class="data">{{ data.shizhi }}</td>
+              <td class="data">{{ data.faxingguben }}</td>
+              <td class="data">{{ data.liutonggu }}</td>
+              <td class="data">{{ data.shouyi }}</td>
+              <td class="data">{{ data.xiaoshou }}</td>
+              <td class="data">{{ data.zhangmian }}</td>
+              <td class="data">{{ data.xianjinliu }}</td>
+              <td class="data">{{ data.xianjin }}</td>
+              <td class="data">{{ data.shiyinglv }}</td>
+              <td class="data">{{ data.zhongshizhi }}</td>
+              <td class="data">{{ data.shizhanglv }}</td>
+              <td class="data">{{ data.gujia }}</td>
+              <td class="data">{{ data.qyshouyilv }}</td>
+              <td class="data">{{ data.baochoulv }}</td>
+              <td class="data">{{ data.huibaolv }}</td>
+              <td class="data">{{ data.maoli }}</td>
+              <td class="data">{{ data.lirunlv }}</td>
+              <td class="data">{{ data.jinglilv }}</td>
+              <td class="data">{{ data.gxshouyilv }}</td>
+              <td class="data">{{ data.guli }}</td>
+              <td class="data">{{ data.zhifulv }}</td>
+              <td class="data">{{ data.sdbilv }}</td>
+              <td class="data">{{ data.ldbilv }}</td>
+              <td class="data">{{ data.zhaiwulv }}</td>
+              <td class="data">{{ data.zwgubenbi }}</td>
+              <td class="data">{{ data.TotalRevenue }}</td>
+              <td class="data">{{ data.GrossProfit }}</td>
+              <td class="data">{{ data.OperatingIncome }}</td>
+              <td class="data">{{ data.NetIncome }}</td>
             </tr>
 {% endfor %}
           </tbody>
@@ -102,47 +111,54 @@
 
 {% block script %}
     <script>
-    /*
-        var updater = {
-            poll: function(){
-                $.ajax({url: "/LongPolling",
-                        type: "POST",
-                        dataType: "text",
-                        success: updater.onSuccess,
-                        error: updater.onError});
-            },
-            onSuccess: function(data, dataStatus){
-                try{
-                    $("p").append(data+"<br>");
-                }
-                catch(e){
-                    updater.onError();
-                    return;
-                }
-                interval = window.setTimeout(updater.poll, 0);
-            },
-            onError: function(){
-                console.log("Poll error;");
-            }
-        };
-
-        //updater.poll();
-
-        var wsUpdater = {
-            socket: null,
-            start: function(){
-                if ("WebSocket" in window) {
-                    wsUpdater.socket = new WebSocket("ws://localhost:8080/websocket");
-                }
-                else {
-                    wsUpdater.socket = new MozWebSocket("ws://localhost:8080/websocket");
-                }
-                wsUpdater.socket.onmessage = function(event) {
-                    $("p").append(event.data+"<br>");
-                };
-            }
-        };
-        wsUpdater.start();
-        */
+         function doRefreshCode(code){
+            $("div[name='" + code +"']").show();
+                $.ajax({      
+                    cache:false,
+                    type: "GET",      
+                    url: "/refresh/" + code +"/",      
+                    dataType:   "json",      
+                    success: function(json){      
+                        var datas = $("tr[name='" + code +"']").find(".data");
+                        var i =0;
+                        $(datas[++i]).html( json.name );
+                        $(datas[++i]).html( json.currency );
+                        $(datas[++i]).html( json.price);
+                        $(datas[++i]).html( json.change );
+                        $(datas[++i]).html( json.shizhi );
+                        $(datas[++i]).html( json.faxingguben);
+                        $(datas[++i]).html( json.liutonggu);
+                        $(datas[++i]).html( json.shouyi );
+                        $(datas[++i]).html( json.xiaoshou );
+                        $(datas[++i]).html( json.zhangmian);
+                        $(datas[++i]).html( json.xianjinliu );
+                        $(datas[++i]).html( json.xianjin);
+                        $(datas[++i]).html( json.shiyinglv);
+                        $(datas[++i]).html( json.zhongshizhi);
+                        $(datas[++i]).html( json.shizhanglv );
+                        $(datas[++i]).html( json.gujia);
+                        $(datas[++i]).html( json.qyshouyilv );
+                        $(datas[++i]).html( json.baochoulv);
+                        $(datas[++i]).html( json.huibaolv );
+                        $(datas[++i]).html( json.maoli);
+                        $(datas[++i]).html( json.lirunlv);
+                        $(datas[++i]).html( json.jinglilv );
+                        $(datas[++i]).html( json.gxshouyilv );
+                        $(datas[++i]).html( json.guli );
+                        $(datas[++i]).html( json.zhifulv);
+                        $(datas[++i]).html( json.sdbilv );
+                        $(datas[++i]).html( json.ldbilv );
+                        $(datas[++i]).html( json.zhaiwulv );
+                        $(datas[++i]).html( json.zwgubenbi);
+                        $(datas[++i]).html( json.TotalRevenue );
+                        $(datas[++i]).html( json.GrossProfit);
+                        $(datas[++i]).html( json.OperatingIncome);
+                        $(datas[++i]).html( json.NetIncome);
+                    },  
+                    complete :function( req, error){
+                        $("div[name='" + code +"']").hide();
+                    },    
+                })  
+        }   
     </script>
 {% endblock %}

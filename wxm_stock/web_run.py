@@ -1,17 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-import web
-from jinja2 import Environment,FileSystemLoader
 import utils
+import os, datetime
+import web
+import simplejson
+from jinja2 import Environment,FileSystemLoader
+
+
 web.config.debug = True
+
 
 ### urls
 urls = (
     #'/(.*)/', 'redirect',
 #####
     "^//*", "index",
+    "^/refresh/(.*)/", "RefreshStock",
     "^/edit/*", "edit",
     "^/edit/stock/(.*)/edit/*", "UpdateStock",
     "^/edit/stock/(.*)/del/*", "RemoveStock",
@@ -21,17 +26,31 @@ urls = (
 
 ### global
 app = web.application(urls, globals())
+
 db = web.database(dbn = "sqlite",
                   db = "./stock.dat")
 
+web.template.Template.globals = utils.MyGlobals
+
+def getzone(code):
+    i = code.find('.')
+    return code[i+1:].upper() if i >=0 else ""
+
+def getabvcode(code):
+    i = code.find('.')
+    return code[:i] if i >=0 else code
+
 def render_template(template_name, **context):
     extensions = context.pop('extensions', [])
-    globals = context.pop('globals', {})
+    globals = context.pop('globals', utils.MyGlobals)
     jinja_env = Environment(
         loader=FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates')),
         extensions=extensions,
     )
     jinja_env.globals.update(globals)
+
+    jinja_env.filters['getzone'] = getzone
+    jinja_env.filters['getabvcode'] = getabvcode
     #jinja_env.update_template_context(context)
     return jinja_env.get_template(template_name).render(context)
 
@@ -42,6 +61,27 @@ class redirect:
 class index:
     def GET(self):
         return render_template("index.html")
+
+    def POST(self):
+        inputs = web.input()
+        wheres = {}
+        wheres ['stocks.code = report.code AND 1'] =1
+        a = inputs.get('query_code', '')
+        if  a!= '':
+            wheres['stocks.code'] = a
+        else:
+            a = inputs.get('query_zone', 'ALL')
+            if a !='ALL':
+                wheres['stocks.zone'] = a
+            a = inputs.get('query_industry', 'ALL')
+            if a !='ALL':
+                wheres['stocks.industry'] = a
+            a = inputs.get('query_subindustry', 'ALL')
+            if a !='ALL':
+                wheres['stocks.subindustry'] = a
+        datas = db.where('stocks, report', limit=100, what="report.*",**wheres)
+
+        return render_template("index.html", datas=datas)
 
 class edit:
     def GET(self):
@@ -54,14 +94,14 @@ class edit:
         if  a!= '':
             wheres['stocks.code'] = a
         else:
-            a = inputs.get('query_zone', '')
-            if a !='':
+            a = inputs.get('query_zone', 'ALL')
+            if a !='ALL':
                 wheres['stocks.zone'] = a
-            a = inputs.get('query_industry', '')
-            if a !='':
+            a = inputs.get('query_industry', 'ALL')
+            if a !='ALL':
                 wheres['stocks.industry'] = a
-            a = inputs.get('query_subindustry', '')
-            if a !='':
+            a = inputs.get('query_subindustry', 'ALL')
+            if a !='ALL':
                 wheres['stocks.subindustry'] = a
         datas = db.where('stocks', limit=100, **wheres)
 
@@ -113,9 +153,19 @@ class UpdateStock:
         if result:
             return web.seeother("/edit/")
         else:
-            return render_template("updateStock.html", data=inputs, errs = errs, queryurl="/edit/")
+            return render_template("updateStock.html", data=inputs, error = errs, queryurl="/edit/")
 
+class RefreshStock:
+    def GET(self, code):
+        return self.getdata(code)
 
+    def POST(self, code):
+        return self.getdata(code)
+
+    def getdata(self, code):
+        data = utils.doParse(code)
+        utils.saveData(db, data)
+        return simplejson.dumps(data, cls=utils.MyJSONEncoder)
 
 class record:
     def GET(self):
